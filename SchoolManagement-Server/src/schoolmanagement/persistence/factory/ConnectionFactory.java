@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import schoolmanagement.config.Configuration;
 
 /**
@@ -31,7 +33,7 @@ public class ConnectionFactory {
 
     public Connection getConnection() throws SQLException {
         Connection conn;
-        conn = DriverManager.getConnection("jdbc:mysql://"+dbHost+":"+dbPort+"/"+dbName,dbUsername,dbPassword);
+        conn = DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName, dbUsername, dbPassword);
         return conn;
     }
 
@@ -42,14 +44,18 @@ public class ConnectionFactory {
         return connectionFactory;
     }
 
-    private void readProperties() throws  IOException {
+    private void readProperties() throws IOException {
         Properties properties = new Properties();
-        properties.load(new FileInputStream(Configuration.CONFIG_FILE_PATH));
-        dbHost = properties.getProperty(Configuration.DB_HOST);
-        dbPort = properties.getProperty(Configuration.DB_PORT);
-        dbName = properties.getProperty(Configuration.DB_NAME);
-        dbUsername = properties.getProperty(Configuration.DB_USERNAME);
-        dbPassword = properties.getProperty(Configuration.DB_PASSWORD);
+        
+        try (FileInputStream input = new FileInputStream(Configuration.CONFIG_FILE_PATH)) {
+            properties.load(input);
+            dbHost = properties.getProperty(Configuration.DB_HOST);
+            dbPort = properties.getProperty(Configuration.DB_PORT);
+            dbName = properties.getProperty(Configuration.DB_NAME);
+            dbUsername = properties.getProperty(Configuration.DB_USERNAME);
+            dbPassword = properties.getProperty(Configuration.DB_PASSWORD);
+        }
     }
+
 
 }
