@@ -5,21 +5,20 @@
 package schoolmanagement.persistence.factory;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import schoolmanagement.config.Configuration;
 
 /**
  *
  * @author ivano
  */
+
+// Thread Safe Singleton Pattern
 public class ConnectionFactory {
 
-    private static ConnectionFactory connectionFactory = null;
+    private static volatile ConnectionFactory connectionFactory = null;
 
     private String dbHost;
     private String dbPort;
@@ -37,11 +36,18 @@ public class ConnectionFactory {
         return conn;
     }
 
+    // optimized creation of thread safe singleton
     public static ConnectionFactory getInstance() throws IOException {
-        if (connectionFactory == null) {
-            connectionFactory = new ConnectionFactory();
+        ConnectionFactory result = connectionFactory;
+        
+        if (result == null) {
+            synchronized (ConnectionFactory.class) {
+                result = connectionFactory;
+                if(result == null)
+                    result = connectionFactory = new ConnectionFactory();
+            }
         }
-        return connectionFactory;
+        return result;
     }
 
     private void readProperties() throws IOException {

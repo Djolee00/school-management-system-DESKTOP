@@ -19,6 +19,7 @@ public class Main {
     public static void main(String[] args) {
         JFrame mainForm = new MainForm();
         mainForm.setVisible(true);
+        
     }
     
 }
