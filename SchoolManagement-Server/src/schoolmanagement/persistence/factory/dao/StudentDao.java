@@ -4,8 +4,10 @@
  */
 package schoolmanagement.persistence.factory.dao;
 
+import java.io.IOException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
+import java.sql.*;
 
 /**
  *
@@ -13,10 +15,10 @@ import schoolmanagement.commonlib.model.Student;
  */
 public interface StudentDao {
     
-    void save();
-    void update();
-    List<Student> getAll();
-    Student getById(Long id);
+    Student saveStudent(Student student) throws SQLException,IOException ;
+    void updateStudent();
+    List<Student> getAllStudents();
+    Student getStudentById(Long id);
     
     
 }

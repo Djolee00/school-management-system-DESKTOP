@@ -34,14 +34,6 @@ public class ServiceProvider {
         registerServices();
     }
 
-    private void registerDaos() {
-        manager.put(StudentDao.class, new StudentDaoImpl());
-    }
-
-    private void registerServices() {
-        manager.put(StudentService.class, new StudentServiceImpl((StudentDao) manager.get(StudentDao.class)));
-    }
-
     // optimized thread safe singleton creation
     public static ServiceProvider getInstance() {
         ServiceProvider result = serviceProvider; // to reduce access of volatile field, performance boost
@@ -63,4 +55,14 @@ public class ServiceProvider {
             return null;
         }
     }
+    
+    
+    private void registerDaos() {
+        manager.put(StudentDao.class, new StudentDaoImpl());
+    }
+
+    private void registerServices() {
+        manager.put(StudentService.class, new StudentServiceImpl((StudentDao) manager.get(StudentDao.class)));
+    }
+
 }

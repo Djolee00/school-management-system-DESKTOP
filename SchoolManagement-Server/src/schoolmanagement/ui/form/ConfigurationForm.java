@@ -5,16 +5,12 @@
 package schoolmanagement.ui.form;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import schoolmanagement.config.Configuration;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import schoolmanagement.persistence.factory.ConnectionFactory;
 import schoolmanagement.test.Test;
 
 /**
@@ -199,12 +195,12 @@ public class ConfigurationForm extends javax.swing.JDialog {
 
             writeConfigFile(serverPort, dbHost, dbPort, dbName, dbUsername, dbPassword);
 
-            JOptionPane.showMessageDialog(this, "Uspešno povezivanje sa bazom!","Poruka",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Uspešno povezivanje sa bazom!", "Poruka", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Greška prilikom povezivanja sa bazom. Proverite podatke!", "Greška", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-             JOptionPane.showMessageDialog(this, "Greška prilikom upisivanja konfiguracionih podataka!", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Greška prilikom upisivanja konfiguracionih podataka!", "Greška", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -227,9 +223,10 @@ public class ConfigurationForm extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void populateFields() {
-        try {
+        
+        try ( FileInputStream inStream = new FileInputStream(Configuration.CONFIG_FILE_PATH)) {
             Properties properties = new Properties();
-            properties.load(new FileInputStream(Configuration.CONFIG_FILE_PATH));
+            properties.load(inStream);
             txtDbHost.setText(properties.getProperty(Configuration.DB_HOST));
             txtDbPort.setText(properties.getProperty(Configuration.DB_PORT));
             txtDbName.setText(properties.getProperty(Configuration.DB_NAME));
