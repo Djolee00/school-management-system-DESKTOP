@@ -15,11 +15,11 @@ import schoolmanagement.service.provider.ServiceProvider;
  */
 public class Controller {
 
-    
-    public List<Student> getStudents(){
-        StudentService studentService =(StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class);
-        return  studentService.getAll();
+    public Student createStudent(Student student) {
+        StudentService studentService = (StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class);
+        
+        student = studentService.save(student);
+        
+        return student;
     }
-    
-    
 }

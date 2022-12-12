@@ -22,8 +22,8 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public void save() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Student save(Student student) {
+        return null;
     }
 
     @Override

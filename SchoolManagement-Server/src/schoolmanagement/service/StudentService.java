@@ -13,7 +13,7 @@ import schoolmanagement.commonlib.model.Student;
  */
 public interface StudentService {
     
-    void save();
+    Student save(Student student);
     void update();
     Student getById();
     List<Student> getAll();
