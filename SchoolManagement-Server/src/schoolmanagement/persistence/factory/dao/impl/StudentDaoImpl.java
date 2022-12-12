@@ -74,7 +74,7 @@ public class StudentDaoImpl implements StudentDao {
 
     private Student insertStudent(Connection conn, Student student) throws SQLException {
         final String sqlQuery = "INSERT INTO Student(user_id,first_name,last_name,birthdate,creation_date) VALUES(?,?,?,?,?)";
-        try ( PreparedStatement statement = conn.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
+        try ( PreparedStatement statement = conn.prepareStatement(sqlQuery)) {
 
             statement.setLong(1, student.getId());
             statement.setString(2, student.getFirstName());
@@ -84,9 +84,6 @@ public class StudentDaoImpl implements StudentDao {
 
             statement.executeUpdate();
 
-            ResultSet rs = statement.getGeneratedKeys();
-            long key = rs.next() ? rs.getLong(1) : 0;
-            student.setId(key);
             
             return student;
         }

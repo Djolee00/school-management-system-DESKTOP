@@ -4,8 +4,11 @@
  */
 package schoolmanagement.service;
 
+import java.io.IOException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
+import validation.exception.ValidationException;
+import java.sql.SQLException;
 
 /**
  *
@@ -13,7 +16,7 @@ import schoolmanagement.commonlib.model.Student;
  */
 public interface StudentService {
     
-    Student save(Student student);
+    Student save(Student student) throws ValidationException,IOException,SQLException;
     void update();
     Student getById();
     List<Student> getAll();

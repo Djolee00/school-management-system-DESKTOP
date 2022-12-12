@@ -4,10 +4,16 @@
  */
 package schoolmanagement.service.impl;
 
+import java.io.IOException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.factory.dao.StudentDao;
 import schoolmanagement.service.StudentService;
+import schoolmanagement.validator.StudentValidator;
+import validation.exception.ValidationException;
+import validaton.rule.result.ResultInfo;
+import java.sql.SQLException;
+
 
 /**
  *
@@ -22,8 +28,14 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public Student save(Student student) {
-        return null;
+    public Student save(Student student) throws ValidationException, SQLException, IOException {
+        ResultInfo result = new StudentValidator(student).validate();
+        if(!result.isValid())
+            throw new ValidationException(result.getErrors());
+        
+        student = studentDao.saveStudent(student);
+        
+        return student;
     }
 
     @Override
