@@ -25,6 +25,7 @@ public class ConfigurationForm extends javax.swing.JDialog {
     public ConfigurationForm(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         populateFields();
     }
 

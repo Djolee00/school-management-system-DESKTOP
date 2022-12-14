@@ -2,25 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package schoolmanagement.persistence.factory.dao.impl;
+package schoolmanagement.persistence.dao.impl;
 
 import java.io.IOException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
-import schoolmanagement.persistence.factory.dao.StudentDao;
+import schoolmanagement.persistence.dao.StudentDao;
 import java.sql.*;
 import java.time.LocalDateTime;
-import schoolmanagement.persistence.factory.ConnectionFactory;
+import schoolmanagement.persistence.pool.ConnectionPool;
 
 /**
  *
  * @author ivano
  */
 public class StudentDaoImpl implements StudentDao {
+    
+    private Connection connection;
 
     @Override
     public Student saveStudent(Student student) throws SQLException, IOException {
-        try ( Connection conn = ConnectionFactory.getInstance().getConnection()) {
+        try ( Connection conn = ConnectionPool.getInstance().getConnection()) {
             try {
                 conn.setAutoCommit(false);
 
@@ -87,6 +89,10 @@ public class StudentDaoImpl implements StudentDao {
             
             return student;
         }
+    }
+
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
 }

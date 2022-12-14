@@ -7,7 +7,7 @@ package schoolmanagement.service.impl;
 import java.io.IOException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
-import schoolmanagement.persistence.factory.dao.StudentDao;
+import schoolmanagement.persistence.dao.StudentDao;
 import schoolmanagement.service.StudentService;
 import schoolmanagement.validator.StudentValidator;
 import validation.exception.ValidationException;

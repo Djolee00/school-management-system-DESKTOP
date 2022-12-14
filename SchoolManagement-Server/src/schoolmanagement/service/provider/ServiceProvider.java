@@ -6,8 +6,8 @@ package schoolmanagement.service.provider;
 
 import java.util.HashMap;
 import java.util.Map;
-import schoolmanagement.persistence.factory.dao.StudentDao;
-import schoolmanagement.persistence.factory.dao.impl.StudentDaoImpl;
+import schoolmanagement.persistence.dao.StudentDao;
+import schoolmanagement.persistence.dao.impl.StudentDaoImpl;
 import schoolmanagement.service.StudentService;
 import schoolmanagement.service.impl.StudentServiceImpl;
 
