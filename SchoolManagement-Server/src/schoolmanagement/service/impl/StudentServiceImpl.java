@@ -4,6 +4,7 @@
  */
 package schoolmanagement.service.impl;
 
+import java.sql.Connection;
 import java.io.IOException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
@@ -13,29 +14,50 @@ import schoolmanagement.validator.StudentValidator;
 import validation.exception.ValidationException;
 import validaton.rule.result.ResultInfo;
 import java.sql.SQLException;
-
+import schoolmanagement.persistence.dao.UserDao;
+import schoolmanagement.persistence.pool.ConnectionPool;
 
 /**
  *
  * @author ivano
  */
-public class StudentServiceImpl implements StudentService{
+public class StudentServiceImpl implements StudentService {
 
-    private StudentDao studentDao;
+    private final UserDao userDao;
+    private final StudentDao studentDao;
 
-    public StudentServiceImpl(StudentDao studentDao) {
+    public StudentServiceImpl(UserDao userDao, StudentDao studentDao) {
         this.studentDao = studentDao;
+        this.userDao = userDao;
     }
 
     @Override
-    public Student save(Student student) throws ValidationException, SQLException, IOException {
-        ResultInfo result = new StudentValidator(student).validate();
-        if(!result.isValid())
-            throw new ValidationException(result.getErrors());
-        
-        student = studentDao.saveStudent(student);
-        
-        return student;
+    public synchronized Student save(Student student) throws ValidationException, IOException, SQLException {
+
+        validateStudentData(student);
+
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            userDao.setConnection(connection);
+            studentDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            validateStudentUsername(student.getUsername());
+
+            long userId = userDao.saveUser(student);
+            student.setId(userId);
+            student = studentDao.saveStudent(student);
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return student;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
     }
 
     @Override
@@ -52,5 +74,20 @@ public class StudentServiceImpl implements StudentService{
     public List<Student> getAll() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
+    private void validateStudentData(Student student) throws ValidationException {
+        ResultInfo result = new StudentValidator(student).validate();
+        if (!result.isValid()) {
+            throw new ValidationException(result.getErrors());
+        }
+
+    }
+
+    private void validateStudentUsername(String username) throws SQLException, ValidationException {
+        boolean isUnique = userDao.isUsernameUnique(username);
+        if (isUnique == false) {
+            throw new ValidationException("Korisnicko ime vec postoji u sistemu!");
+        }
+    }
+
 }

@@ -16,5 +16,9 @@ public class ValidationException extends Exception{
         super(String.join( "\n",errors));
     }
     
+     public ValidationException(String error) {
+        super(error);
+    }
+    
     
 }

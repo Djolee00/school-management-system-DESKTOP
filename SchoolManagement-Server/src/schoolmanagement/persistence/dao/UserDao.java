@@ -3,7 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package schoolmanagement.persistence.dao;
+
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import schoolmanagement.commonlib.model.User;
 
@@ -14,6 +16,10 @@ import schoolmanagement.commonlib.model.User;
 public interface UserDao {
 
     // needs to return generated id
-    int saveUser(User user) throws SQLException, IOException;
+    long saveUser(User user) throws SQLException, IOException;
+
+    public boolean isUsernameUnique(String username) throws SQLException;
+
+    void setConnection(Connection connection);
 
 }

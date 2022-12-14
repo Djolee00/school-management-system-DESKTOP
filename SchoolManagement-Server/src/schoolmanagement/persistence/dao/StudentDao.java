@@ -14,11 +14,15 @@ import java.sql.*;
  * @author ivano
  */
 public interface StudentDao {
-    
-    Student saveStudent(Student student) throws SQLException,IOException ;
+
+    Student saveStudent(Student student) throws SQLException, IOException;
+
     void updateStudent();
+
     List<Student> getAllStudents();
+
     Student getStudentById(Long id);
-    
-    
+
+    void setConnection(Connection connection);
+
 }

@@ -7,7 +7,9 @@ package schoolmanagement.service.provider;
 import java.util.HashMap;
 import java.util.Map;
 import schoolmanagement.persistence.dao.StudentDao;
+import schoolmanagement.persistence.dao.UserDao;
 import schoolmanagement.persistence.dao.impl.StudentDaoImpl;
+import schoolmanagement.persistence.dao.impl.UserDaoImpl;
 import schoolmanagement.service.StudentService;
 import schoolmanagement.service.impl.StudentServiceImpl;
 
@@ -15,7 +17,6 @@ import schoolmanagement.service.impl.StudentServiceImpl;
  *
  * @author ivano
  */
-
 // Thread Safe Singleton Pattern
 public class ServiceProvider {
 
@@ -40,8 +41,9 @@ public class ServiceProvider {
         if (result == null) {
             synchronized (ServiceProvider.class) {
                 result = serviceProvider;
-                if(result == null)
+                if (result == null) {
                     result = serviceProvider = new ServiceProvider();
+                }
             }
         }
         return result;
@@ -55,14 +57,15 @@ public class ServiceProvider {
             return null;
         }
     }
-    
-    
+
     private void registerDaos() {
         manager.put(StudentDao.class, new StudentDaoImpl());
+        manager.put(UserDao.class, new UserDaoImpl());
+
     }
 
     private void registerServices() {
-        manager.put(StudentService.class, new StudentServiceImpl((StudentDao) manager.get(StudentDao.class)));
+        manager.put(StudentService.class, new StudentServiceImpl((UserDao) manager.get(UserDao.class),(StudentDao) manager.get(StudentDao.class)));
     }
 
 }
