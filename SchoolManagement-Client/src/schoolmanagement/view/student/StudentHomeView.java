@@ -46,14 +46,15 @@ public class StudentHomeView extends javax.swing.JFrame {
         lblLogoutPhozo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(900, 640));
-        setMinimumSize(new java.awt.Dimension(900, 640));
+        setMaximumSize(new java.awt.Dimension(900, 550));
+        setMinimumSize(new java.awt.Dimension(900, 550));
+        setPreferredSize(new java.awt.Dimension(900, 550));
         setResizable(false);
 
         panelMain.setBackground(new java.awt.Color(255, 255, 255));
         panelMain.setMaximumSize(new java.awt.Dimension(900, 640));
-        panelMain.setMinimumSize(new java.awt.Dimension(900, 640));
-        panelMain.setPreferredSize(new java.awt.Dimension(900, 640));
+        panelMain.setMinimumSize(new java.awt.Dimension(900, 550));
+        panelMain.setPreferredSize(new java.awt.Dimension(900, 550));
 
         panelHeader.setBackground(new java.awt.Color(45, 118, 232));
 
@@ -267,7 +268,7 @@ public class StudentHomeView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(panelMain, 640, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
