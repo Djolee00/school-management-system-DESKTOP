@@ -23,6 +23,7 @@ public class Client {
         
         JFrame loginFrame = new LoginView();
         loginFrame.setVisible(true);
+        
     }
     
 }
