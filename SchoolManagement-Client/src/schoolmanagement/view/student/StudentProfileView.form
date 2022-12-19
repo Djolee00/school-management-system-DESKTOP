@@ -3,6 +3,9 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[900, 640]"/>
+    </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[900, 640]"/>
     </Property>
@@ -424,8 +427,8 @@
             <Container class="javax.swing.JPanel" name="panelKursevi">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Kursevi">
-                    <Property name="tabTitle" type="java.lang.String" value="Kursevi"/>
+                  <JTabbedPaneConstraints tabName="Moji kursevi">
+                    <Property name="tabTitle" type="java.lang.String" value="Moji kursevi"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -615,7 +618,6 @@
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                                 <TitledBorder title="Nastavnici">
-                                  <Border PropertyName="innerBorder" info="null"/>
                                   <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
                                   <Color PropertyName="color" blue="e8" green="76" red="2d" type="rgb"/>
                                 </TitledBorder>

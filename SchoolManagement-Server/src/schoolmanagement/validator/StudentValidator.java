@@ -43,6 +43,7 @@ public class StudentValidator extends AbstractValidator {
                 .withMessage("Morate uneti  prezime")
                 .matchesRegex("^[A-Za-z]+(((\\'|\\-|\\.)?([A-Za-z])+))?$")
                 .withMessage("Ime sme da sadrzi samo slova i karaktere (',-,.)");
+  
     }
     
 }

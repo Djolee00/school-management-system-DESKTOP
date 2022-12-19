@@ -63,6 +63,7 @@ public class StudentProfileView extends javax.swing.JFrame {
         jList1 = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(900, 640));
         setMinimumSize(new java.awt.Dimension(900, 640));
         setResizable(false);
 
@@ -350,7 +351,7 @@ public class StudentProfileView extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Kursevi", panelKursevi);
+        jTabbedPane1.addTab("Moji kursevi", panelKursevi);
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
