@@ -7,6 +7,7 @@ package schoolmanagement.client;
 import javax.swing.JFrame;
 import schoolmanagement.view.login.LoginView;
 import schoolmanagement.view.student.StudentHomeView;
+import schoolmanagement.view.student.StudentProfileView;
 
 /**
  *
@@ -23,6 +24,9 @@ public class Client {
         
         JFrame loginFrame = new LoginView();
         loginFrame.setVisible(true);
+        
+        JFrame studentProfile = new StudentProfileView();
+        studentProfile.setVisible(true);
         
     }
     

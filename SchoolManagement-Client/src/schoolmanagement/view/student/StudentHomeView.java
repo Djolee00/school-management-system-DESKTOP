@@ -34,6 +34,7 @@ public class StudentHomeView extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         lblUserText2 = new javax.swing.JLabel();
         lblUserText3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         panelProfileItem = new javax.swing.JPanel();
         lblUserText = new javax.swing.JLabel();
         lblUserPhoto = new javax.swing.JLabel();
@@ -47,7 +48,6 @@ public class StudentHomeView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 640));
         setMinimumSize(new java.awt.Dimension(900, 640));
-        setPreferredSize(new java.awt.Dimension(900, 640));
         setResizable(false);
 
         panelMain.setBackground(new java.awt.Color(255, 255, 255));
@@ -56,21 +56,46 @@ public class StudentHomeView extends javax.swing.JFrame {
         panelMain.setPreferredSize(new java.awt.Dimension(900, 640));
 
         panelHeader.setBackground(new java.awt.Color(45, 118, 232));
-        panelHeader.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblUserText2.setBackground(new java.awt.Color(45, 118, 232));
-        lblUserText2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblUserText2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblUserText2.setForeground(new java.awt.Color(255, 255, 255));
-        lblUserText2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUserText2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblUserText2.setText("Đorđe Ivanović");
-        panelHeader.add(lblUserText2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 140, -1));
 
         lblUserText3.setBackground(new java.awt.Color(45, 118, 232));
         lblUserText3.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
         lblUserText3.setForeground(new java.awt.Color(255, 255, 255));
-        lblUserText3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUserText3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblUserText3.setText("DOBRODOŠLI");
-        panelHeader.add(lblUserText3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 300, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/school.png"))); // NOI18N
+
+        javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
+        panelHeader.setLayout(panelHeaderLayout);
+        panelHeaderLayout.setHorizontalGroup(
+            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblUserText2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelHeaderLayout.setVerticalGroup(
+            panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelHeaderLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelHeaderLayout.createSequentialGroup()
+                        .addComponent(lblUserText3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblUserText2)))
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
 
         panelProfileItem.setBackground(new java.awt.Color(240, 240, 240));
         panelProfileItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -212,9 +237,9 @@ public class StudentHomeView extends javax.swing.JFrame {
         panelMain.setLayout(panelMainLayout);
         panelMainLayout.setHorizontalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 900, Short.MAX_VALUE)
+            .addComponent(panelHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(169, Short.MAX_VALUE)
                 .addComponent(panelProfileItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
                 .addComponent(panelCourseItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,13 +250,13 @@ public class StudentHomeView extends javax.swing.JFrame {
         panelMainLayout.setVerticalGroup(
             panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelMainLayout.createSequentialGroup()
-                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94)
+                .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelProfileItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelCourseItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelLogoutItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 276, Short.MAX_VALUE))
+                .addGap(0, 307, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -282,6 +307,7 @@ public class StudentHomeView extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCoursesPhoto;
     private javax.swing.JLabel lblCoursesText;
     private javax.swing.JLabel lblLogoutPhozo;
