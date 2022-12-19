@@ -52,7 +52,7 @@ public class StudentHomeView extends javax.swing.JFrame {
         setResizable(false);
 
         panelMain.setBackground(new java.awt.Color(255, 255, 255));
-        panelMain.setMaximumSize(new java.awt.Dimension(900, 640));
+        panelMain.setMaximumSize(new java.awt.Dimension(900, 550));
         panelMain.setMinimumSize(new java.awt.Dimension(900, 550));
         panelMain.setPreferredSize(new java.awt.Dimension(900, 550));
 

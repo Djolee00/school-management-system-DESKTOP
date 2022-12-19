@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package schoolmanagement.validator;
+package schoolmanagement.validator.builder;
 
 import schoolmanagement.commonlib.model.Student;
 import validation.abstraction.AbstractValidator;
@@ -11,9 +11,11 @@ import validation.abstraction.AbstractValidator;
  *
  * @author ivano
  */
-public class StudentValidator extends AbstractValidator {
+
+// this is an usage of my Validator Library which is based on Builder pattern, it is used for validation of input data
+public class StudentValidatorBuilder extends AbstractValidator {
     
-    public StudentValidator(Student student) {
+    public StudentValidatorBuilder(Student student) {
         ruleFor(student.getUsername())
                 .notEmpty()
                 .withMessage("Morate uneti korisnicko ime")

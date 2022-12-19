@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.service.StudentService;
 import schoolmanagement.service.provider.ServiceProvider;
+import schoolmanagement.validator.student.SaveOrUpdateStudentValidator;
 import validation.exception.ValidationException;
 
 /**
@@ -23,9 +24,7 @@ public class Controller {
             //TODO: check unique constraint on username, return Response object!
             
             StudentService studentService = (StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class);
-            
-            student = studentService.save(student);
-            
+            student = studentService.save(student,new SaveOrUpdateStudentValidator());  
             System.out.println(student);
         } catch (ValidationException | IOException | SQLException ex) {
             System.out.println(ex.getMessage());

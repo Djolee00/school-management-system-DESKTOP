@@ -22,13 +22,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        JFrame mainForm = new MainForm();
-        mainForm.setVisible(true);
+//        JFrame mainForm = new MainForm();
+//        mainForm.setVisible(true);
 
-//        Student s1 = new Student("djole123", "Djole123!", "Djordje", "Ivanovic", LocalDate.now(), LocalDate.now());
-//
-//        Controller controller = new Controller();
-//        controller.createStudent(s1);
+        Student s1 = new Student("djole123", "Djole123!", "Djordje", "Ivanovic", LocalDate.now(), LocalDate.now());
+
+        Controller controller = new Controller();
+        controller.createStudent(s1);
     }
 
 }

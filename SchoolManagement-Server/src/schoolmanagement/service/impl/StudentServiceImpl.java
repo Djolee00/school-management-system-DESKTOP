@@ -10,12 +10,13 @@ import java.util.List;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.dao.StudentDao;
 import schoolmanagement.service.StudentService;
-import schoolmanagement.validator.StudentValidator;
+import schoolmanagement.validator.builder.StudentValidatorBuilder;
 import validation.exception.ValidationException;
 import validaton.rule.result.ResultInfo;
 import java.sql.SQLException;
 import schoolmanagement.persistence.dao.UserDao;
 import schoolmanagement.persistence.pool.ConnectionPool;
+import schoolmanagement.validator.student.StudentValidator;
 
 /**
  *
@@ -32,9 +33,8 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public synchronized Student save(Student student) throws ValidationException, IOException, SQLException {
+    public synchronized Student save(Student student,StudentValidator validator) throws ValidationException, IOException, SQLException {
 
-        validateStudentData(student);
 
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {
@@ -43,8 +43,8 @@ public class StudentServiceImpl implements StudentService {
 
             connection.setAutoCommit(false);
 
-            validateStudentUsername(student.getUsername());
-
+            validator.validate(student, userDao);
+                    
             long userId = userDao.saveUser(student);
             student.setId(userId);
             student = studentDao.saveStudent(student);
@@ -53,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
             ConnectionPool.getInstance().releaseConnection(connection);
 
             return student;
-        } catch (IOException | SQLException ex) {
+        } catch (ValidationException | IOException | SQLException ex) {
             connection.rollback();
             ConnectionPool.getInstance().releaseConnection(connection);
             throw ex;
@@ -75,19 +75,5 @@ public class StudentServiceImpl implements StudentService {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    private void validateStudentData(Student student) throws ValidationException {
-        ResultInfo result = new StudentValidator(student).validate();
-        if (!result.isValid()) {
-            throw new ValidationException(result.getErrors());
-        }
-
-    }
-
-    private void validateStudentUsername(String username) throws SQLException, ValidationException {
-        boolean isUnique = userDao.isUsernameUnique(username);
-        if (isUnique == false) {
-            throw new ValidationException("Korisnicko ime vec postoji u sistemu!");
-        }
-    }
 
 }

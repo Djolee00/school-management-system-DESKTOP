@@ -10,6 +10,7 @@ import java.util.List;
 import schoolmanagement.commonlib.model.Student;
 import validation.exception.ValidationException;
 import java.sql.SQLException;
+import schoolmanagement.validator.student.StudentValidator;
 
 /**
  *
@@ -17,7 +18,7 @@ import java.sql.SQLException;
  */
 public interface StudentService {
     
-    Student save(Student student) throws ValidationException,IOException,SQLException;
+    Student save(Student student,StudentValidator validator) throws ValidationException,IOException,SQLException;
     void update();
     Student getById();
     List<Student> getAll();
