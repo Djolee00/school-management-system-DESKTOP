@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package schoolmanagement.ui.form;
+package schoolmanagement.view;
 
 /**
  *
@@ -44,13 +44,21 @@ public class MainForm extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Korisničko ime:", "Vreme prijave:"
+                "Username:", "Login time:"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tblUsers);
 
         btnStartServer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnStartServer.setText("Pokreni server");
+        btnStartServer.setText("Start server");
         btnStartServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnStartServerActionPerformed(evt);
@@ -58,7 +66,7 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         btnStopServer.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnStopServer.setText("Zaustavi server");
+        btnStopServer.setText("Stop server");
         btnStopServer.setEnabled(false);
         btnStopServer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,11 +76,11 @@ public class MainForm extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Prijavljeni korisnici");
+        jLabel1.setText("Active users:");
 
         jMenuConfiguation.setText("Server");
 
-        jMenuItemDatabase.setText("Podešavanja");
+        jMenuItemDatabase.setText("Configuration");
         jMenuItemDatabase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemDatabaseActionPerformed(evt);

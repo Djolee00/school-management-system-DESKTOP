@@ -151,7 +151,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="IZBOR KURSEVA"/>
+                <Property name="text" type="java.lang.String" value=" COURSES"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -181,12 +181,12 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="6" rowCount="4">
-                    <Column editable="false" title="Naziv" type="java.lang.Object"/>
-                    <Column editable="false" title="Datum po&#x10d;etka" type="java.lang.Object"/>
-                    <Column editable="false" title="Datum zavr&#x161;etka" type="java.lang.Object"/>
-                    <Column editable="true" title="Kapacitet" type="java.lang.Object"/>
-                    <Column editable="false" title="Jezik" type="java.lang.Object"/>
-                    <Column editable="false" title="Nivo" type="java.lang.Object"/>
+                    <Column editable="false" title="Name" type="java.lang.Object"/>
+                    <Column editable="false" title="Begin date " type="java.lang.Object"/>
+                    <Column editable="false" title="End date " type="java.lang.Object"/>
+                    <Column editable="false" title="Capacity" type="java.lang.Object"/>
+                    <Column editable="false" title="Language" type="java.lang.Object"/>
+                    <Column editable="false" title="Level" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -208,7 +208,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Sortiranje"/>
+                <TitledBorder title="Sort"/>
               </Border>
             </Property>
           </Properties>
@@ -261,29 +261,29 @@
           <SubComponents>
             <Component class="javax.swing.JCheckBox" name="jcbLanguage">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Jezik"/>
+                <Property name="text" type="java.lang.String" value="Language"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jcbLevel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nivo"/>
+                <Property name="text" type="java.lang.String" value="Level"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jcbEndDate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Datum zavr&#x161;etka"/>
+                <Property name="text" type="java.lang.String" value="End date"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jcbBeginDate">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Datum po&#x10d;etka"/>
+                <Property name="text" type="java.lang.String" value="Begin date"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
             </Component>
             <Component class="javax.swing.JButton" name="btnSort">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sortiraj"/>
+                <Property name="text" type="java.lang.String" value="Sort"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -295,7 +295,7 @@
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Pretraga"/>
+                <TitledBorder title="Search"/>
               </Border>
             </Property>
           </Properties>
@@ -311,30 +311,32 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jSeparator2" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel3" alignment="0" min="-2" pref="35" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="1" min="-2" pref="35" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jComboBoxLanguage1" max="32767" attributes="0"/>
-                                  <Component id="jComboBoxLanguage" min="-2" pref="123" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel6" max="32767" attributes="0"/>
-                                  <Component id="jLabel5" min="-2" pref="90" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="dateBegin" min="-2" pref="102" max="-2" attributes="0"/>
-                                  <Component id="dateEnd" min="-2" pref="102" max="-2" attributes="0"/>
+                                  <Component id="jSeparator2" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel3" min="-2" pref="35" max="-2" attributes="0"/>
+                                          <Component id="jLabel4" min="-2" pref="63" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jComboBoxLanguage1" max="32767" attributes="0"/>
+                                          <Component id="jComboBoxLanguage" min="-2" pref="123" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel5" max="32767" attributes="0"/>
+                                          <Component id="jLabel6" min="-2" pref="62" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="dateBegin" min="-2" pref="102" max="-2" attributes="0"/>
+                                          <Component id="dateEnd" min="-2" pref="102" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -345,28 +347,20 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxLanguage" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxLanguage1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                          <Component id="dateBegin" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxLanguage" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="dateBegin" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="dateEnd" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                          <Component id="dateEnd" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxLanguage1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -381,7 +375,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Nivo:"/>
+                <Property name="text" type="java.lang.String" value="Level:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxLanguage">
@@ -398,7 +392,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Jezik:"/>
+                <Property name="text" type="java.lang.String" value="Language:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxLanguage1">
@@ -419,19 +413,19 @@
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="4"/>
-                <Property name="text" type="java.lang.String" value="Datum po&#x10d;etka:"/>
+                <Property name="text" type="java.lang.String" value="Begin date:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Datum zavr&#x161;etka:"/>
+                <Property name="text" type="java.lang.String" value="End date:"/>
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="dateEnd">
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pretra&#x17e;i"/>
+                <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
@@ -440,7 +434,7 @@
         </Container>
         <Component class="javax.swing.JButton" name="jButton2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Izaberi kurseve"/>
+            <Property name="text" type="java.lang.String" value="Choose courses"/>
           </Properties>
         </Component>
       </SubComponents>

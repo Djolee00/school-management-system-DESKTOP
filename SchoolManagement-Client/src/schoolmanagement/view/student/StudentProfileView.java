@@ -78,7 +78,7 @@ public class StudentProfileView extends javax.swing.JFrame {
         lblUserText3.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
         lblUserText3.setForeground(new java.awt.Color(255, 255, 255));
         lblUserText3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUserText3.setText("MOJ PROFIL");
+        lblUserText3.setText("MY PROFILE");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/profile.png"))); // NOI18N
 
@@ -116,37 +116,37 @@ public class StudentProfileView extends javax.swing.JFrame {
         lblUsername2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblUsername2.setForeground(new java.awt.Color(45, 118, 232));
         lblUsername2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsername2.setText("Korisničko ime:");
+        lblUsername2.setText("Username:");
 
         lblPassword.setBackground(new java.awt.Color(45, 118, 232));
         lblPassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(45, 118, 232));
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword.setText("Datum kreiranja:");
+        lblPassword.setText("Creation date:");
 
         lblPassword1.setBackground(new java.awt.Color(45, 118, 232));
         lblPassword1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPassword1.setForeground(new java.awt.Color(45, 118, 232));
         lblPassword1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword1.setText("Šifra:");
+        lblPassword1.setText("Password:");
 
         lblPassword2.setBackground(new java.awt.Color(45, 118, 232));
         lblPassword2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPassword2.setForeground(new java.awt.Color(45, 118, 232));
         lblPassword2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword2.setText("Ime:");
+        lblPassword2.setText("First name:");
 
         lblPassword3.setBackground(new java.awt.Color(45, 118, 232));
         lblPassword3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPassword3.setForeground(new java.awt.Color(45, 118, 232));
         lblPassword3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword3.setText("Prezime:");
+        lblPassword3.setText("Last name:");
 
         lblPassword4.setBackground(new java.awt.Color(45, 118, 232));
         lblPassword4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPassword4.setForeground(new java.awt.Color(45, 118, 232));
         lblPassword4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword4.setText("Datum rođenja:");
+        lblPassword4.setText("Birthdate:");
 
         txtLastname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtLastname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -233,7 +233,7 @@ public class StudentProfileView extends javax.swing.JFrame {
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Lični podaci", panelPodaci);
+        jTabbedPane1.addTab("Personal data", panelPodaci);
 
         tblCourses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -243,7 +243,7 @@ public class StudentProfileView extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Naziv", "Datum početka", "Datum završetka", "Kapacitet", "Jezik", "Nivo"
+                "Name", "Begin date", "End date", "Capacity", "Language", "Level"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -261,19 +261,19 @@ public class StudentProfileView extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblCourses);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Grupa za slušanje"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Course group"));
 
         lblPassword5.setBackground(new java.awt.Color(45, 118, 232));
         lblPassword5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPassword5.setForeground(new java.awt.Color(45, 118, 232));
         lblPassword5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPassword5.setText("Broj polaznika:");
+        lblPassword5.setText("Number of students:");
 
         lblPassword6.setBackground(new java.awt.Color(45, 118, 232));
         lblPassword6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblPassword6.setForeground(new java.awt.Color(45, 118, 232));
         lblPassword6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPassword6.setText("Naziv:");
+        lblPassword6.setText("Name:");
 
         txtGroupName.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtGroupName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -283,7 +283,7 @@ public class StudentProfileView extends javax.swing.JFrame {
         txtNumOfStudents.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNumOfStudents.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nastavnici", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(45, 118, 232))); // NOI18N
+        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tutors", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12), new java.awt.Color(45, 118, 232))); // NOI18N
         jList1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Marko Markovic", "Jovan Jovanovic" };
@@ -303,31 +303,31 @@ public class StudentProfileView extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblPassword5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPassword5)
                     .addComponent(lblPassword6, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtGroupName, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtGroupName)
                     .addComponent(txtNumOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(69, 69, 69)
+                .addGap(79, 79, 79)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPassword6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGroupName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblPassword5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNumOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPassword6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtGroupName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPassword5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNumOfStudents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelKurseviLayout = new javax.swing.GroupLayout(panelKursevi);
@@ -337,7 +337,7 @@ public class StudentProfileView extends javax.swing.JFrame {
             .addGroup(panelKurseviLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelKurseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -351,7 +351,7 @@ public class StudentProfileView extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Moji kursevi", panelKursevi);
+        jTabbedPane1.addTab("My courses", panelKursevi);
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);

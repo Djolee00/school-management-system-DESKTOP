@@ -131,7 +131,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="MOJ PROFIL"/>
+                <Property name="text" type="java.lang.String" value="MY PROFILE"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -160,8 +160,8 @@
             <Container class="javax.swing.JPanel" name="panelPodaci">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Li&#x10d;ni podaci">
-                    <Property name="tabTitle" type="java.lang.String" value="Li&#x10d;ni podaci"/>
+                  <JTabbedPaneConstraints tabName="Personal data">
+                    <Property name="tabTitle" type="java.lang.String" value="Personal data"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -242,7 +242,7 @@
                       <Color blue="e8" green="76" red="2d" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Korisni&#x10d;ko ime:"/>
+                    <Property name="text" type="java.lang.String" value="Username:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPassword">
@@ -257,7 +257,7 @@
                       <Color blue="e8" green="76" red="2d" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Datum kreiranja:"/>
+                    <Property name="text" type="java.lang.String" value="Creation date:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPassword1">
@@ -272,7 +272,7 @@
                       <Color blue="e8" green="76" red="2d" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="&#x160;ifra:"/>
+                    <Property name="text" type="java.lang.String" value="Password:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPassword2">
@@ -287,7 +287,7 @@
                       <Color blue="e8" green="76" red="2d" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Ime:"/>
+                    <Property name="text" type="java.lang.String" value="First name:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPassword3">
@@ -302,7 +302,7 @@
                       <Color blue="e8" green="76" red="2d" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Prezime:"/>
+                    <Property name="text" type="java.lang.String" value="Last name:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblPassword4">
@@ -317,7 +317,7 @@
                       <Color blue="e8" green="76" red="2d" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Datum ro&#x111;enja:"/>
+                    <Property name="text" type="java.lang.String" value="Birthdate:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtLastname">
@@ -427,8 +427,8 @@
             <Container class="javax.swing.JPanel" name="panelKursevi">
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Moji kursevi">
-                    <Property name="tabTitle" type="java.lang.String" value="Moji kursevi"/>
+                  <JTabbedPaneConstraints tabName="My courses">
+                    <Property name="tabTitle" type="java.lang.String" value="My courses"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -439,7 +439,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="832" max="32767" attributes="0"/>
                               <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -470,12 +470,12 @@
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="6" rowCount="4">
-                            <Column editable="false" title="Naziv" type="java.lang.Object"/>
-                            <Column editable="false" title="Datum po&#x10d;etka" type="java.lang.Object"/>
-                            <Column editable="false" title="Datum zavr&#x161;etka" type="java.lang.Object"/>
-                            <Column editable="false" title="Kapacitet" type="java.lang.Object"/>
-                            <Column editable="false" title="Jezik" type="java.lang.Object"/>
-                            <Column editable="false" title="Nivo" type="java.lang.Object"/>
+                            <Column editable="false" title="Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Begin date" type="java.lang.Object"/>
+                            <Column editable="false" title="End date" type="java.lang.Object"/>
+                            <Column editable="false" title="Capacity" type="java.lang.Object"/>
+                            <Column editable="false" title="Language" type="java.lang.Object"/>
+                            <Column editable="false" title="Level" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="focusable" type="boolean" value="false"/>
@@ -495,7 +495,7 @@
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Grupa za slu&#x161;anje"/>
+                        <TitledBorder title="Course group"/>
                       </Border>
                     </Property>
                   </Properties>
@@ -506,17 +506,17 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="lblPassword5" min="-2" pref="116" max="-2" attributes="0"/>
+                                  <Component id="lblPassword5" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblPassword6" min="-2" pref="102" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtGroupName" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtGroupName" max="32767" attributes="0"/>
                                   <Component id="txtNumOfStudents" min="-2" pref="130" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                               <Component id="jScrollPane2" min="-2" pref="161" max="-2" attributes="0"/>
-                              <EmptySpace pref="322" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -524,21 +524,20 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane2" min="-2" pref="95" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblPassword6" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="txtGroupName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="lblPassword5" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="txtNumOfStudents" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblPassword6" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="txtGroupName" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblPassword5" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                                  <Component id="txtNumOfStudents" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="47" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jScrollPane2" min="-2" pref="95" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -556,7 +555,7 @@
                           <Color blue="e8" green="76" red="2d" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="Broj polaznika:"/>
+                        <Property name="text" type="java.lang.String" value="Number of students:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="lblPassword6">
@@ -571,7 +570,7 @@
                           <Color blue="e8" green="76" red="2d" type="rgb"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="4"/>
-                        <Property name="text" type="java.lang.String" value="Naziv:"/>
+                        <Property name="text" type="java.lang.String" value="Name:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtGroupName">
@@ -617,7 +616,7 @@
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                                <TitledBorder title="Nastavnici">
+                                <TitledBorder title="Tutors">
                                   <Font PropertyName="font" name="Segoe UI" size="12" style="1"/>
                                   <Color PropertyName="color" blue="e8" green="76" red="2d" type="rgb"/>
                                 </TitledBorder>

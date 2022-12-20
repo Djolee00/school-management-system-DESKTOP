@@ -106,7 +106,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblUserText3" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="lblUserText2" min="-2" pref="119" max="-2" attributes="0"/>
+                          <Component id="lblUserText2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -142,7 +142,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="&#x110;or&#x111;e Ivanovi&#x107;"/>
+                <Property name="text" type="java.lang.String" value="Djordje Ivanovic"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblUserText3">
@@ -157,7 +157,7 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="DOBRODO&#x160;LI"/>
+                <Property name="text" type="java.lang.String" value="Welcome"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel1">
@@ -223,7 +223,7 @@
                   <Color blue="e8" green="76" red="2d" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Moj profil"/>
+                <Property name="text" type="java.lang.String" value="My Profile"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblUserPhoto">
@@ -294,7 +294,7 @@
                   <Color blue="e8" green="76" red="2d" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Kursevi"/>
+                <Property name="text" type="java.lang.String" value="Courses"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblCoursesPhoto">
@@ -365,7 +365,7 @@
                   <Color blue="e8" green="76" red="2d" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Odjavi se"/>
+                <Property name="text" type="java.lang.String" value="Log Out"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblLogoutPhozo">

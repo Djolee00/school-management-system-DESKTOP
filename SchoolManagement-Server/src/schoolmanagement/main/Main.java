@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import javax.swing.JFrame;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.controller.Controller;
-import schoolmanagement.ui.form.MainForm;
+import schoolmanagement.view.MainForm;
 
 
 /**

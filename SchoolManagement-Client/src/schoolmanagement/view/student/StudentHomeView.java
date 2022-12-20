@@ -62,13 +62,13 @@ public class StudentHomeView extends javax.swing.JFrame {
         lblUserText2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblUserText2.setForeground(new java.awt.Color(255, 255, 255));
         lblUserText2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUserText2.setText("Đorđe Ivanović");
+        lblUserText2.setText("Djordje Ivanovic");
 
         lblUserText3.setBackground(new java.awt.Color(45, 118, 232));
         lblUserText3.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
         lblUserText3.setForeground(new java.awt.Color(255, 255, 255));
         lblUserText3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUserText3.setText("DOBRODOŠLI");
+        lblUserText3.setText("Welcome");
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/school.png"))); // NOI18N
 
@@ -82,7 +82,7 @@ public class StudentHomeView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUserText2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblUserText2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelHeaderLayout.setVerticalGroup(
@@ -112,7 +112,7 @@ public class StudentHomeView extends javax.swing.JFrame {
         lblUserText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblUserText.setForeground(new java.awt.Color(45, 118, 232));
         lblUserText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUserText.setText("Moj profil");
+        lblUserText.setText("My Profile");
 
         lblUserPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/user.png"))); // NOI18N
         lblUserPhoto.setText("jLabel1");
@@ -157,7 +157,7 @@ public class StudentHomeView extends javax.swing.JFrame {
         lblCoursesText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblCoursesText.setForeground(new java.awt.Color(45, 118, 232));
         lblCoursesText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblCoursesText.setText("Kursevi");
+        lblCoursesText.setText("Courses");
 
         lblCoursesPhoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/courses.png"))); // NOI18N
         lblCoursesPhoto.setText("jLabel1");
@@ -202,7 +202,7 @@ public class StudentHomeView extends javax.swing.JFrame {
         lblLogoutText.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblLogoutText.setForeground(new java.awt.Color(45, 118, 232));
         lblLogoutText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogoutText.setText("Odjavi se");
+        lblLogoutText.setText("Log Out");
 
         lblLogoutPhozo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/logout.png"))); // NOI18N
         lblLogoutPhozo.setText("jLabel1");

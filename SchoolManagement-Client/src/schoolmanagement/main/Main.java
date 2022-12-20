@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package schoolmanagement.client;
+package schoolmanagement.main;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import javax.swing.JFrame;
@@ -16,7 +16,7 @@ import schoolmanagement.view.student.StudentProfileView;
  *
  * @author ivano
  */
-public class Client {
+public class Main {
 
     /**
      * @param args the command line arguments
