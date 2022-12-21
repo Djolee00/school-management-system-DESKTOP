@@ -7,6 +7,10 @@ package schoolmanagement.main;
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import schoolmanagement.view.admin.AdminCoursesView;
+import schoolmanagement.view.admin.AdminGroupsView;
+import schoolmanagement.view.admin.AdminHomeView;
+import schoolmanagement.view.admin.AdminStudentsListView;
 import schoolmanagement.view.login.LoginView;
 import schoolmanagement.view.student.StudentCoursesView;
 import schoolmanagement.view.student.StudentHomeView;
@@ -40,6 +44,18 @@ public class Main {
 
         JFrame courses = new StudentCoursesView();
         courses.setVisible(true);
+
+        JFrame admin = new AdminHomeView();
+        admin.setVisible(true);
+
+        JFrame studentList = new AdminStudentsListView();
+        studentList.setVisible(true);
+
+        JFrame coursesAdmin = new AdminCoursesView();
+        coursesAdmin.setVisible(true);
+
+        JFrame groups = new AdminGroupsView();
+        groups.setVisible(true);
 
     }
 

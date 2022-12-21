@@ -57,7 +57,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="panelHeader" alignment="1" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -66,9 +66,17 @@
                           <Component id="panelSearch" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Component id="jScrollPane1" min="-2" pref="885" max="-2" attributes="0"/>
-                              <Component id="btnChoose" alignment="0" min="-2" pref="131" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="btnAddCourse" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnDeleteCourse" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="btnUpdateCourses" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnManageGroups" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
                       </Group>
@@ -84,13 +92,20 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="220" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnManageGroups" min="-2" pref="39" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="btnAddCourse" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="btnUpdateCourses" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="btnDeleteCourse" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="panelSearch" max="32767" attributes="0"/>
-                      <Component id="panelSort" max="32767" attributes="0"/>
+                      <Component id="panelSort" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnChoose" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -382,7 +397,7 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="Select level"/>
+                    <StringItem index="0" value="Izaberite nivo"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -398,8 +413,9 @@
             <Component class="javax.swing.JComboBox" name="jComboBoxLanguage1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="Select language"/>
+                  <StringArray count="2">
+                    <StringItem index="0" value="Izaberite jezik"/>
+                    <StringItem index="1" value=" "/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -431,9 +447,24 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="btnChoose">
+        <Component class="javax.swing.JButton" name="btnManageGroups">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Choose courses"/>
+            <Property name="text" type="java.lang.String" value="Manage groups"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnAddCourse">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Add course"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnUpdateCourses">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Update courses"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="btnDeleteCourse">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Delete Course"/>
           </Properties>
         </Component>
       </SubComponents>

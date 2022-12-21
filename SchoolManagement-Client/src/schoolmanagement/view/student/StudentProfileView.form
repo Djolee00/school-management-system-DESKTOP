@@ -484,6 +484,7 @@
                           <Color blue="63" green="39" red="e8" type="rgb"/>
                         </Property>
                         <Property name="selectionMode" type="int" value="0"/>
+                        <Property name="showHorizontalLines" type="boolean" value="true"/>
                       </Properties>
                     </Component>
                   </SubComponents>

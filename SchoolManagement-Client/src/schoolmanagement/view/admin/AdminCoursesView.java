@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package schoolmanagement.view.student;
+package schoolmanagement.view.admin;
 
+import schoolmanagement.view.student.*;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPanel;
@@ -12,15 +13,15 @@ import javax.swing.JPanel;
  *
  * @author ivano
  */
-public class StudentCoursesView extends javax.swing.JFrame {
+public class AdminCoursesView extends javax.swing.JFrame {
 
     /**
      * Creates new form StudentHomeView
      */
-    public StudentCoursesView() {
+    public AdminCoursesView() {
         initComponents();
         setLocationRelativeTo(null);
-                designTable();
+        designTable();
 
     }
 
@@ -58,7 +59,10 @@ public class StudentCoursesView extends javax.swing.JFrame {
         dateEnd = new com.toedter.calendar.JDateChooser();
         btnSearch = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
-        btnChoose = new javax.swing.JButton();
+        btnManageGroups = new javax.swing.JButton();
+        btnAddCourse = new javax.swing.JButton();
+        btnUpdateCourses = new javax.swing.JButton();
+        btnDeleteCourse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 640));
@@ -191,11 +195,11 @@ public class StudentCoursesView extends javax.swing.JFrame {
 
         jLabel3.setText("Level:");
 
-        jComboBoxLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select level" }));
+        jComboBoxLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Izaberite nivo" }));
 
         jLabel4.setText("Language:");
 
-        jComboBoxLanguage1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select language" }));
+        jComboBoxLanguage1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Izaberite jezik", " " }));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Begin date:");
@@ -260,7 +264,13 @@ public class StudentCoursesView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnChoose.setText("Choose courses");
+        btnManageGroups.setText("Manage groups");
+
+        btnAddCourse.setText("Add course");
+
+        btnUpdateCourses.setText("Update courses");
+
+        btnDeleteCourse.setText("Delete Course");
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
@@ -275,9 +285,16 @@ public class StudentCoursesView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(panelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelMainLayout.createSequentialGroup()
-                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelMainLayout.createSequentialGroup()
+                                .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDeleteCourse)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUpdateCourses)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnManageGroups)))
                         .addGap(0, 3, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -288,12 +305,17 @@ public class StudentCoursesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnManageGroups, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdateCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panelSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelSort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(btnChoose, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 8, Short.MAX_VALUE))
+                    .addComponent(panelSort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -320,9 +342,12 @@ public class StudentCoursesView extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnChoose;
+    private javax.swing.JButton btnAddCourse;
+    private javax.swing.JButton btnDeleteCourse;
+    private javax.swing.JButton btnManageGroups;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSort;
+    private javax.swing.JButton btnUpdateCourses;
     private com.toedter.calendar.JDateChooser dateBegin;
     private com.toedter.calendar.JDateChooser dateEnd;
     private javax.swing.JComboBox<String> jComboBoxLanguage;

@@ -258,6 +258,7 @@ public class StudentProfileView extends javax.swing.JFrame {
         tblCourses.setRowHeight(25);
         tblCourses.setSelectionBackground(new java.awt.Color(232, 57, 99));
         tblCourses.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblCourses.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tblCourses);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
