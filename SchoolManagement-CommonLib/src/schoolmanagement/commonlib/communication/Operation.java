@@ -10,6 +10,6 @@ import java.io.Serializable;
  *
  * @author ivano
  */
-public enum  Operation implements Serializable {
-    
+public enum Operation implements Serializable {
+    LOGIN
 }

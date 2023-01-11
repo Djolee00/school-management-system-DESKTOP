@@ -4,6 +4,7 @@
  */
 package schoolmanagement.commonlib.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author ivano
  */
-public class Course {
+public class Course implements Serializable{
     
     private Long id;
     private String name;

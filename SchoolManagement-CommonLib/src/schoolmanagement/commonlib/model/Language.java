@@ -4,6 +4,7 @@
  */
 package schoolmanagement.commonlib.model;
 
+import java.io.Serializable;
 import java.util.List;
 import schoolmanagement.commonlib.model.enums.Level;
 
@@ -11,7 +12,7 @@ import schoolmanagement.commonlib.model.enums.Level;
  *
  * @author ivano
  */
-public class Language {
+public class Language implements Serializable{
 
     private Long id;
     private String name;

@@ -9,14 +9,17 @@ import java.util.List;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.dao.StudentDao;
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
+import schoolmanagement.commonlib.model.User;
 
 /**
  *
  * @author ivano
  */
 public class StudentDaoImpl implements StudentDao {
-    
+
     private Connection connection;
 
     @Override
@@ -31,7 +34,7 @@ public class StudentDaoImpl implements StudentDao {
             statement.setTimestamp(5, Timestamp.valueOf(LocalDateTime.now()));
 
             statement.executeUpdate();
-            
+
             return student;
         }
 
@@ -52,10 +55,28 @@ public class StudentDaoImpl implements StudentDao {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-
     @Override
     public void setConnection(Connection connection) {
         this.connection = connection;
+    }
+
+    @Override
+    public Student getStudentByUser(User user) throws SQLException {
+        final String sqlQuery = "SELECT * FROM Student WHERE user_id = ?";
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            statement.setLong(1, user.getId());
+
+            ResultSet rs = statement.executeQuery();
+
+            if (rs.next()) {
+                return new Student(user.getUsername(), user.getPassword(), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("birthdate").toLocalDate(), rs.getDate("creation_date").toLocalDate());
+            } else {
+                return null;
+            }
+
+        }
+
     }
 
 }

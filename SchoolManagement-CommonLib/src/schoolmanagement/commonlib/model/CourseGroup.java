@@ -4,13 +4,14 @@
  */
 package schoolmanagement.commonlib.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author ivano
  */
-public class CourseGroup {
+public class CourseGroup implements Serializable{
     
     private Long id;
     private Course course;

@@ -5,7 +5,6 @@
 package schoolmanagement.persistence.dao;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import schoolmanagement.commonlib.model.User;
 
@@ -13,13 +12,13 @@ import schoolmanagement.commonlib.model.User;
  *
  * @author ivano
  */
-public interface UserDao {
+public interface UserDao extends DaoInterface{
 
     // needs to return generated id
     long saveUser(User user) throws SQLException, IOException;
 
     public boolean isUsernameUnique(String username) throws SQLException;
 
-    void setConnection(Connection connection);
 
+    User getUserByUsernameAndPassword(String username,String password) throws SQLException ;
 }

@@ -7,13 +7,14 @@ package schoolmanagement.persistence.dao;
 import java.io.IOException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
-import java.sql.*;
+import java.sql.SQLException;
+import schoolmanagement.commonlib.model.User;
 
 /**
  *
  * @author ivano
  */
-public interface StudentDao {
+public interface StudentDao extends DaoInterface{
 
     Student saveStudent(Student student) throws SQLException, IOException;
 
@@ -23,6 +24,7 @@ public interface StudentDao {
 
     Student getStudentById(Long id);
 
-    void setConnection(Connection connection);
+    public Student getStudentByUser(User user) throws SQLException;
+
 
 }

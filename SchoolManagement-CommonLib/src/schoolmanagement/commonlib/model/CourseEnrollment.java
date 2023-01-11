@@ -4,13 +4,14 @@
  */
 package schoolmanagement.commonlib.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author ivano
  */
-public class CourseEnrollment {
+public class CourseEnrollment implements Serializable{
     
     private Student student;
     private Course course;

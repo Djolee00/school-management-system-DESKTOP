@@ -13,11 +13,11 @@ import java.io.Serializable;
 public class Response implements Serializable{
     
     private Object object;
-    private Exception exception;
+    private ResponseType responseType;
 
-    public Response(Object object, Exception exception) {
+    public Response(Object object, ResponseType responseType) {
         this.object = object;
-        this.exception = exception;
+        this.responseType = responseType;
     }
 
     public Response() {
@@ -31,18 +31,17 @@ public class Response implements Serializable{
         this.object = object;
     }
 
-    public Exception getException() {
-        return exception;
+    public ResponseType getResponseType() {
+        return responseType;
     }
 
-    public void setException(Exception exception) {
-        this.exception = exception;
+    public void setResponseType(ResponseType responseType) {
+        this.responseType = responseType;
     }
 
     @Override
     public String toString() {
-        return "Response{" + "object=" + object + ", exception=" + exception + '}';
+        return "Response{" + "object=" + object + ", responseType=" + responseType + '}';
     }
-    
     
 }

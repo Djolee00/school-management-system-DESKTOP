@@ -4,13 +4,14 @@
  */
 package schoolmanagement.commonlib.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  *
  * @author ivano
  */
-public class Administrator extends User{
+public class Administrator extends User implements Serializable{
     
     private LocalDate employmentDate;
     

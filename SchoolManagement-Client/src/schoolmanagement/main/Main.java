@@ -6,6 +6,7 @@ package schoolmanagement.main;
 
 import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JFrame;
+import schoolmanagement.controller.login.LoginController;
 import schoolmanagement.view.admin.AdminCoursesView;
 import schoolmanagement.view.admin.AdminGroupsView;
 import schoolmanagement.view.admin.AdminHomeView;
@@ -29,30 +30,7 @@ public class Main {
         // to set FlatLaft Look and Feel for JFrames
         FlatLightLaf.setup();
 
-        JFrame mainFrame = new StudentHomeView();
-        mainFrame.setVisible(true);
-
-        JFrame loginFrame = new LoginView();
-        loginFrame.setVisible(true);
-
-        JFrame studentProfile = new StudentProfileView();
-        studentProfile.setVisible(true);
-
-        JFrame courses = new StudentCoursesView();
-        courses.setVisible(true);
-
-        JFrame admin = new AdminHomeView();
-        admin.setVisible(true);
-
-        JFrame studentList = new AdminStudentsListView();
-        studentList.setVisible(true);
-
-        JFrame coursesAdmin = new AdminCoursesView();
-        coursesAdmin.setVisible(true);
-
-        JFrame groups = new AdminGroupsView();
-        groups.setVisible(true);
-
+        LoginController loginController = new LoginController();
     }
 
 }

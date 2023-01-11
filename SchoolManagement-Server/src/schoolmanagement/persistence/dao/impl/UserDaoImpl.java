@@ -47,15 +47,37 @@ public class UserDaoImpl implements UserDao {
     public boolean isUsernameUnique(String username) throws SQLException {
         final String sqlQuery = "SELECT COUNT(*) FROM User WHERE username = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
 
             statement.setString(1, username);
 
             ResultSet rs = statement.executeQuery();
-            
-            return (rs.next() && rs.getInt(1)==0);
+
+            return (rs.next() && rs.getInt(1) == 0);
+
+        }
+    }
+
+    @Override
+    public User getUserByUsernameAndPassword(String username, String password) throws SQLException  {
+        final String sqlQuery = "SELECT * FROM User where username=? AND password=?";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            statement.setString(1, username);
+
+            statement.setString(2, password);
+
+            ResultSet rs = statement.executeQuery();
+
+            if(rs.next()){
+                return new User(rs.getLong("id"),rs.getString("username"), rs.getString("password"));
+            }else{
+                return null;
+            }
             
         }
+
     }
 
 }

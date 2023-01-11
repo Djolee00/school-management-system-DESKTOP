@@ -4,13 +4,14 @@
  */
 package schoolmanagement.commonlib.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author ivano
  */
-public class Tutor {
+public class Tutor implements Serializable{
     
     private Long id;
     private String firstName;

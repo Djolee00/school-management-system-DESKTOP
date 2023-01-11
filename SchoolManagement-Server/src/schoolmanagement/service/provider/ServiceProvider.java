@@ -6,12 +6,16 @@ package schoolmanagement.service.provider;
 
 import java.util.HashMap;
 import java.util.Map;
+import schoolmanagement.persistence.dao.AdminDao;
 import schoolmanagement.persistence.dao.StudentDao;
 import schoolmanagement.persistence.dao.UserDao;
+import schoolmanagement.persistence.dao.impl.AdminDaoImpl;
 import schoolmanagement.persistence.dao.impl.StudentDaoImpl;
 import schoolmanagement.persistence.dao.impl.UserDaoImpl;
 import schoolmanagement.service.StudentService;
+import schoolmanagement.service.UserService;
 import schoolmanagement.service.impl.StudentServiceImpl;
+import schoolmanagement.service.impl.UserServiceImpl;
 
 /**
  *
@@ -61,11 +65,12 @@ public class ServiceProvider {
     private void registerDaos() {
         manager.put(StudentDao.class, new StudentDaoImpl());
         manager.put(UserDao.class, new UserDaoImpl());
-
+        manager.put(AdminDao.class, new AdminDaoImpl());
     }
 
     private void registerServices() {
-        manager.put(StudentService.class, new StudentServiceImpl((UserDao) manager.get(UserDao.class),(StudentDao) manager.get(StudentDao.class)));
+        manager.put(StudentService.class, new StudentServiceImpl((UserDao) manager.get(UserDao.class), (StudentDao) manager.get(StudentDao.class)));
+        manager.put(UserService.class, new UserServiceImpl((UserDao) manager.get(UserDao.class), (StudentDao) manager.get(StudentDao.class), (AdminDao) manager.get(AdminDao.class)));
     }
 
 }

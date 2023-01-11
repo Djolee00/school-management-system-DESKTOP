@@ -4,6 +4,7 @@
  */
 package schoolmanagement.commonlib.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  *
  * @author ivano
  */
-public class Student extends User{
+public class Student extends User implements Serializable{
     
     private String firstName;
     private String lastName;

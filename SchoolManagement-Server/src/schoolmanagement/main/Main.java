@@ -4,12 +4,11 @@
  */
 package schoolmanagement.main;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import schoolmanagement.server.Server;
 
-import java.time.LocalDate;
-import javax.swing.JFrame;
-import schoolmanagement.commonlib.model.Student;
-import schoolmanagement.controller.Controller;
-import schoolmanagement.view.MainForm;
 
 
 /**
@@ -22,13 +21,13 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        JFrame mainForm = new MainForm();
-//        mainForm.setVisible(true);
-
-        Student s1 = new Student("djole123", "Djole123!", "Djordje", "Ivanovic", LocalDate.now(), LocalDate.now());
-
-        Controller controller = new Controller();
-        controller.createStudent(s1);
+        
+        try {
+            Server server = new Server();
+            server.start();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
