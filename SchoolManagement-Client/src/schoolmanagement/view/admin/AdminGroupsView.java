@@ -88,7 +88,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
         lblUserText2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lblUserText2.setForeground(new java.awt.Color(255, 255, 255));
         lblUserText2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUserText2.setText("Naziv kursa");
+        lblUserText2.setText("Course name");
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);

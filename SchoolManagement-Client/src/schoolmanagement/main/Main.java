@@ -4,9 +4,8 @@
  */
 package schoolmanagement.main;
 
-import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 import schoolmanagement.view.admin.AdminCoursesView;
 import schoolmanagement.view.admin.AdminGroupsView;
 import schoolmanagement.view.admin.AdminHomeView;
@@ -27,11 +26,8 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        // important for Look And Feel of JFrames
-        try {
-            UIManager.setLookAndFeel(new FlatIntelliJLaf());
-        } catch (Exception ignored) {
-        }
+        // to set FlatLaft Look and Feel for JFrames
+        FlatLightLaf.setup();
 
         JFrame mainFrame = new StudentHomeView();
         mainFrame.setVisible(true);

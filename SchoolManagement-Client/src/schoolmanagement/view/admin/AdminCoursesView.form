@@ -397,7 +397,7 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="Izaberite nivo"/>
+                    <StringItem index="0" value="Select level"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -413,9 +413,8 @@
             <Component class="javax.swing.JComboBox" name="jComboBoxLanguage1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Izaberite jezik"/>
-                    <StringItem index="1" value=" "/>
+                  <StringArray count="1">
+                    <StringItem index="0" value="Select language"/>
                   </StringArray>
                 </Property>
               </Properties>

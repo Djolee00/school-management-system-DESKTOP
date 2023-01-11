@@ -195,11 +195,11 @@ public class AdminCoursesView extends javax.swing.JFrame {
 
         jLabel3.setText("Level:");
 
-        jComboBoxLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Izaberite nivo" }));
+        jComboBoxLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select level" }));
 
         jLabel4.setText("Language:");
 
-        jComboBoxLanguage1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Izaberite jezik", " " }));
+        jComboBoxLanguage1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select language" }));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Begin date:");
