@@ -7,15 +7,12 @@ package schoolmanagement.server.handler;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import schoolmanagement.commonlib.communication.Sender;
 import schoolmanagement.commonlib.communication.Receiver;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
 import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.User;
-import schoolmanagement.server.Server;
 import schoolmanagement.service.UserService;
 import schoolmanagement.service.provider.ServiceProvider;
 
@@ -25,14 +22,16 @@ import schoolmanagement.service.provider.ServiceProvider;
  */
 public class ClientHandler extends Thread {
 
-    private Socket socket;
-    private Sender sender;
-    private Receiver receiver;
+    private final Socket socket;
+    private final Sender sender;
+    private final Receiver receiver;
+    private final ClientHandlerController controller;
 
     public ClientHandler(Socket socket) throws IOException {
         this.socket = socket;
         sender = new Sender(socket);
         receiver = new Receiver(socket);
+        controller = new ClientHandlerController();
     }
 
     @Override
@@ -54,23 +53,11 @@ public class ClientHandler extends Thread {
 
         switch (request.getOperation()) {
             case LOGIN -> {
-                loginUser(request, response);
+                response = controller.loginUser(request);
             }
         }
-
+        
         sender.send(response);
-
-    }
-
-    private void loginUser(Request request, Response response) throws SQLException, IOException {
-        User temp = (User) request.getObject();
-        User user = ((UserService) ServiceProvider.getInstance().getRequiredService(UserService.class)).login(temp.getUsername(), temp.getPassword());
-        if (user == null) {
-            response.setResponseType(ResponseType.FAILURE);
-        } else {
-            response.setResponseType(ResponseType.SUCCESS);
-            response.setObject(user);
-        }
     }
 
 }
