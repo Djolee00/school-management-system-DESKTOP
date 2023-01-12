@@ -59,9 +59,9 @@
               <Component id="panelHeader" alignment="1" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="169" max="32767" attributes="0"/>
-                  <Component id="panelProfileItem" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelStudentsItem" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                  <Component id="panelCourseItem" min="-2" max="-2" attributes="0"/>
+                  <Component id="panelCoursesItem" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   <Component id="panelLogoutItem" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="166" max="-2" attributes="0"/>
@@ -74,8 +74,8 @@
                   <Component id="panelHeader" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="panelProfileItem" max="32767" attributes="0"/>
-                      <Component id="panelCourseItem" max="32767" attributes="0"/>
+                      <Component id="panelStudentsItem" max="32767" attributes="0"/>
+                      <Component id="panelCoursesItem" max="32767" attributes="0"/>
                       <Component id="panelLogoutItem" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="307" max="32767" attributes="0"/>
@@ -163,15 +163,15 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="panelProfileItem">
+        <Container class="javax.swing.JPanel" name="panelStudentsItem">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f0" green="f0" red="f0" type="rgb"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelProfileItemMouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelProfileItemMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelStudentsItemMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelStudentsItemMouseExited"/>
           </Events>
 
           <Layout>
@@ -239,10 +239,10 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="panelCourseItem">
+        <Container class="javax.swing.JPanel" name="panelCoursesItem">
           <Events>
-            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelCourseItemMouseEntered"/>
-            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelCourseItemMouseExited"/>
+            <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelCoursesItemMouseEntered"/>
+            <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelCoursesItemMouseExited"/>
           </Events>
 
           <Layout>

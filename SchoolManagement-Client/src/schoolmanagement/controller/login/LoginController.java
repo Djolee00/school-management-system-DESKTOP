@@ -13,10 +13,11 @@ import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.Administrator;
 import schoolmanagement.commonlib.model.User;
 import schoolmanagement.communication.Communication;
+import schoolmanagement.controller.admin.AdminHomeController;
+import schoolmanagement.controller.student.StudentHomeController;
 import schoolmanagement.session.Session;
 import schoolmanagement.view.admin.AdminHomeView;
 import schoolmanagement.view.login.LoginView;
-import schoolmanagement.view.student.StudentHomeView;
 
 /**
  *
@@ -55,23 +56,21 @@ public class LoginController {
         User user = new User(username, password);
 
         try {
-            
             Communication.getInstance().send(new Request(Operation.LOGIN, user));
-
             Response response = (Response) Communication.getInstance().receive();
 
             if (response.getResponseType() == ResponseType.SUCCESS) {
                 User loggedUser = (User) response.getObject();
-                Session.getInstance().add("user", user);
-                
+                Session.getInstance().add("user", loggedUser);
+
                 if (loggedUser instanceof Administrator) {
-                    (new AdminHomeView()).setVisible(true);
+                    new AdminHomeController();
                 } else {
-                    (new StudentHomeView()).setVisible(true);
+                    new StudentHomeController();
                 }
 
                 loginView.dispose();
-                
+
             } else {
                 JOptionPane.showMessageDialog(loginView, "User with those credentials doesn't exist.\n Please try again.", "Try again", JOptionPane.WARNING_MESSAGE);
             }

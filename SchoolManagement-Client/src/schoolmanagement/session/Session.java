@@ -38,4 +38,11 @@ public class Session {
         
         return false;
     }
+    
+    public Object get(String key){
+        if(map.containsKey(key)){
+            return map.get(key);
+        }
+        return null;
+    }
 }

@@ -84,7 +84,7 @@
                       <Component id="panelCourseItem" max="32767" attributes="0"/>
                       <Component id="panelLogoutItem" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="307" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="322" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -106,7 +106,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblUserText3" min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="lblUserText2" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblUser" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -121,7 +121,7 @@
                           <Group type="102" attributes="0">
                               <Component id="lblUserText3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblUserText2" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblUser" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="79" max="32767" attributes="0"/>
@@ -130,7 +130,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="lblUserText2">
+            <Component class="javax.swing.JLabel" name="lblUser">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="e8" green="76" red="2d" type="rgb"/>
@@ -142,7 +142,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Djordje Ivanovic"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblUserText3">

@@ -4,7 +4,6 @@
  */
 package schoolmanagement.view.admin;
 
-import schoolmanagement.view.student.*;
 import java.awt.Color;
 import javax.swing.JPanel;
 
@@ -36,10 +35,10 @@ public class AdminHomeView extends javax.swing.JFrame {
         lblUserText2 = new javax.swing.JLabel();
         lblUserText3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        panelProfileItem = new javax.swing.JPanel();
+        panelStudentsItem = new javax.swing.JPanel();
         lblUserText = new javax.swing.JLabel();
         lblUserPhoto = new javax.swing.JLabel();
-        panelCourseItem = new javax.swing.JPanel();
+        panelCoursesItem = new javax.swing.JPanel();
         lblCoursesText = new javax.swing.JLabel();
         lblCoursesPhoto = new javax.swing.JLabel();
         panelLogoutItem = new javax.swing.JPanel();
@@ -97,13 +96,13 @@ public class AdminHomeView extends javax.swing.JFrame {
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
-        panelProfileItem.setBackground(new java.awt.Color(240, 240, 240));
-        panelProfileItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelStudentsItem.setBackground(new java.awt.Color(240, 240, 240));
+        panelStudentsItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                panelProfileItemMouseEntered(evt);
+                panelStudentsItemMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                panelProfileItemMouseExited(evt);
+                panelStudentsItemMouseExited(evt);
             }
         });
 
@@ -119,23 +118,23 @@ public class AdminHomeView extends javax.swing.JFrame {
         lblUserPhoto.setMinimumSize(new java.awt.Dimension(48, 48));
         lblUserPhoto.setPreferredSize(new java.awt.Dimension(48, 48));
 
-        javax.swing.GroupLayout panelProfileItemLayout = new javax.swing.GroupLayout(panelProfileItem);
-        panelProfileItem.setLayout(panelProfileItemLayout);
-        panelProfileItemLayout.setHorizontalGroup(
-            panelProfileItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelProfileItemLayout.createSequentialGroup()
-                .addGroup(panelProfileItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelProfileItemLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelStudentsItemLayout = new javax.swing.GroupLayout(panelStudentsItem);
+        panelStudentsItem.setLayout(panelStudentsItemLayout);
+        panelStudentsItemLayout.setHorizontalGroup(
+            panelStudentsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelStudentsItemLayout.createSequentialGroup()
+                .addGroup(panelStudentsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelStudentsItemLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(lblUserPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelProfileItemLayout.createSequentialGroup()
+                    .addGroup(panelStudentsItemLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(lblUserText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
-        panelProfileItemLayout.setVerticalGroup(
-            panelProfileItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelProfileItemLayout.createSequentialGroup()
+        panelStudentsItemLayout.setVerticalGroup(
+            panelStudentsItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelStudentsItemLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(lblUserPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -143,12 +142,12 @@ public class AdminHomeView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panelCourseItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelCoursesItem.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                panelCourseItemMouseEntered(evt);
+                panelCoursesItemMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                panelCourseItemMouseExited(evt);
+                panelCoursesItemMouseExited(evt);
             }
         });
 
@@ -164,23 +163,23 @@ public class AdminHomeView extends javax.swing.JFrame {
         lblCoursesPhoto.setMinimumSize(new java.awt.Dimension(48, 48));
         lblCoursesPhoto.setPreferredSize(new java.awt.Dimension(48, 48));
 
-        javax.swing.GroupLayout panelCourseItemLayout = new javax.swing.GroupLayout(panelCourseItem);
-        panelCourseItem.setLayout(panelCourseItemLayout);
-        panelCourseItemLayout.setHorizontalGroup(
-            panelCourseItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCourseItemLayout.createSequentialGroup()
-                .addGroup(panelCourseItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCourseItemLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelCoursesItemLayout = new javax.swing.GroupLayout(panelCoursesItem);
+        panelCoursesItem.setLayout(panelCoursesItemLayout);
+        panelCoursesItemLayout.setHorizontalGroup(
+            panelCoursesItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCoursesItemLayout.createSequentialGroup()
+                .addGroup(panelCoursesItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelCoursesItemLayout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addComponent(lblCoursesPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCourseItemLayout.createSequentialGroup()
+                    .addGroup(panelCoursesItemLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(lblCoursesText, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
-        panelCourseItemLayout.setVerticalGroup(
-            panelCourseItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCourseItemLayout.createSequentialGroup()
+        panelCoursesItemLayout.setVerticalGroup(
+            panelCoursesItemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCoursesItemLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(lblCoursesPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
@@ -240,9 +239,9 @@ public class AdminHomeView extends javax.swing.JFrame {
             .addComponent(panelHeader, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMainLayout.createSequentialGroup()
                 .addContainerGap(169, Short.MAX_VALUE)
-                .addComponent(panelProfileItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelStudentsItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
-                .addComponent(panelCourseItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelCoursesItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
                 .addComponent(panelLogoutItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(166, 166, 166))
@@ -253,8 +252,8 @@ public class AdminHomeView extends javax.swing.JFrame {
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelProfileItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelCourseItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelStudentsItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelCoursesItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelLogoutItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 307, Short.MAX_VALUE))
         );
@@ -273,21 +272,21 @@ public class AdminHomeView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void panelProfileItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelProfileItemMouseEntered
-        setColor(panelProfileItem);
-    }//GEN-LAST:event_panelProfileItemMouseEntered
+    private void panelStudentsItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelStudentsItemMouseEntered
+        setColor(panelStudentsItem);
+    }//GEN-LAST:event_panelStudentsItemMouseEntered
 
-    private void panelProfileItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelProfileItemMouseExited
-        resetColor(panelProfileItem);
-    }//GEN-LAST:event_panelProfileItemMouseExited
+    private void panelStudentsItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelStudentsItemMouseExited
+        resetColor(panelStudentsItem);
+    }//GEN-LAST:event_panelStudentsItemMouseExited
 
-    private void panelCourseItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCourseItemMouseEntered
-        setColor(panelCourseItem);
-    }//GEN-LAST:event_panelCourseItemMouseEntered
+    private void panelCoursesItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCoursesItemMouseEntered
+        setColor(panelCoursesItem);
+    }//GEN-LAST:event_panelCoursesItemMouseEntered
 
-    private void panelCourseItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCourseItemMouseExited
-        resetColor(panelCourseItem);
-    }//GEN-LAST:event_panelCourseItemMouseExited
+    private void panelCoursesItemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelCoursesItemMouseExited
+        resetColor(panelCoursesItem);
+    }//GEN-LAST:event_panelCoursesItemMouseExited
 
     private void panelLogoutItemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelLogoutItemMouseEntered
         setColor(panelLogoutItem);
@@ -316,11 +315,24 @@ public class AdminHomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblUserText;
     private javax.swing.JLabel lblUserText2;
     private javax.swing.JLabel lblUserText3;
-    private javax.swing.JPanel panelCourseItem;
+    private javax.swing.JPanel panelCoursesItem;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelLogoutItem;
     private javax.swing.JPanel panelMain;
-    private javax.swing.JPanel panelProfileItem;
+    private javax.swing.JPanel panelStudentsItem;
     // End of variables declaration//GEN-END:variables
 
+    public JPanel getPanelCourseItem() {
+        return panelCoursesItem;
+    }
+
+    public JPanel getPanelLogoutItem() {
+        return panelLogoutItem;
+    }
+
+    public JPanel getPanelStudentsItem() {
+        return panelStudentsItem;
+    }
+
+    
 }

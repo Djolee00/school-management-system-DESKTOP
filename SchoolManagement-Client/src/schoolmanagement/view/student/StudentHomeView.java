@@ -5,6 +5,7 @@
 package schoolmanagement.view.student;
 
 import java.awt.Color;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -32,7 +33,7 @@ public class StudentHomeView extends javax.swing.JFrame {
 
         panelMain = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
-        lblUserText2 = new javax.swing.JLabel();
+        lblUser = new javax.swing.JLabel();
         lblUserText3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         panelProfileItem = new javax.swing.JPanel();
@@ -58,11 +59,10 @@ public class StudentHomeView extends javax.swing.JFrame {
 
         panelHeader.setBackground(new java.awt.Color(45, 118, 232));
 
-        lblUserText2.setBackground(new java.awt.Color(45, 118, 232));
-        lblUserText2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblUserText2.setForeground(new java.awt.Color(255, 255, 255));
-        lblUserText2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUserText2.setText("Djordje Ivanovic");
+        lblUser.setBackground(new java.awt.Color(45, 118, 232));
+        lblUser.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblUser.setForeground(new java.awt.Color(255, 255, 255));
+        lblUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
 
         lblUserText3.setBackground(new java.awt.Color(45, 118, 232));
         lblUserText3.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
@@ -82,7 +82,7 @@ public class StudentHomeView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblUserText2))
+                    .addComponent(lblUser))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelHeaderLayout.setVerticalGroup(
@@ -94,7 +94,7 @@ public class StudentHomeView extends javax.swing.JFrame {
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addComponent(lblUserText3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblUserText2)))
+                        .addComponent(lblUser)))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
@@ -257,7 +257,7 @@ public class StudentHomeView extends javax.swing.JFrame {
                     .addComponent(panelProfileItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelCourseItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelLogoutItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 307, Short.MAX_VALUE))
+                .addGap(0, 322, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,9 +313,9 @@ public class StudentHomeView extends javax.swing.JFrame {
     private javax.swing.JLabel lblCoursesText;
     private javax.swing.JLabel lblLogoutPhozo;
     private javax.swing.JLabel lblLogoutText;
+    private javax.swing.JLabel lblUser;
     private javax.swing.JLabel lblUserPhoto;
     private javax.swing.JLabel lblUserText;
-    private javax.swing.JLabel lblUserText2;
     private javax.swing.JLabel lblUserText3;
     private javax.swing.JPanel panelCourseItem;
     private javax.swing.JPanel panelHeader;
@@ -324,4 +324,21 @@ public class StudentHomeView extends javax.swing.JFrame {
     private javax.swing.JPanel panelProfileItem;
     // End of variables declaration//GEN-END:variables
 
+    public JPanel getPanelCourseItem() {
+        return panelCourseItem;
+    }
+
+    public JPanel getPanelLogoutItem() {
+        return panelLogoutItem;
+    }
+
+    public JPanel getPanelProfileItem() {
+        return panelProfileItem;
+    }
+
+    public JLabel getLblUser() {
+        return lblUser;
+    }
+
+    
 }
