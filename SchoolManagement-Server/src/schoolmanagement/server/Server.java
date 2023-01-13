@@ -4,9 +4,14 @@
  */
 package schoolmanagement.server;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketImpl;
+import java.util.Properties;
+import schoolmanagement.config.Configuration;
 import schoolmanagement.server.handler.ClientHandler;
 
 /**
@@ -18,7 +23,7 @@ public class Server extends Thread {
     private final ServerSocket serverSocket;
 
     public Server() throws IOException {
-        serverSocket = new ServerSocket(9000);
+        serverSocket = new ServerSocket(readPortNumber());
     }
 
     @Override
@@ -41,6 +46,15 @@ public class Server extends Thread {
             clientHandler.start();
         } catch (IOException ex) {
             System.out.println("Error while opening in and out streams!");
+        }
+    }
+
+    private int readPortNumber() throws FileNotFoundException, IOException {
+        Properties properties = new Properties();
+
+        try ( FileInputStream input = new FileInputStream(Configuration.CONFIG_FILE_PATH)) {
+            properties.load(input);
+            return Integer.parseInt(properties.getProperty(Configuration.SERVER_PORT));
         }
     }
 

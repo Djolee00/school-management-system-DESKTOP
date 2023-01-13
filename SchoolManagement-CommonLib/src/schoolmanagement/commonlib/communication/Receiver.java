@@ -14,7 +14,7 @@ import java.net.Socket;
  */
 public class Receiver {
     
-    private ObjectInputStream in;
+    private final ObjectInputStream in;
     
     public Receiver(Socket socket) throws IOException{
         in = new ObjectInputStream(socket.getInputStream());

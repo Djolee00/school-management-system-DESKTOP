@@ -20,9 +20,9 @@ import schoolmanagement.service.UserService;
  */
 public class UserServiceImpl implements UserService {
 
-    private UserDao userDao;
-    private StudentDao studentDao;
-    private AdminDao adminDao;
+    private final UserDao userDao;
+    private final StudentDao studentDao;
+    private final AdminDao adminDao;
 
     public UserServiceImpl(UserDao userDao, StudentDao studentDao, AdminDao adminDao) {
         this.userDao = userDao;

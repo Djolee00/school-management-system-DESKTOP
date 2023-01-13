@@ -16,7 +16,6 @@ import schoolmanagement.communication.Communication;
 import schoolmanagement.controller.admin.AdminHomeController;
 import schoolmanagement.controller.student.StudentHomeController;
 import schoolmanagement.session.Session;
-import schoolmanagement.view.admin.AdminHomeView;
 import schoolmanagement.view.login.LoginView;
 
 /**

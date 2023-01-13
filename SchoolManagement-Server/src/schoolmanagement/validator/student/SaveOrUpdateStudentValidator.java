@@ -34,7 +34,7 @@ public class SaveOrUpdateStudentValidator implements StudentValidator{
     private void validateStudentUsername(String username,UserDao userDao) throws SQLException, ValidationException {
         boolean isUnique = userDao.isUsernameUnique(username);
         if (isUnique == false) {
-            throw new ValidationException("Korisnicko ime vec postoji u sistemu!");
+            throw new ValidationException("Username already exists in system!");
         }
     }
 }

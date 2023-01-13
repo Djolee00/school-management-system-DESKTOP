@@ -10,8 +10,8 @@ package validaton.rule;
  */
 public class MatchRegexRule extends Rule{
 
-    private Object property;
-    private String regex;
+    private final Object property;
+    private final String regex;
 
     public  MatchRegexRule(Object property,String regex) {
         this.property = property;

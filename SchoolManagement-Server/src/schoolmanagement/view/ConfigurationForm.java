@@ -189,12 +189,12 @@ public class ConfigurationForm extends javax.swing.JDialog {
 
             writeConfigFile(serverPort, dbHost, dbPort, dbName, dbUsername, dbPassword);
 
-            JOptionPane.showMessageDialog(this, "Uspešno povezivanje sa bazom!", "Poruka", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Successfully connected to database!", "Success", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Greška prilikom povezivanja sa bazom. Proverite podatke!", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error while connecting to database.\n Please check your input!", "Error", JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Greška prilikom upisivanja konfiguracionih podataka!", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error while writing input in file!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 

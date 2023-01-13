@@ -10,7 +10,7 @@ package validaton.rule;
  */
 public class NotEmptyRule extends Rule {
 
-    private Object property;
+    private final Object property;
 
     public NotEmptyRule(Object property) {
         this.property = property;

@@ -12,7 +12,7 @@ import java.util.HashMap;
  */
 public class Session {
     
-    private HashMap<String,Object> map;
+    private final HashMap<String,Object> map;
     private static Session instance;
     
     private Session(){

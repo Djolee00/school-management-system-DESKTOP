@@ -14,7 +14,7 @@ import java.net.Socket;
  */
 public class Sender {
     
-    private ObjectOutputStream out;
+    private final ObjectOutputStream out;
     
     public Sender(Socket socket) throws IOException{
         out = new ObjectOutputStream(socket.getOutputStream());

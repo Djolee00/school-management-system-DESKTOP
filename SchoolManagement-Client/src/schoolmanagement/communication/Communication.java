@@ -17,8 +17,8 @@ import schoolmanagement.commonlib.communication.Sender;
  */
 public class Communication {
     
-    private Sender sender;
-    private Receiver receiver;
+    private final Sender sender;
+    private final Receiver receiver;
     
     private static Communication instance;
 

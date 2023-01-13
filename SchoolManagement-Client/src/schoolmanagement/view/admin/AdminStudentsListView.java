@@ -4,7 +4,6 @@
  */
 package schoolmanagement.view.admin;
 
-import schoolmanagement.view.student.*;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JPanel;

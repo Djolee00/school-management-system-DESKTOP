@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import schoolmanagement.commonlib.model.Administrator;
-import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.User;
 import schoolmanagement.persistence.dao.AdminDao;
 

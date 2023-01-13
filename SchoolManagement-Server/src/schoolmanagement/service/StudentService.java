@@ -5,7 +5,6 @@
 package schoolmanagement.service;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
 import validation.exception.ValidationException;

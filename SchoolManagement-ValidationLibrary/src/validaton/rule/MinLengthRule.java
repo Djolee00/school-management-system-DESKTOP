@@ -10,8 +10,8 @@ package validaton.rule;
  */
 public class MinLengthRule extends Rule {
 
-    private int minLength;
-    private Object property;
+    private final int minLength;
+    private final Object property;
 
     public MinLengthRule(int maxLength, Object property) {
         this.minLength = maxLength;

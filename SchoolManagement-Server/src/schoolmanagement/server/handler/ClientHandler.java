@@ -11,10 +11,6 @@ import schoolmanagement.commonlib.communication.Sender;
 import schoolmanagement.commonlib.communication.Receiver;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
-import schoolmanagement.commonlib.communication.ResponseType;
-import schoolmanagement.commonlib.model.User;
-import schoolmanagement.service.UserService;
-import schoolmanagement.service.provider.ServiceProvider;
 
 /**
  *
@@ -22,13 +18,11 @@ import schoolmanagement.service.provider.ServiceProvider;
  */
 public class ClientHandler extends Thread {
 
-    private final Socket socket;
     private final Sender sender;
     private final Receiver receiver;
     private final ClientHandlerController controller;
 
     public ClientHandler(Socket socket) throws IOException {
-        this.socket = socket;
         sender = new Sender(socket);
         receiver = new Receiver(socket);
         controller = new ClientHandlerController();
