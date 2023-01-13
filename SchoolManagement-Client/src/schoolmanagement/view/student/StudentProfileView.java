@@ -6,7 +6,10 @@ package schoolmanagement.view.student;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JFormattedTextField;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -36,22 +39,22 @@ public class StudentProfileView extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         lblUserText3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        panelPodaci = new javax.swing.JPanel();
-        lblUsername2 = new javax.swing.JLabel();
+        panelData = new javax.swing.JPanel();
+        lblUsername = new javax.swing.JLabel();
+        lblCreationDate = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
-        lblPassword1 = new javax.swing.JLabel();
-        lblPassword2 = new javax.swing.JLabel();
-        lblPassword3 = new javax.swing.JLabel();
-        lblPassword4 = new javax.swing.JLabel();
+        lblFirstname = new javax.swing.JLabel();
+        lblLastname = new javax.swing.JLabel();
+        lblBirthdate = new javax.swing.JLabel();
         txtLastname = new javax.swing.JTextField();
         txtFirstname = new javax.swing.JTextField();
         txtBirthDate = new javax.swing.JFormattedTextField();
         txtCreationDate = new javax.swing.JFormattedTextField();
-        txtFirstname1 = new javax.swing.JTextField();
-        txtFirstname2 = new javax.swing.JTextField();
-        panelKursevi = new javax.swing.JPanel();
+        txtPassword = new javax.swing.JTextField();
+        txtUsername = new javax.swing.JTextField();
+        panelCourses = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCourses = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -82,7 +85,7 @@ public class StudentProfileView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/profile.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
@@ -94,7 +97,7 @@ public class StudentProfileView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lblHome)
                 .addGap(21, 21, 21))
         );
         panelHeaderLayout.setVerticalGroup(
@@ -106,134 +109,134 @@ public class StudentProfileView extends javax.swing.JFrame {
                         .addGap(29, 29, 29)
                         .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUserText3)
-                            .addComponent(jLabel2))))
+                            .addComponent(lblHome))))
                 .addContainerGap(86, Short.MAX_VALUE))
         );
 
         jTabbedPane1.setToolTipText("");
 
-        lblUsername2.setBackground(new java.awt.Color(45, 118, 232));
-        lblUsername2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblUsername2.setForeground(new java.awt.Color(45, 118, 232));
-        lblUsername2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblUsername2.setText("Username:");
+        lblUsername.setBackground(new java.awt.Color(45, 118, 232));
+        lblUsername.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(45, 118, 232));
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblUsername.setText("Username:");
+
+        lblCreationDate.setBackground(new java.awt.Color(45, 118, 232));
+        lblCreationDate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCreationDate.setForeground(new java.awt.Color(45, 118, 232));
+        lblCreationDate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblCreationDate.setText("Creation date:");
 
         lblPassword.setBackground(new java.awt.Color(45, 118, 232));
         lblPassword.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblPassword.setForeground(new java.awt.Color(45, 118, 232));
         lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword.setText("Creation date:");
+        lblPassword.setText("Password:");
 
-        lblPassword1.setBackground(new java.awt.Color(45, 118, 232));
-        lblPassword1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblPassword1.setForeground(new java.awt.Color(45, 118, 232));
-        lblPassword1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword1.setText("Password:");
+        lblFirstname.setBackground(new java.awt.Color(45, 118, 232));
+        lblFirstname.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblFirstname.setForeground(new java.awt.Color(45, 118, 232));
+        lblFirstname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFirstname.setText("First name:");
 
-        lblPassword2.setBackground(new java.awt.Color(45, 118, 232));
-        lblPassword2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblPassword2.setForeground(new java.awt.Color(45, 118, 232));
-        lblPassword2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword2.setText("First name:");
+        lblLastname.setBackground(new java.awt.Color(45, 118, 232));
+        lblLastname.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblLastname.setForeground(new java.awt.Color(45, 118, 232));
+        lblLastname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblLastname.setText("Last name:");
 
-        lblPassword3.setBackground(new java.awt.Color(45, 118, 232));
-        lblPassword3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblPassword3.setForeground(new java.awt.Color(45, 118, 232));
-        lblPassword3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword3.setText("Last name:");
+        lblBirthdate.setBackground(new java.awt.Color(45, 118, 232));
+        lblBirthdate.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblBirthdate.setForeground(new java.awt.Color(45, 118, 232));
+        lblBirthdate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBirthdate.setText("Birthdate:");
 
-        lblPassword4.setBackground(new java.awt.Color(45, 118, 232));
-        lblPassword4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lblPassword4.setForeground(new java.awt.Color(45, 118, 232));
-        lblPassword4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPassword4.setText("Birthdate:");
-
+        txtLastname.setEditable(false);
         txtLastname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtLastname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtLastname.setText("Ivanovic");
         txtLastname.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
 
+        txtFirstname.setEditable(false);
         txtFirstname.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtFirstname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFirstname.setText("Djordje");
         txtFirstname.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
 
+        txtBirthDate.setEditable(false);
         txtBirthDate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
         txtBirthDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         txtBirthDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtBirthDate.setText("Apr 19, 2000");
 
+        txtCreationDate.setEditable(false);
         txtCreationDate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
         txtCreationDate.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
         txtCreationDate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtCreationDate.setText("Dec 19, 2022");
 
-        txtFirstname1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtFirstname1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFirstname1.setText("djole123");
-        txtFirstname1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
+        txtPassword.setEditable(false);
+        txtPassword.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPassword.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtPassword.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
 
-        txtFirstname2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtFirstname2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFirstname2.setText("djole");
-        txtFirstname2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
+        txtUsername.setEditable(false);
+        txtUsername.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtUsername.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtUsername.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, null, new java.awt.Color(45, 118, 232), null, new java.awt.Color(45, 118, 232)));
 
-        javax.swing.GroupLayout panelPodaciLayout = new javax.swing.GroupLayout(panelPodaci);
-        panelPodaci.setLayout(panelPodaciLayout);
-        panelPodaciLayout.setHorizontalGroup(
-            panelPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPodaciLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelDataLayout = new javax.swing.GroupLayout(panelData);
+        panelData.setLayout(panelDataLayout);
+        panelDataLayout.setHorizontalGroup(
+            panelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDataLayout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addGroup(panelPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lblCreationDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtCreationDate)
                     .addComponent(txtBirthDate, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPassword4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblBirthdate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtLastname, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPassword3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblLastname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtFirstname, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPassword2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblFirstname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 329, Short.MAX_VALUE)
-                .addGroup(panelPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblUsername2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtFirstname1)
-                    .addComponent(txtFirstname2)
-                    .addComponent(lblPassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPassword)
+                    .addComponent(txtUsername)
+                    .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(106, 106, 106))
         );
-        panelPodaciLayout.setVerticalGroup(
-            panelPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelPodaciLayout.createSequentialGroup()
+        panelDataLayout.setVerticalGroup(
+            panelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelDataLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(panelPodaciLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelPodaciLayout.createSequentialGroup()
-                        .addComponent(lblPassword2)
+                .addGroup(panelDataLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelDataLayout.createSequentialGroup()
+                        .addComponent(lblFirstname)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPassword3)
+                        .addComponent(lblLastname)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelPodaciLayout.createSequentialGroup()
-                        .addComponent(lblUsername2)
+                    .addGroup(panelDataLayout.createSequentialGroup()
+                        .addComponent(lblUsername)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFirstname2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblPassword1)
+                        .addComponent(lblPassword)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFirstname1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(lblPassword4)
+                .addComponent(lblBirthdate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(lblPassword)
+                .addComponent(lblCreationDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtCreationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Personal data", panelPodaci);
+        jTabbedPane1.addTab("Personal data", panelData);
 
         tblCourses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -331,20 +334,20 @@ public class StudentProfileView extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout panelKurseviLayout = new javax.swing.GroupLayout(panelKursevi);
-        panelKursevi.setLayout(panelKurseviLayout);
-        panelKurseviLayout.setHorizontalGroup(
-            panelKurseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelKurseviLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelCoursesLayout = new javax.swing.GroupLayout(panelCourses);
+        panelCourses.setLayout(panelCoursesLayout);
+        panelCoursesLayout.setHorizontalGroup(
+            panelCoursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCoursesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelKurseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCoursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        panelKurseviLayout.setVerticalGroup(
-            panelKurseviLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelKurseviLayout.createSequentialGroup()
+        panelCoursesLayout.setVerticalGroup(
+            panelCoursesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCoursesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -352,7 +355,7 @@ public class StudentProfileView extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("My courses", panelKursevi);
+        jTabbedPane1.addTab("My courses", panelCourses);
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);
@@ -398,34 +401,34 @@ public class StudentProfileView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblBirthdate;
+    private javax.swing.JLabel lblCreationDate;
+    private javax.swing.JLabel lblFirstname;
+    private javax.swing.JLabel lblHome;
+    private javax.swing.JLabel lblLastname;
     private javax.swing.JLabel lblPassword;
-    private javax.swing.JLabel lblPassword1;
-    private javax.swing.JLabel lblPassword2;
-    private javax.swing.JLabel lblPassword3;
-    private javax.swing.JLabel lblPassword4;
     private javax.swing.JLabel lblPassword5;
     private javax.swing.JLabel lblPassword6;
     private javax.swing.JLabel lblUserText3;
-    private javax.swing.JLabel lblUsername2;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JPanel panelCourses;
+    private javax.swing.JPanel panelData;
     private javax.swing.JPanel panelHeader;
-    private javax.swing.JPanel panelKursevi;
     private javax.swing.JPanel panelMain;
-    private javax.swing.JPanel panelPodaci;
     private javax.swing.JTable tblCourses;
     private javax.swing.JFormattedTextField txtBirthDate;
     private javax.swing.JFormattedTextField txtCreationDate;
     private javax.swing.JTextField txtFirstname;
-    private javax.swing.JTextField txtFirstname1;
-    private javax.swing.JTextField txtFirstname2;
     private javax.swing.JTextField txtGroupName;
     private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtNumOfStudents;
+    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 
     private void designTable() {
@@ -435,6 +438,34 @@ public class StudentProfileView extends javax.swing.JFrame {
         tblCourses.getTableHeader().setForeground(new Color(255,255,255));
         tblCourses.setRowHeight(25);
         
+    }
+
+    public JFormattedTextField getTxtBirthDate() {
+        return txtBirthDate;
+    }
+
+    public JFormattedTextField getTxtCreationDate() {
+        return txtCreationDate;
+    }
+
+    public JTextField getTxtFirstname() {
+        return txtFirstname;
+    }
+
+    public JTextField getTxtLastname() {
+        return txtLastname;
+    }
+
+    public JTextField getTxtPassword() {
+        return txtPassword;
+    }
+
+    public JTextField getTxtUsername() {
+        return txtUsername;
+    }
+
+    public JLabel getLblHome() {
+        return lblHome;
     }
 
 }

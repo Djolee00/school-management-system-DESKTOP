@@ -70,7 +70,8 @@ public class StudentHomeController {
     }
 
     private void openProfileView() {
-
+        new StudentProfileController();
+        homeView.dispose();
     }
 
 }
