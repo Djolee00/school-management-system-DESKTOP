@@ -23,6 +23,11 @@ public class CourseEnrollment implements Serializable{
         this.enrollmentDate = enrollmentDate;
     }
 
+    public CourseEnrollment() {
+    }
+    
+    
+
     public Student getStudent() {
         return student;
     }

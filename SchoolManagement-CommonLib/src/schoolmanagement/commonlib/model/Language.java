@@ -25,6 +25,9 @@ public class Language implements Serializable{
         this.level = level;
     }
 
+    public Language() {
+    }
+    
     public Long getId() {
         return id;
     }

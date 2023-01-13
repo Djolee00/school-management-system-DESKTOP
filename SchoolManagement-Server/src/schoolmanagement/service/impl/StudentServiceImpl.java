@@ -12,6 +12,7 @@ import schoolmanagement.persistence.dao.StudentDao;
 import schoolmanagement.service.StudentService;
 import validation.exception.ValidationException;
 import java.sql.SQLException;
+import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.persistence.dao.UserDao;
 import schoolmanagement.persistence.pool.ConnectionPool;
 import schoolmanagement.validator.student.StudentValidator;
@@ -31,9 +32,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public synchronized Student save(Student student,StudentValidator validator) throws ValidationException, IOException, SQLException {
-
-
+    public synchronized Student save(Student student, StudentValidator validator) throws ValidationException, IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {
             userDao.setConnection(connection);
@@ -42,7 +41,7 @@ public class StudentServiceImpl implements StudentService {
             connection.setAutoCommit(false);
 
             validator.validate(student, userDao);
-                    
+
             long userId = userDao.saveUser(student);
             student.setId(userId);
             student = studentDao.saveStudent(student);
@@ -59,19 +58,26 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void update() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public List<CourseEnrollment> getStudentCourses(Long id) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        List<CourseEnrollment> courses;
+        
+        try {
+            studentDao.setConnection(connection);
 
-    @Override
-    public Student getById() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+            connection.setAutoCommit(false);
+            
+            courses = studentDao.getStudentCourses(id);
 
-    @Override
-    public List<Student> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
 
+            return courses;
+        } catch ( IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
 
 }

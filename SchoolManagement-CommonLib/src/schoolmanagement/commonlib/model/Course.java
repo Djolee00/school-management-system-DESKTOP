@@ -12,8 +12,8 @@ import java.util.List;
  *
  * @author ivano
  */
-public class Course implements Serializable{
-    
+public class Course implements Serializable {
+
     private Long id;
     private String name;
     private LocalDate startDate;
@@ -29,6 +29,9 @@ public class Course implements Serializable{
         this.endDate = endDate;
         this.groupCapacity = groupCapacity;
         this.language = language;
+    }
+
+    public Course() {
     }
 
     public Long getId() {
@@ -95,12 +98,9 @@ public class Course implements Serializable{
         this.courseGroups = courseGroups;
     }
 
-    
     @Override
     public String toString() {
         return "Course{" + "id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", groupCapacity=" + groupCapacity + ", language=" + language + '}';
     }
-    
-    
-    
+
 }

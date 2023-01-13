@@ -11,5 +11,6 @@ import java.io.Serializable;
  * @author ivano
  */
 public enum Operation implements Serializable {
-    LOGIN
+    LOGIN,
+    GET_STUDENT_COURSES
 }

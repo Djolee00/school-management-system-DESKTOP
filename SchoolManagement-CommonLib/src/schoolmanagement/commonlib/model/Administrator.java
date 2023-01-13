@@ -15,8 +15,8 @@ public class Administrator extends User implements Serializable{
     
     private LocalDate employmentDate;
     
-    public Administrator(String username, String password,LocalDate employmentDate) {
-        super(username, password);
+    public Administrator(Long id,String username, String password,LocalDate employmentDate) {
+        super(id,username, password);
         this.employmentDate = employmentDate;
     }
 

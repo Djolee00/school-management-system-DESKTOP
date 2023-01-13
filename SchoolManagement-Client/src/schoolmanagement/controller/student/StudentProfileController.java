@@ -6,10 +6,21 @@ package schoolmanagement.controller.student;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
+import schoolmanagement.commonlib.communication.Operation;
+import schoolmanagement.commonlib.communication.Request;
+import schoolmanagement.commonlib.communication.Response;
+import schoolmanagement.commonlib.communication.ResponseType;
+import schoolmanagement.commonlib.model.CourseEnrollment;
+import schoolmanagement.commonlib.model.CourseGroup;
 import schoolmanagement.commonlib.model.Student;
+import schoolmanagement.communication.Communication;
 import schoolmanagement.session.Session;
+import schoolmanagement.view.component.StudentProfileMyCoursesModel;
 import schoolmanagement.view.student.StudentProfileView;
 
 /**
@@ -19,6 +30,7 @@ import schoolmanagement.view.student.StudentProfileView;
 public class StudentProfileController {
 
     private final StudentProfileView profileView;
+    private final StudentProfileMyCoursesModel model;
     private final Student student;
 
     public StudentProfileController() {
@@ -26,11 +38,13 @@ public class StudentProfileController {
         profileView = new StudentProfileView();
         profileView.setVisible(true);
         initView();
+        model = (StudentProfileMyCoursesModel) profileView.getTblCourses().getModel();
     }
 
     private void initView() {
         initListeners();
         populateFields();
+        populateTable();
     }
 
     private void initListeners() {
@@ -41,6 +55,28 @@ public class StudentProfileController {
                 profileView.dispose();
             }
         });
+
+        profileView.getTblCourses().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int rowIndex = profileView.getTblCourses().getSelectedRow();
+                CourseEnrollment tempCourseEnrollment = model.getCourseEnrollment(rowIndex);
+                CourseGroup tempGroup = tempCourseEnrollment.getCourse().getCourseGroups().get(0); //we only have group in which student exist (if he is added in any group)
+
+                if (tempGroup != null) {
+                    profileView.getLblMessage().setVisible(false);
+                    profileView.getTxtName().setText(tempGroup.getName());
+                    profileView.getTxtTutor().setText(tempGroup.getTutor().getFirstName() + " " + tempGroup.getTutor().getLastName());
+                    profileView.getTxtNumOfStudents().setText("" + tempGroup.getNumOfStudents());
+                } else {
+                    profileView.getLblMessage().setVisible(true);
+                    profileView.getTxtName().setText("");
+                    profileView.getTxtTutor().setText("");
+                    profileView.getTxtNumOfStudents().setText("");
+                }
+            }
+
+        });
     }
 
     private void populateFields() {
@@ -50,5 +86,33 @@ public class StudentProfileController {
         profileView.getTxtCreationDate().setValue(Date.from(student.getCreationDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         profileView.getTxtUsername().setText(student.getUsername());
         profileView.getTxtPassword().setText(student.getPassword());
+
+        profileView.getLblMessage().setVisible(false);
     }
+
+    private void populateTable() {
+        List<CourseEnrollment> courses = getStudentCourses();
+        profileView.getTblCourses().setModel(new StudentProfileMyCoursesModel(courses));
+    }
+
+    private List<CourseEnrollment> getStudentCourses() {
+        List<CourseEnrollment> courseEnrollments = null;
+
+        try {
+            Communication.getInstance().send(new Request(Operation.GET_STUDENT_COURSES, student));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.SUCCESS) {
+                courseEnrollments = (List<CourseEnrollment>) response.getObject();
+            }
+
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(profileView, "Error getting student's courses. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            profileView.dispose();
+        }
+
+        return courseEnrollments;
+    }
+
 }

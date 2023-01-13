@@ -49,8 +49,11 @@ public class ClientHandler extends Thread {
             case LOGIN -> {
                 response = controller.loginUser(request);
             }
+            case GET_STUDENT_COURSES -> {
+                response = controller.getStudentCourses(request);
+            }
         }
-        
+
         sender.send(response);
     }
 

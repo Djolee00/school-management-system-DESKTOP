@@ -30,7 +30,7 @@ public class AdminDaoImpl implements AdminDao {
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                return new Administrator(user.getUsername(), user.getPassword(), rs.getDate("employment_date").toLocalDate());
+                return new Administrator(user.getId(),user.getUsername(), user.getPassword(), rs.getDate("employment_date").toLocalDate());
             } else {
                 return null;
             }

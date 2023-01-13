@@ -21,8 +21,8 @@ public class Student extends User implements Serializable{
     private List<CourseEnrollment> courseEnrollments;
     private List<CourseGroup> courseGroups;
 
-    public Student(String username, String password,String firstName, String lastName, LocalDate birthdate, LocalDate creationDate) {
-        super(username, password);
+    public Student(Long id,String username, String password,String firstName, String lastName, LocalDate birthdate, LocalDate creationDate) {
+        super(id,username, password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;

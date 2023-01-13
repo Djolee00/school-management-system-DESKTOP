@@ -10,7 +10,14 @@ import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.dao.StudentDao;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import schoolmanagement.commonlib.model.Course;
+import schoolmanagement.commonlib.model.CourseEnrollment;
+import schoolmanagement.commonlib.model.CourseGroup;
+import schoolmanagement.commonlib.model.Language;
+import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.commonlib.model.User;
+import schoolmanagement.commonlib.model.enums.Level;
 
 /**
  *
@@ -35,22 +42,6 @@ public class StudentDaoImpl implements StudentDao {
 
             return student;
         }
-
-    }
-
-    @Override
-    public void updateStudent() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public List<Student> getAllStudents() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Student getStudentById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
@@ -62,19 +53,104 @@ public class StudentDaoImpl implements StudentDao {
     public Student getStudentByUser(User user) throws SQLException {
         final String sqlQuery = "SELECT * FROM Student WHERE user_id = ?";
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
-
             statement.setLong(1, user.getId());
-
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                return new Student(user.getUsername(), user.getPassword(), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("birthdate").toLocalDate(), rs.getDate("creation_date").toLocalDate());
+                return new Student(user.getId(),user.getUsername(), user.getPassword(), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("birthdate").toLocalDate(), rs.getDate("creation_date").toLocalDate());
             } else {
                 return null;
             }
+        }
+    }
 
+    @Override
+    public List<CourseEnrollment> getStudentCourses(Long id) throws SQLException {
+        final String sqlQuery = "SELECT ce.student_id,ce.course_id,enrollment_date,c.`name` AS course_name,start_date,end_date,group_capacity,language_id, l.name AS `language_name`, l.level, ge.course_group_id,cg.name AS group_name,number_of_students,\n"
+                + "ta.tutor_id,t.first_name AS tutor_first_name,t.last_name AS tutor_last_name\n"
+                + "FROM course_enrollment ce \n"
+                + "INNER JOIN course c ON ce.course_id = c.id \n"
+                + "INNER JOIN `language` l ON c.language_id = l.id\n"
+                + "LEFT JOIN group_enrollment ge ON ge.student_id = ce.student_id AND ge.course_id = c.id\n"
+                + "LEFT JOIN course_group cg ON ge.course_group_id = cg.id AND ge.course_id = ce.course_id\n"
+                + "LEFT JOIN tutor_assignment ta ON ce.course_id = ta.course_id AND ge.course_group_id = ta.course_group_id\n"
+                + "LEFT JOIN tutor t ON t.id = ta.tutor_id\n"
+                + "WHERE ce.student_id = ?;";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            return mapResultSetToCourses(rs);
+        }
+    }
+
+    private List<CourseEnrollment> mapResultSetToCourses(ResultSet rs) throws SQLException {
+        List<CourseEnrollment> courseEnrollments = new ArrayList<>();
+
+        while (rs.next()) {
+            Language language = makeLanguageFromRs(rs);
+            Course course = makeCourseFromRs(rs);
+            CourseGroup group = makeCourseGroupFromRs(rs);
+            List<CourseGroup> courseGroups = new ArrayList<>();
+            courseGroups.add(group);
+            
+            course.setLanguage(language);
+            course.setCourseGroups(courseGroups);
+            
+            CourseEnrollment courseEnrollment = new CourseEnrollment();
+            courseEnrollment.setCourse(course);
+            courseEnrollment.setEnrollmentDate(rs.getDate("enrollment_date").toLocalDate());
+
+            courseEnrollments.add(courseEnrollment);
         }
 
+        return courseEnrollments;
+    }
+
+    private Course makeCourseFromRs(ResultSet rs) throws SQLException {
+        Course temp = new Course();
+        temp.setId(rs.getLong("course_id"));
+        temp.setName(rs.getString("course_name"));
+        temp.setStartDate(rs.getDate("start_date").toLocalDate());
+        temp.setEndDate(rs.getDate("end_date").toLocalDate());
+        temp.setGroupCapacity(rs.getInt("group_capacity"));
+
+        return temp;
+    }
+
+    private Language makeLanguageFromRs(ResultSet rs) throws SQLException {
+        Language temp = new Language();
+        temp.setId(rs.getLong("language_id"));
+        temp.setName(rs.getString("language_name"));
+        temp.setLevel(Level.valueOf(rs.getString("level")));
+
+        return temp;
+    }
+
+    private CourseGroup makeCourseGroupFromRs(ResultSet rs) throws SQLException {
+        if (rs.getString("group_name") == null) {
+            return null;
+        }
+
+        CourseGroup courseGroup = new CourseGroup();
+        courseGroup.setId(rs.getLong("course_group_id"));
+        courseGroup.setName(rs.getString("group_name"));
+        courseGroup.setNumOfStudents(rs.getInt("number_of_students"));
+
+        Tutor tutorOfGroup = makeTutorOfGroupFromRs(rs);
+        courseGroup.setTutor(tutorOfGroup);
+        
+        return courseGroup;
+    }
+
+    private Tutor makeTutorOfGroupFromRs(ResultSet rs) throws SQLException {
+        Tutor temp = new Tutor();
+        temp.setId(rs.getLong("tutor_id"));
+        temp.setFirstName(rs.getString("tutor_first_name"));
+        temp.setLastName(rs.getString("tutor_last_name"));
+                
+        return temp;
     }
 
 }

@@ -24,6 +24,11 @@ public class Tutor implements Serializable{
         this.languages = languages;
     }
 
+    public Tutor() {
+    }
+    
+    
+
     public Long getId() {
         return id;
     }
