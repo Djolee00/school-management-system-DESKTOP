@@ -6,7 +6,10 @@ package schoolmanagement.view.student;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  *
@@ -20,7 +23,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
     public StudentCoursesView() {
         initComponents();
         setLocationRelativeTo(null);
-                designTable();
+        designTable();
 
     }
 
@@ -37,7 +40,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         lblUserText3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCourses = new javax.swing.JTable();
         panelSort = new javax.swing.JPanel();
@@ -79,7 +82,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/coursesList.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
@@ -91,7 +94,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lblHome)
                 .addGap(17, 17, 17))
         );
         panelHeaderLayout.setVerticalGroup(
@@ -105,7 +108,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)))
+                        .addComponent(lblHome)))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
 
@@ -248,11 +251,11 @@ public class StudentCoursesView extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
                     .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jComboBoxLanguage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBoxLanguage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -328,7 +331,6 @@ public class StudentCoursesView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxLanguage;
     private javax.swing.JComboBox<String> jComboBoxLanguage1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -340,6 +342,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
     private javax.swing.JCheckBox jcbEndDate;
     private javax.swing.JCheckBox jcbLanguage;
     private javax.swing.JCheckBox jcbLevel;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblUserText3;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelMain;
@@ -356,4 +359,25 @@ public class StudentCoursesView extends javax.swing.JFrame {
         tblCourses.setRowHeight(25);
 
     }
+
+    public JTable getTblCourses() {
+        return tblCourses;
+    }
+
+    public JLabel getLblHome() {
+        return lblHome;
+    }
+
+    public JButton getBtnSort() {
+        return btnSort;
+    }
+
+    public JButton getBtnChoose() {
+        return btnChoose;
+    }
+
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
 }

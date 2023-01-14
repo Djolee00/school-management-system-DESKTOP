@@ -10,6 +10,7 @@ import java.util.List;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
 import schoolmanagement.commonlib.communication.ResponseType;
+import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.User;
@@ -33,23 +34,38 @@ public class ClientHandlerController {
             response.setResponseType(ResponseType.SUCCESS);
             response.setObject(user);
         }
-        
+
         return response;
     }
 
     public Response getStudentCourses(Request request) throws IOException, SQLException {
         Response response = new Response();
         Student student = (Student) request.getObject();
-        
+
         List<CourseEnrollment> courses = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).getStudentCourses(student.getId());
-        if(courses == null){
+        if (courses == null) {
             response.setResponseType(ResponseType.FAILURE);
-        }else{
+        } else {
             response.setResponseType(ResponseType.SUCCESS);
             response.setObject(courses);
         }
-        
+
         return response;
     }
-    
+
+    Response getStudentUnselectedCourses(Request request) throws IOException, SQLException {
+        Response response = new Response();
+        Student student = (Student) request.getObject();
+
+        List<Course> courses = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).getStudentUnselectedCourses(student.getId());
+        if (courses == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(courses);
+        }
+
+        return response;
+    }
+
 }

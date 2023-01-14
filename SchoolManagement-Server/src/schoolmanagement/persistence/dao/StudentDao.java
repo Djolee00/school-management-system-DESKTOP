@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Student;
 import java.sql.SQLException;
+import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.commonlib.model.User;
 
@@ -15,13 +16,14 @@ import schoolmanagement.commonlib.model.User;
  *
  * @author ivano
  */
-public interface StudentDao extends DaoInterface{
+public interface StudentDao extends DaoInterface {
 
     Student saveStudent(Student student) throws SQLException, IOException;
 
     public Student getStudentByUser(User user) throws SQLException;
 
-    public List<CourseEnrollment> getStudentCourses(Long id)  throws SQLException;
+    public List<CourseEnrollment> getStudentCourses(Long id) throws SQLException;
 
+    public List<Course> getStudentUnselecteCourses(Long id) throws SQLException;
 
 }

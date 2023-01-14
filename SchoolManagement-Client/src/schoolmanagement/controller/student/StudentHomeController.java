@@ -58,7 +58,8 @@ public class StudentHomeController {
     }
 
     private void openCourseView() {
-
+        new StudentCoursesController();
+        homeView.dispose();
     }
 
     private void logout() {

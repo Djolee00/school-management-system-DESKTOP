@@ -12,6 +12,7 @@ import schoolmanagement.persistence.dao.StudentDao;
 import schoolmanagement.service.StudentService;
 import validation.exception.ValidationException;
 import java.sql.SQLException;
+import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.persistence.dao.UserDao;
 import schoolmanagement.persistence.pool.ConnectionPool;
@@ -61,23 +62,47 @@ public class StudentServiceImpl implements StudentService {
     public List<CourseEnrollment> getStudentCourses(Long id) throws IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         List<CourseEnrollment> courses;
-        
+
         try {
             studentDao.setConnection(connection);
 
             connection.setAutoCommit(false);
-            
+
             courses = studentDao.getStudentCourses(id);
 
             connection.commit();
             ConnectionPool.getInstance().releaseConnection(connection);
 
             return courses;
-        } catch ( IOException | SQLException ex) {
+        } catch (IOException | SQLException ex) {
             connection.rollback();
             ConnectionPool.getInstance().releaseConnection(connection);
             throw ex;
         }
+    }
+
+    @Override
+    public List<Course> getStudentUnselectedCourses(Long id) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        List<Course> courses;
+
+        try {
+            studentDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            courses = studentDao.getStudentUnselecteCourses(id);
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return courses;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+
     }
 
 }

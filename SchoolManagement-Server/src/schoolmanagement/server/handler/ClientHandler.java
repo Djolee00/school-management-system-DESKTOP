@@ -52,6 +52,9 @@ public class ClientHandler extends Thread {
             case GET_STUDENT_COURSES -> {
                 response = controller.getStudentCourses(request);
             }
+            case GET_STUDENT_UNSELECTED_COURSES -> {
+                response = controller.getStudentUnselectedCourses(request);
+            }
         }
 
         sender.send(response);

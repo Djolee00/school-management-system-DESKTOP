@@ -57,7 +57,7 @@ public class StudentDaoImpl implements StudentDao {
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()) {
-                return new Student(user.getId(),user.getUsername(), user.getPassword(), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("birthdate").toLocalDate(), rs.getDate("creation_date").toLocalDate());
+                return new Student(user.getId(), user.getUsername(), user.getPassword(), rs.getString("first_name"), rs.getString("last_name"), rs.getDate("birthdate").toLocalDate(), rs.getDate("creation_date").toLocalDate());
             } else {
                 return null;
             }
@@ -81,11 +81,25 @@ public class StudentDaoImpl implements StudentDao {
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
 
+            return mapResultSetToCourseEnrollments(rs);
+        }
+    }
+
+    @Override
+    public List<Course> getStudentUnselecteCourses(Long id) throws SQLException {
+        final String sqlQuery = "SELECT c.id AS course_id, c.`name` AS course_name,c.start_date,c.end_date,c.group_capacity,c.language_id, l.`name` AS language_name,l.level FROM course c \n"
+                + "INNER JOIN `language` l ON c.language_id = l.id\n"
+                + "WHERE c.id NOT IN (SELECT course_id FROM course_enrollment WHERE student_id=?);";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+
             return mapResultSetToCourses(rs);
         }
     }
 
-    private List<CourseEnrollment> mapResultSetToCourses(ResultSet rs) throws SQLException {
+    private List<CourseEnrollment> mapResultSetToCourseEnrollments(ResultSet rs) throws SQLException {
         List<CourseEnrollment> courseEnrollments = new ArrayList<>();
 
         while (rs.next()) {
@@ -94,10 +108,10 @@ public class StudentDaoImpl implements StudentDao {
             CourseGroup group = makeCourseGroupFromRs(rs);
             List<CourseGroup> courseGroups = new ArrayList<>();
             courseGroups.add(group);
-            
+
             course.setLanguage(language);
             course.setCourseGroups(courseGroups);
-            
+
             CourseEnrollment courseEnrollment = new CourseEnrollment();
             courseEnrollment.setCourse(course);
             courseEnrollment.setEnrollmentDate(rs.getDate("enrollment_date").toLocalDate());
@@ -106,6 +120,20 @@ public class StudentDaoImpl implements StudentDao {
         }
 
         return courseEnrollments;
+    }
+
+    private List<Course> mapResultSetToCourses(ResultSet rs) throws SQLException {
+        List<Course> courses = new ArrayList<>();
+
+        while (rs.next()) {
+            Language language = makeLanguageFromRs(rs);
+            Course course = makeCourseFromRs(rs);
+            course.setLanguage(language);
+            
+            courses.add(course);
+        }
+
+        return courses;
     }
 
     private Course makeCourseFromRs(ResultSet rs) throws SQLException {
@@ -140,7 +168,7 @@ public class StudentDaoImpl implements StudentDao {
 
         Tutor tutorOfGroup = makeTutorOfGroupFromRs(rs);
         courseGroup.setTutor(tutorOfGroup);
-        
+
         return courseGroup;
     }
 
@@ -149,7 +177,7 @@ public class StudentDaoImpl implements StudentDao {
         temp.setId(rs.getLong("tutor_id"));
         temp.setFirstName(rs.getString("tutor_first_name"));
         temp.setLastName(rs.getString("tutor_last_name"));
-                
+
         return temp;
     }
 
