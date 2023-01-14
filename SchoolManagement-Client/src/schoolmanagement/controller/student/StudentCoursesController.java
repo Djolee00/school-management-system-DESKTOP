@@ -7,7 +7,10 @@ package schoolmanagement.controller.student;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import schoolmanagement.commonlib.communication.Operation;
 import schoolmanagement.commonlib.communication.Request;
@@ -64,7 +67,20 @@ public class StudentCoursesController {
     }
 
     private void sortCourses() {
-
+        List<Course> temp = this.courses;
+        if(coursesView.getJrbLevel().isSelected()){
+            temp = temp.stream().sorted((c1,c2)-> c1.getLanguage().getLevel().toString().compareTo(c2.getLanguage().getLevel().toString())).collect(Collectors.toList());
+        }
+        if(coursesView.getJrbLanguage().isSelected()){
+            temp = temp.stream().sorted((c1,c2)-> c1.getLanguage().getName().compareTo(c2.getLanguage().getName())).collect(Collectors.toList());
+        }
+        if (coursesView.getJrbStartDate().isSelected()) {
+            temp = temp.stream().sorted(Comparator.comparing(Course::getStartDate)).collect(Collectors.toList());
+        }
+        if(coursesView.getJrbEndDate().isSelected()){
+            temp = temp.stream().sorted(Comparator.comparing(Course::getEndDate)).collect(Collectors.toList());
+        }
+        model.setCourses(temp);
     }
 
     private void searchCourses() {

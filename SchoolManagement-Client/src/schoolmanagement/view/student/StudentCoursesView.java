@@ -7,8 +7,10 @@ package schoolmanagement.view.student;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTable;
 
 /**
@@ -36,6 +38,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panelMain = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lblUserText3 = new javax.swing.JLabel();
@@ -44,12 +47,12 @@ public class StudentCoursesView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCourses = new javax.swing.JTable();
         panelSort = new javax.swing.JPanel();
-        jcbLanguage = new javax.swing.JCheckBox();
-        jcbLevel = new javax.swing.JCheckBox();
-        jcbEndDate = new javax.swing.JCheckBox();
-        jcbBeginDate = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
         btnSort = new javax.swing.JButton();
+        jrbStartDate = new javax.swing.JRadioButton();
+        jrbLanguage = new javax.swing.JRadioButton();
+        jrbLevel = new javax.swing.JRadioButton();
+        jrbEndDate = new javax.swing.JRadioButton();
         panelSearch = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxLanguage = new javax.swing.JComboBox<>();
@@ -142,15 +145,19 @@ public class StudentCoursesView extends javax.swing.JFrame {
         panelSort.setBackground(new java.awt.Color(255, 255, 255));
         panelSort.setBorder(javax.swing.BorderFactory.createTitledBorder("Sort"));
 
-        jcbLanguage.setText("Language");
-
-        jcbLevel.setText("Level");
-
-        jcbEndDate.setText("End date");
-
-        jcbBeginDate.setText("Begin date");
-
         btnSort.setText("Sort");
+
+        buttonGroup1.add(jrbStartDate);
+        jrbStartDate.setText("Start date");
+
+        buttonGroup1.add(jrbLanguage);
+        jrbLanguage.setText("Language");
+
+        buttonGroup1.add(jrbLevel);
+        jrbLevel.setText("Level");
+
+        buttonGroup1.add(jrbEndDate);
+        jrbEndDate.setText("End date");
 
         javax.swing.GroupLayout panelSortLayout = new javax.swing.GroupLayout(panelSort);
         panelSort.setLayout(panelSortLayout);
@@ -159,30 +166,30 @@ public class StudentCoursesView extends javax.swing.JFrame {
             .addGroup(panelSortLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSortLayout.createSequentialGroup()
-                        .addComponent(jcbLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jcbBeginDate))
-                    .addGroup(panelSortLayout.createSequentialGroup()
-                        .addComponent(jcbLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jcbEndDate))
                     .addComponent(btnSort)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(165, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelSortLayout.createSequentialGroup()
+                        .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrbLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jrbLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
+                        .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jrbEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jrbStartDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(145, Short.MAX_VALUE))
         );
         panelSortLayout.setVerticalGroup(
             panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSortLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbLevel)
-                    .addComponent(jcbBeginDate))
-                .addGap(18, 18, 18)
-                .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcbEndDate)
-                    .addComponent(jcbLanguage))
-                .addGap(24, 24, 24)
+                    .addComponent(jrbStartDate)
+                    .addComponent(jrbLevel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrbLanguage)
+                    .addComponent(jrbEndDate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSort)
@@ -256,7 +263,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addComponent(jComboBoxLanguage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch)
@@ -326,6 +333,7 @@ public class StudentCoursesView extends javax.swing.JFrame {
     private javax.swing.JButton btnChoose;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSort;
+    private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser dateBegin;
     private com.toedter.calendar.JDateChooser dateEnd;
     private javax.swing.JComboBox<String> jComboBoxLanguage;
@@ -338,10 +346,10 @@ public class StudentCoursesView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JCheckBox jcbBeginDate;
-    private javax.swing.JCheckBox jcbEndDate;
-    private javax.swing.JCheckBox jcbLanguage;
-    private javax.swing.JCheckBox jcbLevel;
+    private javax.swing.JRadioButton jrbEndDate;
+    private javax.swing.JRadioButton jrbLanguage;
+    private javax.swing.JRadioButton jrbLevel;
+    private javax.swing.JRadioButton jrbStartDate;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblUserText3;
     private javax.swing.JPanel panelHeader;
@@ -378,6 +386,22 @@ public class StudentCoursesView extends javax.swing.JFrame {
 
     public JButton getBtnSearch() {
         return btnSearch;
+    }
+
+    public JRadioButton getJrbStartDate() {
+        return jrbStartDate;
+    }
+
+    public JRadioButton getJrbEndDate() {
+        return jrbEndDate;
+    }
+
+    public JRadioButton getJrbLanguage() {
+        return jrbLanguage;
+    }
+
+    public JRadioButton getJrbLevel() {
+        return jrbLevel;
     }
 
 }

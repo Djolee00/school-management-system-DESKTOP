@@ -12,10 +12,10 @@ import schoolmanagement.commonlib.model.Course;
  *
  * @author ivano
  */
-public class StudentCourseSelectionModel extends AbstractTableModel{
-    
-    private final List<Course> courses;
-    private final String[] header = {"Name","Start date","End date","Capacity","Language","Level"};
+public class StudentCourseSelectionModel extends AbstractTableModel {
+
+    private List<Course> courses;
+    private final String[] header = {"Name", "Start date", "End date", "Capacity", "Language", "Level"};
 
     public StudentCourseSelectionModel(List<Course> courses) {
         this.courses = courses;
@@ -35,13 +35,20 @@ public class StudentCourseSelectionModel extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         Course temp = courses.get(rowIndex);
         return switch (columnIndex) {
-            case 0 -> temp.getName();
-            case 1 -> temp.getStartDate();
-            case 2 -> temp.getEndDate();
-            case 3 -> temp.getGroupCapacity();
-            case 4 -> temp.getLanguage().getName();
-            case 5 -> temp.getLanguage().getLevel();
-            default -> "N/A";
+            case 0 ->
+                temp.getName();
+            case 1 ->
+                temp.getStartDate();
+            case 2 ->
+                temp.getEndDate();
+            case 3 ->
+                temp.getGroupCapacity();
+            case 4 ->
+                temp.getLanguage().getName();
+            case 5 ->
+                temp.getLanguage().getLevel();
+            default ->
+                "N/A";
         };
     }
 
@@ -55,5 +62,9 @@ public class StudentCourseSelectionModel extends AbstractTableModel{
         return header[column];
     }
 
-    
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+        fireTableDataChanged();
+    }
+
 }
