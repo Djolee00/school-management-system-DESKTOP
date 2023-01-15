@@ -323,39 +323,39 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnReset" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jSeparator2" max="32767" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" min="-2" pref="35" max="-2" attributes="0"/>
-                                          <Component id="jLabel4" min="-2" pref="63" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jComboBoxLanguage1" max="32767" attributes="0"/>
-                                          <Component id="jComboBoxLanguage" min="-2" pref="123" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel5" max="32767" attributes="0"/>
-                                          <Component id="jLabel6" min="-2" pref="62" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="dateBegin" min="-2" pref="102" max="-2" attributes="0"/>
-                                          <Component id="dateEnd" min="-2" pref="102" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" pref="63" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jComboBoxLanguage" min="-2" pref="116" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel3" min="-2" pref="35" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                                      <Component id="jComboBoxLevel" min="-2" pref="115" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel5" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" min="-2" pref="62" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="31" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="dateBegin" min="-2" pref="102" max="-2" attributes="0"/>
+                                  <Component id="dateEnd" min="-2" pref="102" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -365,25 +365,28 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="dateBegin" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBoxLanguage" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxLevel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="dateEnd" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jComboBoxLanguage1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBoxLanguage" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="26" max="32767" attributes="0"/>
                       <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSearch" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnReset" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -395,34 +398,10 @@
                 <Property name="text" type="java.lang.String" value="Level:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxLanguage">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="Select level"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
-            </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Language:"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxLanguage1">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="1">
-                    <StringItem index="0" value="Select language"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-              </AuxValues>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="dateBegin">
             </Component>
@@ -434,17 +413,42 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="End date:"/>
+                <Property name="text" type="java.lang.String" value=" End date:"/>
               </Properties>
             </Component>
             <Component class="com.toedter.calendar.JDateChooser" name="dateEnd">
             </Component>
             <Component class="javax.swing.JButton" name="btnSearch">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Search"/>
+                <Property name="text" type="java.lang.String" value="Filter"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator2">
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBoxLevel">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Level&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBoxLanguage">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="0"/>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Language&gt;"/>
+              </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="btnReset">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reset"/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>

@@ -6,6 +6,7 @@ package schoolmanagement.commonlib.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import schoolmanagement.commonlib.model.enums.Level;
 
 /**
@@ -70,7 +71,35 @@ public class Language implements Serializable{
 
     @Override
     public String toString() {
-        return "Language{" + "id=" + id + ", name=" + name + ", level=" + level + '}';
+        return name;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Language other = (Language) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        return this.level == other.level;
+    }
+
+    
 }

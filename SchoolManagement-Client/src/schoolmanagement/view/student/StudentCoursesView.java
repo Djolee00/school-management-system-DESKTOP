@@ -4,14 +4,17 @@
  */
 package schoolmanagement.view.student;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
+import schoolmanagement.commonlib.model.Language;
+import schoolmanagement.commonlib.model.enums.Level;
 
 /**
  *
@@ -55,15 +58,16 @@ public class StudentCoursesView extends javax.swing.JFrame {
         jrbEndDate = new javax.swing.JRadioButton();
         panelSearch = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBoxLanguage = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBoxLanguage1 = new javax.swing.JComboBox<>();
         dateBegin = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         dateEnd = new com.toedter.calendar.JDateChooser();
         btnSearch = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        jComboBoxLevel = new javax.swing.JComboBox<>();
+        jComboBoxLanguage = new javax.swing.JComboBox<>();
+        btnReset = new javax.swing.JButton();
         btnChoose = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -201,18 +205,16 @@ public class StudentCoursesView extends javax.swing.JFrame {
 
         jLabel3.setText("Level:");
 
-        jComboBoxLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select level" }));
-
         jLabel4.setText("Language:");
-
-        jComboBoxLanguage1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select language" }));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Begin date:");
 
-        jLabel6.setText("End date:");
+        jLabel6.setText(" End date:");
 
-        btnSearch.setText("Search");
+        btnSearch.setText("Filter");
+
+        btnReset.setText("Reset");
 
         javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
         panelSearch.setLayout(panelSearchLayout);
@@ -223,28 +225,29 @@ public class StudentCoursesView extends javax.swing.JFrame {
                 .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSearchLayout.createSequentialGroup()
                         .addComponent(btnSearch)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReset))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchLayout.createSequentialGroup()
                         .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator2)
                             .addGroup(panelSearchLayout.createSequentialGroup()
-                                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxLanguage1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(9, 9, 9)))
-                        .addGap(31, 31, 31))))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSearchLayout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(jComboBoxLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(45, 45, 45)
+                        .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)))
+                .addGap(31, 31, 31))
         );
         panelSearchLayout.setVerticalGroup(
             panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,21 +255,23 @@ public class StudentCoursesView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateBegin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
                     .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5)
-                        .addComponent(jComboBoxLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3))
+                        .addComponent(jLabel3)
+                        .addComponent(jComboBoxLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jComboBoxLanguage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)))
+                        .addComponent(jLabel6)
+                        .addComponent(jComboBoxLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearch)
+                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSearch)
+                    .addComponent(btnReset))
                 .addContainerGap())
         );
 
@@ -331,13 +336,14 @@ public class StudentCoursesView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChoose;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSort;
     private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser dateBegin;
     private com.toedter.calendar.JDateChooser dateEnd;
-    private javax.swing.JComboBox<String> jComboBoxLanguage;
-    private javax.swing.JComboBox<String> jComboBoxLanguage1;
+    private javax.swing.JComboBox<Language> jComboBoxLanguage;
+    private javax.swing.JComboBox<Level> jComboBoxLevel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -402,6 +408,26 @@ public class StudentCoursesView extends javax.swing.JFrame {
 
     public JRadioButton getJrbLevel() {
         return jrbLevel;
+    }
+
+    public JComboBox<Level> getjComboBoxLevel() {
+        return jComboBoxLevel;
+    }
+
+    public JComboBox<Language> getjComboBoxLanguage() {
+        return jComboBoxLanguage;
+    }
+
+    public JButton getBtnReset() {
+        return btnReset;
+    }
+
+    public JDateChooser getDateBegin() {
+        return dateBegin;
+    }
+
+    public JDateChooser getDateEnd() {
+        return dateEnd;
     }
 
 }
