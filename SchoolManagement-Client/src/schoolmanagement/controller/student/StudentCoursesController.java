@@ -20,6 +20,7 @@ import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
 import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.Course;
+import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.enums.Level;
@@ -71,27 +72,21 @@ public class StudentCoursesController {
 
     }
 
-    private void populateTable() {
-        courses = getStudentsUnselectedCourses();
-        backupCourses = courses;
-        coursesView.getTblCourses().setModel(new StudentCourseSelectionModel(courses));
-    }
-
     private void sortCourses() {
-        List<Course> temp = this.courses;
         if (coursesView.getJrbLevel().isSelected()) {
-            temp = temp.stream().sorted((c1, c2) -> c1.getLanguage().getLevel().toString().compareTo(c2.getLanguage().getLevel().toString())).collect(Collectors.toList());
+            courses = courses.stream().sorted((c1, c2) -> c1.getLanguage().getLevel().toString().compareTo(c2.getLanguage().getLevel().toString())).collect(Collectors.toList());
         }
         if (coursesView.getJrbLanguage().isSelected()) {
-            temp = temp.stream().sorted((c1, c2) -> c1.getLanguage().getName().compareTo(c2.getLanguage().getName())).collect(Collectors.toList());
+            courses = courses.stream().sorted((c1, c2) -> c1.getLanguage().getName().compareTo(c2.getLanguage().getName())).collect(Collectors.toList());
         }
         if (coursesView.getJrbStartDate().isSelected()) {
-            temp = temp.stream().sorted(Comparator.comparing(Course::getStartDate)).collect(Collectors.toList());
+            courses = courses.stream().sorted(Comparator.comparing(Course::getStartDate)).collect(Collectors.toList());
         }
         if (coursesView.getJrbEndDate().isSelected()) {
-            temp = temp.stream().sorted(Comparator.comparing(Course::getEndDate)).collect(Collectors.toList());
+            courses = courses.stream().sorted(Comparator.comparing(Course::getEndDate)).collect(Collectors.toList());
         }
-        model.setCourses(temp);
+        
+        model.setCourses(courses);
     }
 
     private void filterCourses() {
@@ -119,7 +114,30 @@ public class StudentCoursesController {
     }
 
     private void chooseCourses() {
+        int[] selection = coursesView.getTblCourses().getSelectedRows();
+        if (coursesView.getTblCourses().getSelectedRows().length == 0) {
+            JOptionPane.showMessageDialog(coursesView, "Please select one or more courses.", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
 
+        if (JOptionPane.showConfirmDialog(coursesView, "Are you sure you want to enroll in these courses?", "Confirmation", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+            List<CourseEnrollment> selectedCourses = new ArrayList<>();
+            for (int i = 0; i < selection.length; i++) {
+                Course temp = courses.get(selection[i]);
+                selectedCourses.add(new CourseEnrollment(student, temp, LocalDate.now()));
+            }
+
+            boolean status = enrollStudentToCourses(selectedCourses);
+
+            if (status == true) {
+                JOptionPane.showMessageDialog(coursesView, "You have been successfully added to selected courses!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                new StudentHomeController();
+            } else {
+                JOptionPane.showMessageDialog(coursesView, "Error while enrolling student in selected courses. Please try again!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            coursesView.dispose();
+
+        }
     }
 
     private void resetCourses() {
@@ -129,6 +147,12 @@ public class StudentCoursesController {
         coursesView.getDateEnd().setDate(null);
         courses = backupCourses;
         model.setCourses(backupCourses);
+    }
+
+    private void populateTable() {
+        courses = getStudentsUnselectedCourses();
+        backupCourses = courses;
+        coursesView.getTblCourses().setModel(new StudentCourseSelectionModel(courses));
     }
 
     private List<Course> getStudentsUnselectedCourses() {
@@ -146,6 +170,7 @@ public class StudentCoursesController {
         } catch (ClassNotFoundException | IOException ex) {
             JOptionPane.showMessageDialog(coursesView, "Error getting student's courses. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
             coursesView.dispose();
+            System.exit(0);
         }
 
         return tempCourses;
@@ -166,6 +191,23 @@ public class StudentCoursesController {
     private void initLevels() {
         coursesView.getjComboBoxLevel().setModel(new DefaultComboBoxModel(Level.values()));
         coursesView.getjComboBoxLevel().setSelectedIndex(-1);
+    }
+
+    private boolean enrollStudentToCourses(List<CourseEnrollment> selectedCourses) {
+
+        try {
+            Communication.getInstance().send(new Request(Operation.ENROLL_STUDENT_IN_COURSES, selectedCourses));
+
+            Response response = Communication.getInstance().receive();
+
+            return response.getResponseType() == ResponseType.SUCCESS;
+
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(coursesView, "Error while enrolling student in selected courses. Please try again!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+            return false;
+        }
+
     }
 
 }

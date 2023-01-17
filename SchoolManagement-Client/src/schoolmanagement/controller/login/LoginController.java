@@ -33,7 +33,6 @@ public class LoginController {
             connectToServer();
             initView();
         } catch (IOException ex) {
-            System.out.println("Error while connecting to the server");
             JOptionPane.showMessageDialog(loginView, "Error establishing connection with the client", "Error", JOptionPane.ERROR_MESSAGE);
             loginView.dispose();
         }

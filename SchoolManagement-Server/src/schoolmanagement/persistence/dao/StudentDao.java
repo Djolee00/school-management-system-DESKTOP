@@ -26,4 +26,6 @@ public interface StudentDao extends DaoInterface {
 
     public List<Course> getStudentUnselecteCourses(Long id) throws SQLException;
 
+    public boolean saveStudentSelectedCourses(List<CourseEnrollment> selectedCourses) throws SQLException;
+
 }

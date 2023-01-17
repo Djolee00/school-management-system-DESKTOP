@@ -92,14 +92,9 @@ public class Language implements Serializable{
             return false;
         }
         final Language other = (Language) obj;
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        return this.level == other.level;
+        return Objects.equals(this.name, other.name);
     }
 
     
+
 }

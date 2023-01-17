@@ -11,6 +11,7 @@ import schoolmanagement.commonlib.communication.Sender;
 import schoolmanagement.commonlib.communication.Receiver;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
+import schoolmanagement.commonlib.communication.ResponseType;
 
 /**
  *
@@ -37,27 +38,33 @@ public class ClientHandler extends Thread {
                 handleRequest(request);
 
             }
-        } catch (SQLException | IOException | ClassNotFoundException ex) {
+        } catch (IOException | ClassNotFoundException ex) {
             System.out.println("One client disconnected");
         }
     }
 
-    private void handleRequest(Request request) throws SQLException, IOException {
+    private void handleRequest(Request request) throws IOException {
         Response response = new Response();
 
-        switch (request.getOperation()) {
-            case LOGIN -> {
-                response = controller.loginUser(request);
+        try {
+            switch (request.getOperation()) {
+                case LOGIN -> {
+                    response = controller.loginUser(request);
+                }
+                case GET_STUDENT_COURSES -> {
+                    response = controller.getStudentCourses(request);
+                }
+                case GET_STUDENT_UNSELECTED_COURSES -> {
+                    response = controller.getStudentUnselectedCourses(request);
+                }
+                case ENROLL_STUDENT_IN_COURSES -> {
+                    response = controller.enrollStudentInCourses(request);
+                }
             }
-            case GET_STUDENT_COURSES -> {
-                response = controller.getStudentCourses(request);
-            }
-            case GET_STUDENT_UNSELECTED_COURSES -> {
-                response = controller.getStudentUnselectedCourses(request);
-            }
+            sender.send(response);
+        } catch (SQLException ex) {
+            sender.send(new Response(null, ResponseType.FAILURE));
         }
-
-        sender.send(response);
     }
 
 }

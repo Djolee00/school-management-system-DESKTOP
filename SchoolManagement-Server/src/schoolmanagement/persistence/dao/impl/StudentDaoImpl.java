@@ -99,6 +99,25 @@ public class StudentDaoImpl implements StudentDao {
         }
     }
 
+    @Override
+    public boolean saveStudentSelectedCourses(List<CourseEnrollment> selectedCourses) throws SQLException {
+        final String sqlQuery = "INSERT INTO course_enrollment(student_id,course_id,enrollment_date) VALUES(?,?,?);";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            for (CourseEnrollment selectedCourse : selectedCourses) {
+                statement.setLong(1, selectedCourse.getStudent().getId());
+                statement.setLong(2, selectedCourse.getCourse().getId());
+                statement.setDate(3, Date.valueOf(selectedCourse.getEnrollmentDate()));
+
+                int affectedRows = statement.executeUpdate();
+                if(affectedRows != 1)
+                    return false;
+            }
+        }
+        
+        return true;
+    }
+
     private List<CourseEnrollment> mapResultSetToCourseEnrollments(ResultSet rs) throws SQLException {
         List<CourseEnrollment> courseEnrollments = new ArrayList<>();
 
@@ -129,7 +148,7 @@ public class StudentDaoImpl implements StudentDao {
             Language language = makeLanguageFromRs(rs);
             Course course = makeCourseFromRs(rs);
             course.setLanguage(language);
-            
+
             courses.add(course);
         }
 

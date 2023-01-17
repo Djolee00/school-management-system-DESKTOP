@@ -105,4 +105,26 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
+    @Override
+    public synchronized boolean enrollStudentInCourses(List<CourseEnrollment> selectedCourses) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try {
+            studentDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+            
+            boolean status = studentDao.saveStudentSelectedCourses(selectedCourses);
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return status;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
+
 }

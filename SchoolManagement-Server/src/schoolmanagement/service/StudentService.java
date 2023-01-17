@@ -21,7 +21,9 @@ public interface StudentService {
     
     Student save(Student student,StudentValidator validator) throws ValidationException,IOException,SQLException;
     
-    public List<CourseEnrollment> getStudentCourses(Long id) throws IOException,SQLException;
+    public List<CourseEnrollment> getStudentCourses(Long studentId) throws IOException,SQLException;
 
-    public List<Course> getStudentUnselectedCourses(Long id) throws IOException,SQLException;
+    public List<Course> getStudentUnselectedCourses(Long studentId) throws IOException,SQLException;
+
+    public boolean enrollStudentInCourses(List<CourseEnrollment> selectedCourses) throws IOException,SQLException;
 }
