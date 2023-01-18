@@ -66,15 +66,12 @@ public class StudentDaoImpl implements StudentDao {
 
     @Override
     public List<CourseEnrollment> getStudentCourses(Long id) throws SQLException {
-        final String sqlQuery = "SELECT ce.student_id,ce.course_id,enrollment_date,c.`name` AS course_name,start_date,end_date,group_capacity,language_id, l.name AS `language_name`, l.level, ge.course_group_id,cg.name AS group_name,number_of_students,\n"
-                + "ta.tutor_id,t.first_name AS tutor_first_name,t.last_name AS tutor_last_name\n"
+        final String sqlQuery = "SELECT ce.student_id,ce.course_id,enrollment_date,c.`name` AS course_name,start_date,end_date,group_capacity,language_id, l.name AS `language_name`, l.level, ge.course_group_id,cg.name AS group_name,number_of_students\n"
                 + "FROM course_enrollment ce \n"
                 + "INNER JOIN course c ON ce.course_id = c.id \n"
                 + "INNER JOIN `language` l ON c.language_id = l.id\n"
                 + "LEFT JOIN group_enrollment ge ON ge.student_id = ce.student_id AND ge.course_id = c.id\n"
                 + "LEFT JOIN course_group cg ON ge.course_group_id = cg.id AND ge.course_id = ce.course_id\n"
-                + "LEFT JOIN tutor_assignment ta ON ce.course_id = ta.course_id AND ge.course_group_id = ta.course_group_id\n"
-                + "LEFT JOIN tutor t ON t.id = ta.tutor_id\n"
                 + "WHERE ce.student_id = ?;";
 
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
@@ -110,11 +107,12 @@ public class StudentDaoImpl implements StudentDao {
                 statement.setDate(3, Date.valueOf(selectedCourse.getEnrollmentDate()));
 
                 int affectedRows = statement.executeUpdate();
-                if(affectedRows != 1)
+                if (affectedRows != 1) {
                     return false;
+                }
             }
         }
-        
+
         return true;
     }
 
@@ -185,19 +183,39 @@ public class StudentDaoImpl implements StudentDao {
         courseGroup.setName(rs.getString("group_name"));
         courseGroup.setNumOfStudents(rs.getInt("number_of_students"));
 
-        Tutor tutorOfGroup = makeTutorOfGroupFromRs(rs);
-        courseGroup.setTutor(tutorOfGroup);
+        List<Tutor> tutorOfGroup = makeTutorOfGroupFromRs(rs);
+        courseGroup.setTutors(tutorOfGroup);
 
         return courseGroup;
     }
 
-    private Tutor makeTutorOfGroupFromRs(ResultSet rs) throws SQLException {
-        Tutor temp = new Tutor();
-        temp.setId(rs.getLong("tutor_id"));
-        temp.setFirstName(rs.getString("tutor_first_name"));
-        temp.setLastName(rs.getString("tutor_last_name"));
+    private List<Tutor> makeTutorOfGroupFromRs(ResultSet rs) throws SQLException {
+        List<Tutor> tutors = new ArrayList<>();
 
-        return temp;
+        Long groupId = rs.getLong("course_group_id");
+        Long courseId = rs.getLong("course_id");
+
+        String sqlQuery = "SELECT t.id AS tutor_id,t.first_name AS tutor_first_name,t.last_name AS tutor_last_name FROM tutor_assignment ta\n"
+                + "INNER JOIN tutor t\n"
+                + "ON ta.tutor_id = t.id\n"
+                + "WHERE ta.course_id = ? AND ta.course_group_id = ?;";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, courseId);
+            statement.setLong(2, groupId);
+
+            ResultSet tempRs = statement.executeQuery();
+            while (tempRs.next()) {
+                Tutor temp = new Tutor();
+                temp.setId(tempRs.getLong("tutor_id"));
+                temp.setFirstName(tempRs.getString("tutor_first_name"));
+                temp.setLastName(tempRs.getString("tutor_last_name"));
+                
+                tutors.add(temp);
+            }
+        }
+
+        return tutors;
     }
 
 }

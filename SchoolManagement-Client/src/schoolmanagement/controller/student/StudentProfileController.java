@@ -18,6 +18,7 @@ import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.commonlib.model.CourseGroup;
 import schoolmanagement.commonlib.model.Student;
+import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.session.Session;
 import schoolmanagement.view.component.StudentProfileMyCoursesModel;
@@ -66,12 +67,14 @@ public class StudentProfileController {
                 if (tempGroup != null) {
                     profileView.getLblMessage().setVisible(false);
                     profileView.getTxtName().setText(tempGroup.getName());
-                    profileView.getTxtTutor().setText(tempGroup.getTutor().getFirstName() + " " + tempGroup.getTutor().getLastName());
+                    for (Tutor temp : tempGroup.getTutors()) {
+                        profileView.getTxtTutors().setText(profileView.getTxtTutors().getText()+temp.getFirstName() + " " + temp.getLastName()+"\n");
+                    }
                     profileView.getTxtNumOfStudents().setText("" + tempGroup.getNumOfStudents());
                 } else {
                     profileView.getLblMessage().setVisible(true);
                     profileView.getTxtName().setText("");
-                    profileView.getTxtTutor().setText("");
+                    profileView.getTxtTutors().setText("");
                     profileView.getTxtNumOfStudents().setText("");
                 }
             }

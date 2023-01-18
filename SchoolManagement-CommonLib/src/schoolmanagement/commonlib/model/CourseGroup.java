@@ -17,14 +17,14 @@ public class CourseGroup implements Serializable{
     private Course course;
     private String name;
     private Integer numOfStudents;
-    private Tutor tutor;
+    private List<Tutor> tutors;
     private List<Student> students;
 
-    public CourseGroup(Course course, String name, Integer numOfStudents, Tutor tutor, List<Student> students) {
+    public CourseGroup(Course course, String name, Integer numOfStudents, List<Tutor> tutors, List<Student> students) {
         this.course = course;
         this.name = name;
         this.numOfStudents = numOfStudents;
-        this.tutor = tutor;
+        this.tutors = tutors;
         this.students = students;
     }
 
@@ -65,12 +65,12 @@ public class CourseGroup implements Serializable{
         this.numOfStudents = numOfStudents;
     }
 
-    public Tutor getTutor() {
-        return tutor;
+    public List<Tutor> getTutors() {
+        return tutors;
     }
 
-    public void setTutor(Tutor tutor) {
-        this.tutor = tutor;
+    public void setTutors(List<Tutor> tutors) {
+        this.tutors = tutors;
     }
 
     public List<Student> getStudents() {
