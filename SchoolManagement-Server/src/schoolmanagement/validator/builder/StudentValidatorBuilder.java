@@ -18,33 +18,33 @@ public class StudentValidatorBuilder extends AbstractValidator {
     public StudentValidatorBuilder(Student student) {
         ruleFor(student.getUsername())
                 .notEmpty()
-                .withMessage("Morate uneti korisnicko ime")
+                .withMessage("You have to insert username")
                 .minLength(5)
-                .withMessage("Korisnicko ime mora imati najmanje 5 karaktera")
+                .withMessage("Username must have at least 5 characters")
                 .maxLength(15)
-                .withMessage("Korisnicko ne sme imati više od 15 karaktera");
+                .withMessage("Username can't have more than 15 characters");
         
         ruleFor(student.getPassword())
                 .notEmpty()
-                .withMessage("Morate uneti sifru")
+                .withMessage("You have to insert password")
                 .minLength(8)
-                .withMessage("Sifra mora imati najmanje 8 karaktera")
+                .withMessage("Password must have at least 8 characters")
                 .maxLength(20)
-                .withMessage("Sifra ne sme imati više od 20 karaktera")
+                .withMessage("Password can't have more than 20 characters")
                 .matchesRegex("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")
-                .withMessage("Sifra mora da sadrzi makar 1 malo slovo, 1 veliko slovo i 1 specijalan karakter");
+                .withMessage("Password must have at least 1 lowercase, 1 uppercase and 1 special character");
         
         ruleFor(student.getFirstName())
                 .notEmpty()
-                .withMessage("Morate uneti  ime")
+                .withMessage("You have to insert first name")
                 .matchesRegex("^[A-Za-z]+(((\\'|\\-|\\.)?([A-Za-z])+))?$")
-                .withMessage("Ime sme da sadrzi samo slova i karaktere (',-,.)");
+                .withMessage("First name can have only characters and these special characters (',-,.)");
         
         ruleFor(student.getLastName())
                 .notEmpty()
-                .withMessage("Morate uneti  prezime")
+                .withMessage("You have to insert first name")
                 .matchesRegex("^[A-Za-z]+(((\\'|\\-|\\.)?([A-Za-z])+))?$")
-                .withMessage("Ime sme da sadrzi samo slova i karaktere (',-,.)");
+                .withMessage("First name can have only characters and these special characters (',-,.)");
   
     }
     
