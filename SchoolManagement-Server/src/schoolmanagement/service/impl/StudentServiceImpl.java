@@ -113,7 +113,7 @@ public class StudentServiceImpl implements StudentService {
             studentDao.setConnection(connection);
 
             connection.setAutoCommit(false);
-            
+
             boolean status = studentDao.saveStudentSelectedCourses(selectedCourses);
 
             connection.commit();
@@ -125,6 +125,30 @@ public class StudentServiceImpl implements StudentService {
             ConnectionPool.getInstance().releaseConnection(connection);
             throw ex;
         }
+    }
+
+    @Override
+    public List<Student> getAllStudents() throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        List<Student> students;
+
+        try {
+            studentDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            students = studentDao.getAllStudents();
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return students;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+
     }
 
 }

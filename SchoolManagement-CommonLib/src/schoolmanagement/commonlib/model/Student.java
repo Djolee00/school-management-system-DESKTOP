@@ -12,8 +12,8 @@ import java.util.List;
  *
  * @author ivano
  */
-public class Student extends User implements Serializable{
-    
+public class Student extends User implements Serializable {
+
     private String firstName;
     private String lastName;
     private LocalDate birthdate;
@@ -21,8 +21,8 @@ public class Student extends User implements Serializable{
     private List<CourseEnrollment> courseEnrollments;
     private List<CourseGroup> courseGroups;
 
-    public Student(Long id,String username, String password,String firstName, String lastName, LocalDate birthdate, LocalDate creationDate) {
-        super(id,username, password);
+    public Student(Long id, String username, String password, String firstName, String lastName, LocalDate birthdate, LocalDate creationDate) {
+        super(id, username, password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthdate = birthdate;
@@ -77,13 +77,9 @@ public class Student extends User implements Serializable{
         this.courseGroups = courseGroups;
     }
 
-    
-    
     @Override
     public String toString() {
-        return "Student{id= "+super.getId()+", username= "+super.getUsername()+", password= "+super.getPassword() + ", firstName=" + firstName + ", lastName=" + lastName + ", birthdate=" + birthdate + ", creationDate=" + creationDate + '}';
+        return "Student{id= " + super.getId() + ", username= " + super.getUsername() + ", password= " + super.getPassword() + ", firstName=" + firstName + ", lastName=" + lastName + ", birthdate=" + birthdate + ", creationDate=" + creationDate + '}';
     }
-    
-    
-    
+
 }

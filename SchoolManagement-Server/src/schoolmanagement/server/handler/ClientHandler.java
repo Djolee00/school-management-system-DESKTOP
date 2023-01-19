@@ -60,9 +60,13 @@ public class ClientHandler extends Thread {
                 case ENROLL_STUDENT_IN_COURSES -> {
                     response = controller.enrollStudentInCourses(request);
                 }
+                case GET_ALL_STUDENTS -> {
+                    response = controller.getAllStudents();
+                }
             }
             sender.send(response);
         } catch (SQLException ex) {
+            ex.printStackTrace();
             sender.send(new Response(null, ResponseType.FAILURE));
         }
     }

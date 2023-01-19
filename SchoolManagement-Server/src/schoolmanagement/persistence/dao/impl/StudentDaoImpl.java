@@ -18,6 +18,7 @@ import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.commonlib.model.User;
 import schoolmanagement.commonlib.model.enums.Level;
+import schoolmanagement.persistence.mapper.MapperStudentRS;
 
 /**
  *
@@ -78,7 +79,7 @@ public class StudentDaoImpl implements StudentDao {
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
 
-            return mapResultSetToCourseEnrollments(rs);
+            return MapperStudentRS.mapResultSetToCourseEnrollments(rs, connection);
         }
     }
 
@@ -92,7 +93,7 @@ public class StudentDaoImpl implements StudentDao {
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
 
-            return mapResultSetToCourses(rs);
+            return MapperStudentRS.mapResultSetToCourses(rs);
         }
     }
 
@@ -116,106 +117,18 @@ public class StudentDaoImpl implements StudentDao {
         return true;
     }
 
-    private List<CourseEnrollment> mapResultSetToCourseEnrollments(ResultSet rs) throws SQLException {
-        List<CourseEnrollment> courseEnrollments = new ArrayList<>();
-
-        while (rs.next()) {
-            Language language = makeLanguageFromRs(rs);
-            Course course = makeCourseFromRs(rs);
-            CourseGroup group = makeCourseGroupFromRs(rs);
-            List<CourseGroup> courseGroups = new ArrayList<>();
-            courseGroups.add(group);
-
-            course.setLanguage(language);
-            course.setCourseGroups(courseGroups);
-
-            CourseEnrollment courseEnrollment = new CourseEnrollment();
-            courseEnrollment.setCourse(course);
-            courseEnrollment.setEnrollmentDate(rs.getDate("enrollment_date").toLocalDate());
-
-            courseEnrollments.add(courseEnrollment);
-        }
-
-        return courseEnrollments;
-    }
-
-    private List<Course> mapResultSetToCourses(ResultSet rs) throws SQLException {
-        List<Course> courses = new ArrayList<>();
-
-        while (rs.next()) {
-            Language language = makeLanguageFromRs(rs);
-            Course course = makeCourseFromRs(rs);
-            course.setLanguage(language);
-
-            courses.add(course);
-        }
-
-        return courses;
-    }
-
-    private Course makeCourseFromRs(ResultSet rs) throws SQLException {
-        Course temp = new Course();
-        temp.setId(rs.getLong("course_id"));
-        temp.setName(rs.getString("course_name"));
-        temp.setStartDate(rs.getDate("start_date").toLocalDate());
-        temp.setEndDate(rs.getDate("end_date").toLocalDate());
-        temp.setGroupCapacity(rs.getInt("group_capacity"));
-
-        return temp;
-    }
-
-    private Language makeLanguageFromRs(ResultSet rs) throws SQLException {
-        Language temp = new Language();
-        temp.setId(rs.getLong("language_id"));
-        temp.setName(rs.getString("language_name"));
-        temp.setLevel(Level.valueOf(rs.getString("level")));
-
-        return temp;
-    }
-
-    private CourseGroup makeCourseGroupFromRs(ResultSet rs) throws SQLException {
-        if (rs.getString("group_name") == null) {
-            return null;
-        }
-
-        CourseGroup courseGroup = new CourseGroup();
-        courseGroup.setId(rs.getLong("course_group_id"));
-        courseGroup.setName(rs.getString("group_name"));
-        courseGroup.setNumOfStudents(rs.getInt("number_of_students"));
-
-        List<Tutor> tutorOfGroup = makeTutorOfGroupFromRs(rs);
-        courseGroup.setTutors(tutorOfGroup);
-
-        return courseGroup;
-    }
-
-    private List<Tutor> makeTutorOfGroupFromRs(ResultSet rs) throws SQLException {
-        List<Tutor> tutors = new ArrayList<>();
-
-        Long groupId = rs.getLong("course_group_id");
-        Long courseId = rs.getLong("course_id");
-
-        String sqlQuery = "SELECT t.id AS tutor_id,t.first_name AS tutor_first_name,t.last_name AS tutor_last_name FROM tutor_assignment ta\n"
-                + "INNER JOIN tutor t\n"
-                + "ON ta.tutor_id = t.id\n"
-                + "WHERE ta.course_id = ? AND ta.course_group_id = ?;";
+    @Override
+    public List<Student> getAllStudents() throws SQLException {
+        final String sqlQuery = "SELECT s.user_id, s.first_name,s.last_name, s.birthdate,s.creation_date,u.username,u.password\n"
+                + "FROM student s\n"
+                + "INNER JOIN `user` u\n"
+                + "ON s.user_id = u.id;";
 
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
-            statement.setLong(1, courseId);
-            statement.setLong(2, groupId);
+            ResultSet rs = statement.executeQuery();
 
-            ResultSet tempRs = statement.executeQuery();
-            while (tempRs.next()) {
-                Tutor temp = new Tutor();
-                temp.setId(tempRs.getLong("tutor_id"));
-                temp.setFirstName(tempRs.getString("tutor_first_name"));
-                temp.setLastName(tempRs.getString("tutor_last_name"));
-                
-                tutors.add(temp);
-            }
+            return MapperStudentRS.mapStudents(rs,connection);
         }
-
-        return tutors;
     }
 
 }

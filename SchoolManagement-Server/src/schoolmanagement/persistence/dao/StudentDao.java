@@ -28,4 +28,6 @@ public interface StudentDao extends DaoInterface {
 
     public boolean saveStudentSelectedCourses(List<CourseEnrollment> selectedCourses) throws SQLException;
 
+    public List<Student> getAllStudents() throws SQLException;
+
 }

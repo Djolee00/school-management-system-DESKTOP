@@ -70,13 +70,27 @@ public class ClientHandlerController {
 
     public Response enrollStudentInCourses(Request request) throws IOException, SQLException {
         Response response = new Response();
-        List<CourseEnrollment> selectedCourses =  (List<CourseEnrollment>) request.getObject();
+        List<CourseEnrollment> selectedCourses = (List<CourseEnrollment>) request.getObject();
 
         boolean status = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).enrollStudentInCourses(selectedCourses);
         if (status == false) {
             response.setResponseType(ResponseType.FAILURE);
         } else {
             response.setResponseType(ResponseType.SUCCESS);
+        }
+
+        return response;
+    }
+
+    public Response getAllStudents() throws IOException, SQLException {
+        Response response = new Response();
+
+        List<Student> students = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).getAllStudents();
+        if (students == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(students);
         }
 
         return response;

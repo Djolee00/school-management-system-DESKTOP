@@ -85,7 +85,7 @@ public class StudentCoursesController {
         if (coursesView.getJrbEndDate().isSelected()) {
             courses = courses.stream().sorted(Comparator.comparing(Course::getEndDate)).collect(Collectors.toList());
         }
-        
+
         model.setCourses(courses);
     }
 
@@ -165,6 +165,10 @@ public class StudentCoursesController {
 
             if (response.getResponseType() == ResponseType.SUCCESS) {
                 tempCourses = (List<Course>) response.getObject();
+            } else {
+                JOptionPane.showMessageDialog(coursesView, "Error getting student's courses. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+                coursesView.dispose();
+                System.exit(0);
             }
 
         } catch (ClassNotFoundException | IOException ex) {

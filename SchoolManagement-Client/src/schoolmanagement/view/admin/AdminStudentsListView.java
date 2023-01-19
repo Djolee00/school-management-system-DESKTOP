@@ -6,7 +6,10 @@ package schoolmanagement.view.admin;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  *
@@ -37,7 +40,7 @@ public class AdminStudentsListView extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         lblUserText3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStudents = new javax.swing.JTable();
         panelSearch = new javax.swing.JPanel();
@@ -58,14 +61,14 @@ public class AdminStudentsListView extends javax.swing.JFrame {
         panelSearch1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        btnBirthdate = new com.toedter.calendar.JDateChooser();
+        birthDate = new com.toedter.calendar.JDateChooser();
         jLabel11 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         txtLastname1 = new javax.swing.JTextField();
         txtFirstname1 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        btnCreationDate = new com.toedter.calendar.JDateChooser();
+        creationDate = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -90,7 +93,7 @@ public class AdminStudentsListView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/studentsWhite.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
@@ -102,7 +105,7 @@ public class AdminStudentsListView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lblHome)
                 .addGap(17, 17, 17))
         );
         panelHeaderLayout.setVerticalGroup(
@@ -116,7 +119,7 @@ public class AdminStudentsListView extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)))
+                        .addComponent(lblHome)))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
 
@@ -143,6 +146,7 @@ public class AdminStudentsListView extends javax.swing.JFrame {
         tblStudents.setRowHeight(25);
         tblStudents.setSelectionBackground(new java.awt.Color(232, 57, 99));
         tblStudents.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        tblStudents.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblStudents.setShowGrid(true);
         tblStudents.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblStudents);
@@ -253,6 +257,9 @@ public class AdminStudentsListView extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("Creation date:");
 
+        creationDate.setToolTipText("");
+        creationDate.setEnabled(false);
+
         jLabel12.setText("Username:");
 
         jLabel13.setText("Password:");
@@ -293,11 +300,11 @@ public class AdminStudentsListView extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearch1Layout.createSequentialGroup()
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearch1Layout.createSequentialGroup()
                                     .addComponent(jLabel15)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnCreationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(creationDate, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(55, 55, 55))
         );
         panelSearch1Layout.setVerticalGroup(
@@ -305,7 +312,7 @@ public class AdminStudentsListView extends javax.swing.JFrame {
             .addGroup(panelSearch1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBirthdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
                         .addComponent(txtFirstname1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,7 +322,7 @@ public class AdminStudentsListView extends javax.swing.JFrame {
                     .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(txtLastname1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10))
-                    .addComponent(btnCreationDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(creationDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
                 .addGap(21, 21, 21)
                 .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -384,19 +391,18 @@ public class AdminStudentsListView extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser birthDate;
     private com.toedter.calendar.JDateChooser birthdateFrom;
     private com.toedter.calendar.JDateChooser birthdateTo;
-    private com.toedter.calendar.JDateChooser btnBirthdate;
-    private com.toedter.calendar.JDateChooser btnCreationDate;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnUpdate;
+    private com.toedter.calendar.JDateChooser creationDate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -409,6 +415,7 @@ public class AdminStudentsListView extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JComboBox<String> jcbCourses;
     private javax.swing.JComboBox<String> jcbLanguages;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblUserText3;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelMain;
@@ -429,6 +436,23 @@ public class AdminStudentsListView extends javax.swing.JFrame {
         tblStudents.getTableHeader().setBackground(new Color(32, 136, 203));
         tblStudents.getTableHeader().setForeground(new Color(255, 255, 255));
         tblStudents.setRowHeight(25);
-
     }
+
+    public JLabel getLblHome() {
+        return lblHome;
+    }
+
+    public JButton getBtnUpdate() {
+        return btnUpdate;
+    }
+
+    public JButton getBtnSearch() {
+        return btnSearch;
+    }
+
+    public JTable getTblStudents() {
+        return tblStudents;
+    }
+    
+    
 }
