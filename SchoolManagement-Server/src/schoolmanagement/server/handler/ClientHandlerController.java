@@ -12,9 +12,11 @@ import schoolmanagement.commonlib.communication.Response;
 import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseEnrollment;
+import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.User;
 import schoolmanagement.service.CourseService;
+import schoolmanagement.service.LanguageService;
 import schoolmanagement.service.StudentService;
 import schoolmanagement.service.UserService;
 import schoolmanagement.service.provider.ServiceProvider;
@@ -106,6 +108,20 @@ public class ClientHandlerController {
         } else {
             response.setResponseType(ResponseType.SUCCESS);
             response.setObject(courses);
+        }
+
+        return response;
+    }
+
+    public Response getAllLanguages() throws IOException, SQLException {
+        Response response = new Response();
+
+        List<Language> languages = ((LanguageService) ServiceProvider.getInstance().getRequiredService(LanguageService.class)).getAllLanguages();
+        if (languages == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(languages);
         }
 
         return response;

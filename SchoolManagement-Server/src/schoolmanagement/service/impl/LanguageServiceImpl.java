@@ -9,38 +9,38 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
-import schoolmanagement.persistence.dao.CourseDao;
+import schoolmanagement.commonlib.model.Language;
+import schoolmanagement.persistence.dao.LanguageDao;
 import schoolmanagement.persistence.pool.ConnectionPool;
-import schoolmanagement.service.CourseService;
+import schoolmanagement.service.LanguageService;
 
 /**
  *
  * @author ivano
  */
-public class CourseServiceImpl implements CourseService {
+public class LanguageServiceImpl implements LanguageService {
 
-    private final CourseDao courseDao;
+    private final LanguageDao languageDao;
 
-    public CourseServiceImpl(CourseDao courseDao) {
-        this.courseDao = courseDao;
+    public LanguageServiceImpl(LanguageDao languageDao) {
+        this.languageDao = languageDao;
     }
 
     @Override
-    public List<Course> getAllCourses() throws IOException, SQLException {
+    public List<Language> getAllLanguages() throws IOException, SQLException {
+
         Connection connection = ConnectionPool.getInstance().getConnection();
-        List<Course> courses;
+        List<Language> languages;
 
         try {
-            courseDao.setConnection(connection);
-
+            languageDao.setConnection(connection);
             connection.setAutoCommit(false);
-
-            courses = courseDao.getAllCourses();
+            languages = languageDao.getAllLanguages();
 
             connection.commit();
             ConnectionPool.getInstance().releaseConnection(connection);
 
-            return courses;
+            return languages;
         } catch (IOException | SQLException ex) {
             connection.rollback();
             ConnectionPool.getInstance().releaseConnection(connection);

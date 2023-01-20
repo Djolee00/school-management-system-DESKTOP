@@ -66,6 +66,9 @@ public class ClientHandler extends Thread {
                 case GET_ALL_COURSES -> {
                     response = controller.getAllCourses();
                 }
+                case GET_ALL_LANGUAGES -> {
+                    response = controller.getAllLanguages();
+                }
             }
             sender.send(response);
         } catch (SQLException ex) {
