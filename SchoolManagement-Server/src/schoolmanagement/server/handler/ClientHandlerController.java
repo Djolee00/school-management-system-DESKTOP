@@ -14,6 +14,7 @@ import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.User;
+import schoolmanagement.service.CourseService;
 import schoolmanagement.service.StudentService;
 import schoolmanagement.service.UserService;
 import schoolmanagement.service.provider.ServiceProvider;
@@ -91,6 +92,20 @@ public class ClientHandlerController {
         } else {
             response.setResponseType(ResponseType.SUCCESS);
             response.setObject(students);
+        }
+
+        return response;
+    }
+
+    public Response getAllCourses() throws IOException, SQLException {
+        Response response = new Response();
+
+        List<Course> courses = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).getAllCourses();
+        if (courses == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(courses);
         }
 
         return response;

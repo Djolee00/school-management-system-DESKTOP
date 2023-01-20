@@ -7,6 +7,7 @@ package schoolmanagement.commonlib.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 /**
  *
@@ -100,7 +101,31 @@ public class Course implements Serializable {
 
     @Override
     public String toString() {
-        return "Course{" + "id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", groupCapacity=" + groupCapacity + ", language=" + language + '}';
+        return name;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Course other = (Course) obj;
+        return Objects.equals(this.id, other.id);
+    }
+
+
+    
+    
 }

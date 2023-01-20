@@ -10,14 +10,9 @@ import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.dao.StudentDao;
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseEnrollment;
-import schoolmanagement.commonlib.model.CourseGroup;
-import schoolmanagement.commonlib.model.Language;
-import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.commonlib.model.User;
-import schoolmanagement.commonlib.model.enums.Level;
 import schoolmanagement.persistence.mapper.MapperStudentRS;
 
 /**

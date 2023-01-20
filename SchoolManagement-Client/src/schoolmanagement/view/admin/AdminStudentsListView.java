@@ -7,6 +7,7 @@ package schoolmanagement.view.admin;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -452,6 +453,14 @@ public class AdminStudentsListView extends javax.swing.JFrame {
 
     public JTable getTblStudents() {
         return tblStudents;
+    }
+
+    public JComboBox<String> getJcbCourses() {
+        return jcbCourses;
+    }
+
+    public JComboBox<String> getJcbLanguages() {
+        return jcbLanguages;
     }
     
     
