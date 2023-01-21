@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
@@ -23,8 +24,11 @@ import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.communication.Communication;
+import schoolmanagement.validator.StudentValidatorBuilder;
 import schoolmanagement.view.admin.AdminStudentsListView;
 import schoolmanagement.view.component.StudentsListModel;
+import validation.exception.ValidationException;
+import validaton.rule.result.ResultInfo;
 
 /**
  *
@@ -36,6 +40,7 @@ public class AdminStudentsListController {
     private final StudentsListModel tableModel;
     private List<Student> students;
     private List<Student> backupStudents;
+    private Student selectedStudent;
 
     public AdminStudentsListController() {
         studentsView = new AdminStudentsListView();
@@ -63,6 +68,12 @@ public class AdminStudentsListController {
         studentsView.getBtnSearch().addActionListener(e -> searchStudents());
         studentsView.getBtnUpdate().addActionListener(e -> updateStudent());
         studentsView.getBtnReset().addActionListener(e -> resetSearch());
+        studentsView.getTblStudents().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                studentSelection();
+            }
+        });
     }
 
     private void populateTable() {
@@ -111,6 +122,26 @@ public class AdminStudentsListController {
     }
 
     private void updateStudent() {
+        if (JOptionPane.showConfirmDialog(studentsView, "Are you sure you want to update this student?", "Confirmation", JOptionPane.YES_NO_OPTION)
+                == JOptionPane.YES_OPTION) {
+            Student temp = populateSelectedStudent();
+
+            try {
+                validateStudentData(temp);
+
+                sendUpdateRequest(temp);
+                selectedStudent.setFirstName(temp.getFirstName());
+                selectedStudent.setLastName(temp.getLastName());
+                selectedStudent.setBirthdate(temp.getBirthdate());
+                selectedStudent.setPassword(temp.getPassword());
+
+                tableModel.fireTableDataChanged();
+                JOptionPane.showMessageDialog(studentsView, "Student information has been successfully updated", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (ValidationException ex) {
+                JOptionPane.showMessageDialog(studentsView, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
 
     }
 
@@ -228,4 +259,59 @@ public class AdminStudentsListController {
         tableModel.setStudents(backupStudents);
     }
 
+    private void studentSelection() {
+        int rowIndex = studentsView.getTblStudents().getSelectedRow();
+        selectedStudent = tableModel.getStudent(rowIndex);
+
+        studentsView.getTxtFirstname().setText(selectedStudent.getFirstName());
+        studentsView.getTxtLastname().setText(selectedStudent.getLastName());
+        studentsView.getTxtUsername().setText(selectedStudent.getUsername());
+        studentsView.getTxtPassword().setText(selectedStudent.getPassword());
+        studentsView.getBirthDate().setDate(Date.from(selectedStudent.getBirthdate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        studentsView.getCreationDate().setDate(Date.from(selectedStudent.getCreationDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
+    }
+
+    private void validateStudentData(Student student) throws ValidationException {
+        ResultInfo result = new StudentValidatorBuilder(student).validate();
+        if (!result.isValid()) {
+            throw new ValidationException(result.getErrors());
+        }
+    }
+
+    private Student populateSelectedStudent() {
+        // making deep copy, because maybe input will fail validation
+        Student temp = new Student(selectedStudent.getId(), selectedStudent.getUsername(),
+                selectedStudent.getPassword(), selectedStudent.getFirstName(),
+                selectedStudent.getLastName(), selectedStudent.getBirthdate(),
+                selectedStudent.getCreationDate());
+        temp.setCourseEnrollments(selectedStudent.getCoursesEnrollments());
+        temp.setCourseGroups(selectedStudent.getCourseGroups());
+
+        temp.setFirstName(studentsView.getTxtFirstname().getText().trim());
+        temp.setLastName(studentsView.getTxtLastname().getText().trim());
+        temp.setBirthdate(studentsView.getBirthDate().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        temp.setPassword(studentsView.getTxtPassword().getText().trim());
+
+        return temp;
+    }
+
+    private void sendUpdateRequest(Student temp) {
+        try {
+            Communication.getInstance().send(new Request(Operation.UPDATE_STUDENT_PERSONAL_INFO, temp));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.FAILURE) {
+                JOptionPane.showMessageDialog(studentsView, "Error updating student's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+                studentsView.dispose();
+                System.exit(0);
+            }
+
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(studentsView, "Error updating student's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            studentsView.dispose();
+            System.exit(0);
+        }
+    }
 }

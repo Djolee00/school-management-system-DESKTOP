@@ -17,5 +17,6 @@ public enum Operation implements Serializable {
     ENROLL_STUDENT_IN_COURSES,
     GET_ALL_STUDENTS,
     GET_ALL_COURSES,
-    GET_ALL_LANGUAGES
+    GET_ALL_LANGUAGES,
+    UPDATE_STUDENT_PERSONAL_INFO
 }

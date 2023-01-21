@@ -69,8 +69,8 @@ public class AdminStudentsListView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
-        txtLastname1 = new javax.swing.JTextField();
-        txtFirstname1 = new javax.swing.JTextField();
+        txtLastname = new javax.swing.JTextField();
+        txtFirstname = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         creationDate = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
@@ -269,6 +269,8 @@ public class AdminStudentsListView extends javax.swing.JFrame {
 
         jLabel12.setText("Username:");
 
+        txtUsername.setEditable(false);
+
         jLabel13.setText("Password:");
 
         javax.swing.GroupLayout panelSearch1Layout = new javax.swing.GroupLayout(panelSearch1);
@@ -291,8 +293,8 @@ public class AdminStudentsListView extends javax.swing.JFrame {
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtLastname1, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                    .addComponent(txtFirstname1)))
+                                    .addComponent(txtLastname, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(txtFirstname)))
                             .addGroup(panelSearch1Layout.createSequentialGroup()
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -322,12 +324,12 @@ public class AdminStudentsListView extends javax.swing.JFrame {
                     .addComponent(birthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(txtFirstname1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtLastname1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10))
                     .addComponent(creationDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15))
@@ -430,9 +432,9 @@ public class AdminStudentsListView extends javax.swing.JFrame {
     private javax.swing.JPanel panelSearch;
     private javax.swing.JPanel panelSearch1;
     private javax.swing.JTable tblStudents;
-    private javax.swing.JTextField txtFirstname1;
+    private javax.swing.JTextField txtFirstname;
     private javax.swing.JTextField txtFirstnameSearch;
-    private javax.swing.JTextField txtLastname1;
+    private javax.swing.JTextField txtLastname;
     private javax.swing.JTextField txtLastnameSearch;
     private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
@@ -490,4 +492,29 @@ public class AdminStudentsListView extends javax.swing.JFrame {
         return btnReset;
     }
 
+    public JTextField getTxtFirstname() {
+        return txtFirstname;
+    }
+
+    public JTextField getTxtLastname() {
+        return txtLastname;
+    }
+
+    public JTextField getTxtPassword() {
+        return txtPassword;
+    }
+
+    public JTextField getTxtUsername() {
+        return txtUsername;
+    }
+
+    public JDateChooser getBirthDate() {
+        return birthDate;
+    }
+
+    public JDateChooser getCreationDate() {
+        return creationDate;
+    }
+
+    
 }

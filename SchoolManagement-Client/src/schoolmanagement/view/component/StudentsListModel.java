@@ -61,4 +61,8 @@ public class StudentsListModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    public Student getStudent(int index){
+        return students.get(index);
+    }
+
 }

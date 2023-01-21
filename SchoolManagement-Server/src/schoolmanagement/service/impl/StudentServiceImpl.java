@@ -151,4 +151,34 @@ public class StudentServiceImpl implements StudentService {
 
     }
 
+    @Override
+    public boolean updateStudentPersonalData(Student student, StudentValidator validator) throws ValidationException, IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        try {
+            userDao.setConnection(connection);
+            studentDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            validator.validate(student, userDao);
+
+            boolean statusUser = userDao.updateUser(student);
+            boolean statusStudent = studentDao.updateStudent(student);
+
+            if (statusStudent == false || statusUser == false) {
+                connection.rollback();
+                ConnectionPool.getInstance().releaseConnection(connection);
+                return false;
+            }
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            return true;
+        } catch (ValidationException | IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
+
 }

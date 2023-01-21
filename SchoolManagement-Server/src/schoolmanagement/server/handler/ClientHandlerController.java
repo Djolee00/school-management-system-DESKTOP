@@ -20,6 +20,8 @@ import schoolmanagement.service.LanguageService;
 import schoolmanagement.service.StudentService;
 import schoolmanagement.service.UserService;
 import schoolmanagement.service.provider.ServiceProvider;
+import schoolmanagement.validator.student.UpdateStudentValidator;
+import validation.exception.ValidationException;
 
 /**
  *
@@ -122,6 +124,20 @@ public class ClientHandlerController {
         } else {
             response.setResponseType(ResponseType.SUCCESS);
             response.setObject(languages);
+        }
+
+        return response;
+    }
+
+    public Response updateStudentPersonalInfo(Request request) throws IOException, SQLException, ValidationException {
+        Response response = new Response();
+        Student student = (Student) request.getObject();
+
+        boolean status = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).updateStudentPersonalData(student, new UpdateStudentValidator());
+        if (status == false) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
         }
 
         return response;

@@ -19,7 +19,7 @@ import schoolmanagement.validator.student.StudentValidator;
  */
 public interface StudentService {
     
-    Student save(Student student,StudentValidator validator) throws ValidationException,IOException,SQLException;
+    public Student save(Student student,StudentValidator validator) throws ValidationException,IOException,SQLException;
     
     public List<CourseEnrollment> getStudentCourses(Long studentId) throws IOException,SQLException;
 
@@ -28,4 +28,6 @@ public interface StudentService {
     public boolean enrollStudentInCourses(List<CourseEnrollment> selectedCourses) throws IOException,SQLException;
 
     public List<Student> getAllStudents() throws IOException,SQLException;
+
+    public boolean updateStudentPersonalData(Student student,StudentValidator validator) throws ValidationException,IOException,SQLException;
 }

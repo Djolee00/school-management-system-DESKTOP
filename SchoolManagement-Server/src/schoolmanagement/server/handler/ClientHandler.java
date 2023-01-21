@@ -7,11 +7,14 @@ package schoolmanagement.server.handler;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import schoolmanagement.commonlib.communication.Sender;
 import schoolmanagement.commonlib.communication.Receiver;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
 import schoolmanagement.commonlib.communication.ResponseType;
+import validation.exception.ValidationException;
 
 /**
  *
@@ -69,10 +72,15 @@ public class ClientHandler extends Thread {
                 case GET_ALL_LANGUAGES -> {
                     response = controller.getAllLanguages();
                 }
+                case UPDATE_STUDENT_PERSONAL_INFO -> {
+                    response = controller.updateStudentPersonalInfo(request);
+                }
             }
             sender.send(response);
         } catch (SQLException ex) {
             sender.send(new Response(null, ResponseType.FAILURE));
+        } catch (ValidationException ex) {
+            sender.send(new Response(ex.getMessage(), ResponseType.FAILURE));
         }
     }
 

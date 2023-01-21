@@ -30,4 +30,6 @@ public interface StudentDao extends DaoInterface {
 
     public List<Student> getAllStudents() throws SQLException;
 
+    public boolean updateStudent(Student student) throws SQLException;
+
 }

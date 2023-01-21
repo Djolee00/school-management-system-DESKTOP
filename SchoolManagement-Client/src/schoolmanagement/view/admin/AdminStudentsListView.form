@@ -404,8 +404,8 @@
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtLastname1" pref="113" max="32767" attributes="0"/>
-                                          <Component id="txtFirstname1" max="32767" attributes="0"/>
+                                          <Component id="txtLastname" pref="113" max="32767" attributes="0"/>
+                                          <Component id="txtFirstname" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -448,14 +448,14 @@
                           <Component id="birthDate" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtFirstname1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtFirstname" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="txtLastname1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtLastname" alignment="1" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel10" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="creationDate" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -507,9 +507,9 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator3">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtLastname1">
+            <Component class="javax.swing.JTextField" name="txtLastname">
             </Component>
-            <Component class="javax.swing.JTextField" name="txtFirstname1">
+            <Component class="javax.swing.JTextField" name="txtFirstname">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel15">
               <Properties>
@@ -529,6 +529,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtUsername">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>

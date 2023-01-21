@@ -60,25 +60,8 @@ public class StudentProfileController {
         profileView.getTblCourses().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                int rowIndex = profileView.getTblCourses().getSelectedRow();
-                CourseEnrollment tempCourseEnrollment = model.getCourseEnrollment(rowIndex);
-                CourseGroup tempGroup = tempCourseEnrollment.getCourse().getCourseGroups().get(0); //we only have group in which student exist (if he is added in any group)
-
-                if (tempGroup != null) {
-                    profileView.getLblMessage().setVisible(false);
-                    profileView.getTxtName().setText(tempGroup.getName());
-                    for (Tutor temp : tempGroup.getTutors()) {
-                        profileView.getTxtTutors().setText(profileView.getTxtTutors().getText()+temp.getFirstName() + " " + temp.getLastName()+"\n");
-                    }
-                    profileView.getTxtNumOfStudents().setText("" + tempGroup.getNumOfStudents());
-                } else {
-                    profileView.getLblMessage().setVisible(true);
-                    profileView.getTxtName().setText("");
-                    profileView.getTxtTutors().setText("");
-                    profileView.getTxtNumOfStudents().setText("");
-                }
+                courseSelection();
             }
-
         });
     }
 
@@ -116,6 +99,26 @@ public class StudentProfileController {
         }
 
         return courseEnrollments;
+    }
+
+    private void courseSelection() {
+        int rowIndex = profileView.getTblCourses().getSelectedRow();
+        CourseEnrollment tempCourseEnrollment = model.getCourseEnrollment(rowIndex);
+        CourseGroup tempGroup = tempCourseEnrollment.getCourse().getCourseGroups().get(0); //we only have group in which student exist (if he is added in any group)
+
+        if (tempGroup != null) {
+            profileView.getLblMessage().setVisible(false);
+            profileView.getTxtName().setText(tempGroup.getName());
+            for (Tutor temp : tempGroup.getTutors()) {
+                profileView.getTxtTutors().setText(profileView.getTxtTutors().getText() + temp.getFirstName() + " " + temp.getLastName() + "\n");
+            }
+            profileView.getTxtNumOfStudents().setText("" + tempGroup.getNumOfStudents());
+        } else {
+            profileView.getLblMessage().setVisible(true);
+            profileView.getTxtName().setText("");
+            profileView.getTxtTutors().setText("");
+            profileView.getTxtNumOfStudents().setText("");
+        }
     }
 
 }

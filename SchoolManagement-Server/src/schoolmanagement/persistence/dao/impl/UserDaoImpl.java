@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.User;
 import schoolmanagement.persistence.dao.UserDao;
 
@@ -35,7 +36,6 @@ public class UserDaoImpl implements UserDao {
             long key = rs.next() ? rs.getLong(1) : 0;
             return key;
         }
-
     }
 
     @Override
@@ -59,25 +59,33 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUserByUsernameAndPassword(String username, String password) throws SQLException  {
+    public User getUserByUsernameAndPassword(String username, String password) throws SQLException {
         final String sqlQuery = "SELECT * FROM User where username=? AND password=?";
-
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
-
             statement.setString(1, username);
-
             statement.setString(2, password);
-
             ResultSet rs = statement.executeQuery();
 
-            if(rs.next()){
-                return new User(rs.getLong("id"),rs.getString("username"), rs.getString("password"));
-            }else{
+            if (rs.next()) {
+                return new User(rs.getLong("id"), rs.getString("username"), rs.getString("password"));
+            } else {
                 return null;
             }
-            
         }
+    }
 
+    @Override
+    public boolean updateUser(User user) throws SQLException {
+        final String sqlQuery = "UPDATE User SET username = ?, password = ? WHERE id = ?";
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            statement.setString(1, user.getUsername());
+            statement.setString(2, user.getPassword());
+            statement.setLong(3, user.getId());
+
+            int affectedRows = statement.executeUpdate();
+            return affectedRows > 0;
+        }
     }
 
 }

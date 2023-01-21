@@ -122,7 +122,23 @@ public class StudentDaoImpl implements StudentDao {
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
             ResultSet rs = statement.executeQuery();
 
-            return MapperStudentRS.mapStudents(rs,connection);
+            return MapperStudentRS.mapStudents(rs, connection);
+        }
+    }
+
+    @Override
+    public boolean updateStudent(Student student) throws SQLException {
+        final String sqlQuery = "UPDATE Student SET first_name = ?, last_name = ?, birthdate = ? WHERE user_id = ?";
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+
+            statement.setString(1, student.getFirstName());
+            statement.setString(2, student.getLastName());
+            statement.setDate(3, Date.valueOf(student.getBirthdate()));
+            statement.setLong(4, student.getId());
+            
+            int affectedRows = statement.executeUpdate();
+            return affectedRows > 0;
+            
         }
     }
 
