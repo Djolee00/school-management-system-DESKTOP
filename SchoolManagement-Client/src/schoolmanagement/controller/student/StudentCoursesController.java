@@ -36,7 +36,7 @@ import schoolmanagement.view.student.StudentCoursesView;
 public class StudentCoursesController {
 
     private final StudentCoursesView coursesView;
-    private final StudentCourseSelectionModel model;
+    private final StudentCourseSelectionModel tableModel;
     private List<Course> courses;
     private List<Course> backupCourses;
     private final Student student;
@@ -46,7 +46,7 @@ public class StudentCoursesController {
         coursesView = new StudentCoursesView();
         coursesView.setVisible(true);
         initView();
-        model = (StudentCourseSelectionModel) coursesView.getTblCourses().getModel();
+        tableModel = (StudentCourseSelectionModel) coursesView.getTblCourses().getModel();
     }
 
     private void initView() {
@@ -72,6 +72,29 @@ public class StudentCoursesController {
 
     }
 
+    private void populateTable() {
+        courses = getStudentsUnselectedCourses();
+        backupCourses = courses;
+        coursesView.getTblCourses().setModel(new StudentCourseSelectionModel(courses));
+    }
+
+    private void initLanguages() {
+        List<Language> languages = new ArrayList<>();
+        for (Course course : courses) {
+            if (!languages.contains(course.getLanguage())) {
+                languages.add(course.getLanguage());
+            }
+        }
+
+        coursesView.getjComboBoxLanguage().setModel(new DefaultComboBoxModel(languages.toArray()));
+        coursesView.getjComboBoxLanguage().setSelectedIndex(-1);
+    }
+
+    private void initLevels() {
+        coursesView.getjComboBoxLevel().setModel(new DefaultComboBoxModel(Level.values()));
+        coursesView.getjComboBoxLevel().setSelectedIndex(-1);
+    }
+
     private void sortCourses() {
         if (coursesView.getJrbLevel().isSelected()) {
             courses = courses.stream().sorted((c1, c2) -> c1.getLanguage().getLevel().toString().compareTo(c2.getLanguage().getLevel().toString())).collect(Collectors.toList());
@@ -86,7 +109,7 @@ public class StudentCoursesController {
             courses = courses.stream().sorted(Comparator.comparing(Course::getEndDate)).collect(Collectors.toList());
         }
 
-        model.setCourses(courses);
+        tableModel.setCourses(courses);
     }
 
     private void filterCourses() {
@@ -110,7 +133,7 @@ public class StudentCoursesController {
         }
 
         courses = temp;
-        model.setCourses(temp);
+        tableModel.setCourses(temp);
     }
 
     private void chooseCourses() {
@@ -146,13 +169,7 @@ public class StudentCoursesController {
         coursesView.getDateBegin().setDate(null);
         coursesView.getDateEnd().setDate(null);
         courses = backupCourses;
-        model.setCourses(backupCourses);
-    }
-
-    private void populateTable() {
-        courses = getStudentsUnselectedCourses();
-        backupCourses = courses;
-        coursesView.getTblCourses().setModel(new StudentCourseSelectionModel(courses));
+        tableModel.setCourses(backupCourses);
     }
 
     private List<Course> getStudentsUnselectedCourses() {
@@ -178,23 +195,6 @@ public class StudentCoursesController {
         }
 
         return tempCourses;
-    }
-
-    private void initLanguages() {
-        List<Language> languages = new ArrayList<>();
-        for (Course course : courses) {
-            if (!languages.contains(course.getLanguage())) {
-                languages.add(course.getLanguage());
-            }
-        }
-
-        coursesView.getjComboBoxLanguage().setModel(new DefaultComboBoxModel(languages.toArray()));
-        coursesView.getjComboBoxLanguage().setSelectedIndex(-1);
-    }
-
-    private void initLevels() {
-        coursesView.getjComboBoxLevel().setModel(new DefaultComboBoxModel(Level.values()));
-        coursesView.getjComboBoxLevel().setSelectedIndex(-1);
     }
 
     private boolean enrollStudentToCourses(List<CourseEnrollment> selectedCourses) {

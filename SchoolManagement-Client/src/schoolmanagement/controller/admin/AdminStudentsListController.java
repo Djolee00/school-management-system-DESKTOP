@@ -62,6 +62,7 @@ public class AdminStudentsListController {
 
         studentsView.getBtnSearch().addActionListener(e -> searchStudents());
         studentsView.getBtnUpdate().addActionListener(e -> updateStudent());
+        studentsView.getBtnReset().addActionListener(e -> resetSearch());
     }
 
     private void populateTable() {
@@ -214,6 +215,17 @@ public class AdminStudentsListController {
         }
 
         return languageStudents;
+    }
+
+    private void resetSearch() {
+        studentsView.getJcbLanguages().setSelectedIndex(-1);
+        studentsView.getJcbCourses().setSelectedIndex(-1);
+        studentsView.getBirthdateFrom().setDate(null);
+        studentsView.getBirthdateTo().setDate(null);
+        studentsView.getTxtFirstnameSearch().setText("");
+        studentsView.getTxtLastnameSearch().setText("");
+        students = backupStudents;
+        tableModel.setStudents(backupStudents);
     }
 
 }
