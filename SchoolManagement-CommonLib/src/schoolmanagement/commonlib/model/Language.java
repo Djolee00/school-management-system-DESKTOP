@@ -71,7 +71,7 @@ public class Language implements Serializable{
 
     @Override
     public String toString() {
-        return name;
+        return name+" " + level;
     }
 
     @Override
@@ -92,9 +92,13 @@ public class Language implements Serializable{
             return false;
         }
         final Language other = (Language) obj;
-        return Objects.equals(this.name, other.name);
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return this.level == other.level;
     }
 
+    
     
 
 }

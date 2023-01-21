@@ -145,8 +145,8 @@ public class MapperStudentRS {
 
         List<CourseEnrollment> courseEnrollments = mapFullyCourseEnrollmentsByStudent(rs, conn);
         //TO DO: map course groups
-        
-        temp.setCourses(courseEnrollments);
+
+        temp.setCourseEnrollments(courseEnrollments);
 
         return temp;
     }
@@ -172,19 +172,22 @@ public class MapperStudentRS {
 
             ResultSet tempRs = statement.executeQuery();
             while (tempRs.next()) {
-                if(tempRs.getDate("enrollment_date") == null) //if student haven't enrolled any course yet
+                if (tempRs.getDate("enrollment_date") == null) //if student haven't enrolled any course yet
+                {
                     return courseEnrollments;
-                
+                }
+
                 CourseEnrollment tempCourseEnrollment = new CourseEnrollment();
                 tempCourseEnrollment.setEnrollmentDate(tempRs.getDate("enrollment_date").toLocalDate());
                 Course tempCourse = makeCourseFromRs(tempRs);
                 Language tempLanguage = makeLanguageFromRs(tempRs);
                 tempCourse.setLanguage(tempLanguage);
                 
+                tempCourseEnrollment.setCourse(tempCourse);
                 courseEnrollments.add(tempCourseEnrollment);
             }
         }
-        
+
         return courseEnrollments;
     }
 

@@ -7,7 +7,11 @@ package schoolmanagement.controller.admin;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import schoolmanagement.commonlib.communication.Operation;
@@ -15,6 +19,7 @@ import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
 import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.Course;
+import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.communication.Communication;
@@ -78,7 +83,30 @@ public class AdminStudentsListController {
     }
 
     private void searchStudents() {
+        List<Student> temp = this.backupStudents;
+        String firstName = studentsView.getTxtFirstnameSearch().getText().trim();
+        String lastName = studentsView.getTxtLastnameSearch().getText().trim();
 
+        temp = temp.stream().filter(s -> s.getFirstName().startsWith(firstName) && s.getLastName().startsWith(lastName)).collect(Collectors.toList());
+        if (studentsView.getBirthdateFrom().getDate() != null) {
+            LocalDate birthdateFrom = studentsView.getBirthdateFrom().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            temp = temp.stream().filter(s -> s.getBirthdate().isAfter(birthdateFrom) || s.getBirthdate().isEqual(birthdateFrom)).collect(Collectors.toList());
+        }
+        if (studentsView.getBirthdateTo().getDate() != null) {
+            LocalDate birthdateTo = studentsView.getBirthdateTo().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            temp = temp.stream().filter(s -> s.getBirthdate().isBefore(birthdateTo) || s.getBirthdate().isEqual(birthdateTo)).collect(Collectors.toList());
+        }
+        if (studentsView.getJcbCourses().getSelectedIndex() != -1) {
+            Course course = (Course) studentsView.getJcbCourses().getSelectedItem();
+            temp = getStudentsForSelectedCourse(temp, course);
+        }
+        if (studentsView.getJcbLanguages().getSelectedIndex() != -1) {
+            Language language = (Language) studentsView.getJcbLanguages().getSelectedItem();
+            temp = getStudentsForSelectedLanguages(temp, language);
+        }
+
+        students = temp;
+        tableModel.setStudents(temp);
     }
 
     private void updateStudent() {
@@ -158,6 +186,34 @@ public class AdminStudentsListController {
         }
 
         return tempLanguages;
+    }
+
+    private List<Student> getStudentsForSelectedCourse(List<Student> temp, Course course) {
+        List<Student> courseStudents = new ArrayList<>();
+        for (Student student : temp) {
+            for (CourseEnrollment coursesEnrollment : student.getCoursesEnrollments()) {
+                if (coursesEnrollment.getCourse().equals(course)) {
+                    courseStudents.add(student);
+                    break;
+                }
+            }
+        }
+
+        return courseStudents;
+    }
+
+    private List<Student> getStudentsForSelectedLanguages(List<Student> temp, Language language) {
+        List<Student> languageStudents = new ArrayList<>();
+        for (Student student : temp) {
+            for (CourseEnrollment coursesEnrollment : student.getCoursesEnrollments()) {
+                if (coursesEnrollment.getCourse().getLanguage().equals(language)) {
+                    languageStudents.add(student);
+                    break;
+                }
+            }
+        }
+
+        return languageStudents;
     }
 
 }

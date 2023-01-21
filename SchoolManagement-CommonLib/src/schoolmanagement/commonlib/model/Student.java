@@ -65,7 +65,7 @@ public class Student extends User implements Serializable {
         return courseEnrollments;
     }
 
-    public void setCourses(List<CourseEnrollment> course) {
+    public void setCourseEnrollments(List<CourseEnrollment> courseEnrollments) {
         this.courseEnrollments = courseEnrollments;
     }
 

@@ -4,6 +4,7 @@
  */
 package schoolmanagement.view.admin;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -11,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -462,6 +464,25 @@ public class AdminStudentsListView extends javax.swing.JFrame {
     public JComboBox<String> getJcbLanguages() {
         return jcbLanguages;
     }
+
+    public JTextField getTxtFirstnameSearch() {
+        return txtFirstnameSearch;
+    }
+
+    public JTextField getTxtLastnameSearch() {
+        return txtLastnameSearch;
+    }
+
+    public JDateChooser getBirthdateFrom() {
+        return birthdateFrom;
+    }
+
+    public JDateChooser getBirthdateTo() {
+        return birthdateTo;
+    }
+
+    
+    
     
     
 }

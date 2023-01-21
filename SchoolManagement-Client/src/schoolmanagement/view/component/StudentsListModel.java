@@ -56,4 +56,9 @@ public class StudentsListModel extends AbstractTableModel {
         return header[column];
     }
 
+    public void setStudents(List<Student> temp) {
+        students = temp;
+        fireTableDataChanged();
+    }
+
 }
