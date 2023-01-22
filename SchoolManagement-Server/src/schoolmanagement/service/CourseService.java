@@ -16,5 +16,7 @@ import schoolmanagement.commonlib.model.Course;
 public interface CourseService {
 
     public List<Course> getAllCourses() throws IOException,SQLException;
+
+    public boolean updateCourseData(Course course) throws IOException,SQLException;
     
 }

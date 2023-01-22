@@ -335,6 +335,7 @@ public class AdminStudentsListController {
     }
 
     private void insertEmptyStudent() {
+        resetSearch();
         // creating dummy student
         Student temp = new Student("", "");
         temp.setFirstName("");

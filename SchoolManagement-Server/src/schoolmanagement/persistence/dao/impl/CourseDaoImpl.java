@@ -5,6 +5,7 @@
 package schoolmanagement.persistence.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
@@ -35,6 +36,24 @@ public class CourseDaoImpl implements CourseDao {
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
             ResultSet rs = statement.executeQuery();
             return MapperCourseRS.mapCourseWithLanguage(rs);
+        }
+    }
+
+    @Override
+    public boolean updateCourse(Course course) throws SQLException {
+        final String sqlQuery = "UPDATE Course SET name=?, start_date=?, end_date=?, group_capacity = ?, language_id = ?"
+                + " WHERE id = ?";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setString(1, course.getName());
+            statement.setDate(2, Date.valueOf(course.getStartDate()));
+            statement.setDate(3, Date.valueOf(course.getEndDate()));
+            statement.setInt(4, course.getGroupCapacity());
+            statement.setLong(5, course.getLanguage().getId());
+            statement.setLong(6, course.getId());
+            
+            int affectedRows = statement.executeUpdate();
+            return affectedRows > 0;
         }
     }
 

@@ -6,7 +6,9 @@ package schoolmanagement.view.component.table.tmodel;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.Language;
@@ -62,23 +64,49 @@ public class AdminCourseSelectionTModel extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        if(rowIndex>courses.size()-1)
+        if (rowIndex > courses.size() - 1) {
             return;
+        }
         Course temp = courses.get(rowIndex);
-        switch (columnIndex) {
-            case 0 ->
-                temp.setName((String) aValue);
-            case 1 ->
-                temp.setStartDate(LocalDate.parse((String) aValue, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-            case 2 ->
-                temp.setEndDate(LocalDate.parse((String) aValue, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-            case 4 ->
-                temp.setLanguage((Language) aValue);
+        try {
+            switch (columnIndex) {
+                case 0 -> {
+                    if (((String) aValue).equals("")) {
+                        JOptionPane.showMessageDialog(null, "Please insert name of course", "Error", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        temp.setName((String) aValue);
+                    }
+                }
+                case 1 -> {
+                    LocalDate startDate = LocalDate.parse((String) aValue, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    if (startDate.isAfter(temp.getEndDate()) || startDate.isEqual(temp.getEndDate())) {
+                        JOptionPane.showMessageDialog(null, "Start date can't be after end date", "Error", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        temp.setStartDate(startDate);
+                    }
+                }
+                case 2 -> {
+                    LocalDate endDate = LocalDate.parse((String) aValue, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    if (endDate.isBefore(temp.getStartDate()) || endDate.isEqual(temp.getStartDate())) {
+                        JOptionPane.showMessageDialog(null, "End date can't be before start date", "Error", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        temp.setEndDate(endDate);
+                    }
+                }
+                case 3 -> temp.setGroupCapacity(Integer.valueOf((String) aValue));
+                case 4 -> temp.setLanguage((Language) aValue);
+            }
+        } catch (NumberFormatException | DateTimeParseException ex) {
+            // when user leaves empty capacity field
+            // or enter manually date with wrong format
+            // and try to select another row
+            // old values will be automatically shown
         }
     }
 
     @Override
-    public String getColumnName(int column) {
+    public String getColumnName(int column
+    ) {
         return header[column];
     }
 
@@ -87,4 +115,7 @@ public class AdminCourseSelectionTModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    public Course getCourse(int index){
+        return courses.get(index);
+    }
 }

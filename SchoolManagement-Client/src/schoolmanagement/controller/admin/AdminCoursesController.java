@@ -11,13 +11,19 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.TableColumn;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 import schoolmanagement.commonlib.communication.Operation;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
@@ -81,6 +87,19 @@ public class AdminCoursesController {
     }
 
     private void updateSelectedCourse() {
+        if (coursesView.getTblCourses().getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(coursesView, "Please select course you want to update", "Message", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (JOptionPane.showConfirmDialog(coursesView, "Are you sure you want to update this course?", "Confirmation", JOptionPane.YES_NO_OPTION)
+                == JOptionPane.YES_OPTION) {
+            Course temp = (Course) tableModel.getCourse(coursesView.getTblCourses().getSelectedRow());
+            if (temp.getId() != null) {
+                sendUpdateRequest(temp);
+                JOptionPane.showMessageDialog(coursesView, "Course's data successfully updated","Success",JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }
 
     private void sortCourses() {
@@ -142,6 +161,7 @@ public class AdminCoursesController {
         coursesView.getTblCourses().setModel(new AdminCourseSelectionTModel(courses));
         prepareLanguageColumn();
         prepareDateColumns();
+        prepareCapacityColumn();
     }
 
     private void initLanguages() {
@@ -209,6 +229,45 @@ public class AdminCoursesController {
     private void prepareDateColumns() {
         coursesView.getTblCourses().getColumnModel().getColumn(1).setCellEditor(new JDateChooserCellEditor(new JCheckBox()));
         coursesView.getTblCourses().getColumnModel().getColumn(2).setCellEditor(new JDateChooserCellEditor(new JCheckBox()));
+    }
+
+    private void prepareCapacityColumn() {
+        coursesView.getTblCourses().getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(createTextField()));
+    }
+
+    private JTextField createTextField() {
+        JTextField field = new JTextField();
+        ((AbstractDocument) field.getDocument()).setDocumentFilter(new DocumentFilter() {
+            @Override
+            public void insertString(FilterBypass fb, int off, String str, AttributeSet attr)
+                    throws BadLocationException {
+                fb.insertString(off, str.replaceAll("\\D++", ""), attr);  // remove non-digits
+            }
+
+            @Override
+            public void replace(FilterBypass fb, int off, int len, String str, AttributeSet attr)
+                    throws BadLocationException {
+                fb.replace(off, len, str.replaceAll("\\D++", ""), attr);  // remove non-digits
+            }
+        });
+        return field;
+    }
+
+    private void sendUpdateRequest(Course temp) {
+        try {
+            Communication.getInstance().send(new Request(Operation.UPDATE_COURSE, temp));
+
+            Response response = Communication.getInstance().receive();
+
+            if(response.getResponseType() == ResponseType.FAILURE){
+                throw new IOException("Course update failed");
+            }
+            
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(coursesView, "Error updating course's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            coursesView.dispose();
+            System.exit(0);
+        }
     }
 
 }

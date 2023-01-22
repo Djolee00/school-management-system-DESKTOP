@@ -23,5 +23,6 @@ public class Sender {
     public void send(Object object) throws IOException {
         out.writeObject(object);
         out.flush();
+        out.reset();
     }
 }

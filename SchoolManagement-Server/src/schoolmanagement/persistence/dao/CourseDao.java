@@ -15,5 +15,7 @@ import schoolmanagement.commonlib.model.Course;
 public interface CourseDao extends DaoInterface{
 
     public List<Course> getAllCourses() throws SQLException;
+
+    public boolean updateCourse(Course course) throws SQLException;
     
 }

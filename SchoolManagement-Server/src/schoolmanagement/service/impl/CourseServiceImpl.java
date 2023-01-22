@@ -48,4 +48,31 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
+    @Override
+    public synchronized boolean updateCourseData(Course course) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try {
+            courseDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            boolean status = courseDao.updateCourse(course);
+            if (status == false) {
+                connection.rollback();
+                ConnectionPool.getInstance().releaseConnection(connection);
+                return false;
+            }
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return true;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
+
 }
