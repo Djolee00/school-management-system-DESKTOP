@@ -26,7 +26,7 @@ import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.enums.Level;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.session.Session;
-import schoolmanagement.view.component.StudentCourseSelectionModel;
+import schoolmanagement.view.component.StudentCourseSelectionTModel;
 import schoolmanagement.view.student.StudentCoursesView;
 
 /**
@@ -36,7 +36,7 @@ import schoolmanagement.view.student.StudentCoursesView;
 public class StudentCoursesController {
 
     private final StudentCoursesView coursesView;
-    private final StudentCourseSelectionModel tableModel;
+    private final StudentCourseSelectionTModel tableModel;
     private List<Course> courses;
     private List<Course> backupCourses;
     private final Student student;
@@ -46,7 +46,7 @@ public class StudentCoursesController {
         coursesView = new StudentCoursesView();
         coursesView.setVisible(true);
         initView();
-        tableModel = (StudentCourseSelectionModel) coursesView.getTblCourses().getModel();
+        tableModel = (StudentCourseSelectionTModel) coursesView.getTblCourses().getModel();
     }
 
     private void initView() {
@@ -75,7 +75,7 @@ public class StudentCoursesController {
     private void populateTable() {
         courses = getStudentsUnselectedCourses();
         backupCourses = courses;
-        coursesView.getTblCourses().setModel(new StudentCourseSelectionModel(courses));
+        coursesView.getTblCourses().setModel(new StudentCourseSelectionTModel(courses));
     }
 
     private void initLanguages() {
@@ -183,9 +183,7 @@ public class StudentCoursesController {
             if (response.getResponseType() == ResponseType.SUCCESS) {
                 tempCourses = (List<Course>) response.getObject();
             } else {
-                JOptionPane.showMessageDialog(coursesView, "Error getting student's courses. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
-                coursesView.dispose();
-                System.exit(0);
+                throw new IOException("Error getting students' data");
             }
 
         } catch (ClassNotFoundException | IOException ex) {

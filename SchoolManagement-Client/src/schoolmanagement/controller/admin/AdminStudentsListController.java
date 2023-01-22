@@ -26,7 +26,7 @@ import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.validator.StudentValidatorBuilder;
 import schoolmanagement.view.admin.AdminStudentsListView;
-import schoolmanagement.view.component.StudentsListModel;
+import schoolmanagement.view.component.StudentsListTModel;
 import validation.exception.ValidationException;
 import validaton.rule.result.ResultInfo;
 
@@ -37,7 +37,7 @@ import validaton.rule.result.ResultInfo;
 public class AdminStudentsListController {
 
     private final AdminStudentsListView studentsView;
-    private StudentsListModel tableModel;
+    private StudentsListTModel tableModel;
     private List<Student> students;
     private List<Student> backupStudents;
     private Student selectedStudent;
@@ -79,8 +79,8 @@ public class AdminStudentsListController {
     private void populateTable() {
         students = getAllStudents();
         backupStudents = students;
-        studentsView.getTblStudents().setModel(new StudentsListModel(students));
-        tableModel = (StudentsListModel) studentsView.getTblStudents().getModel();
+        studentsView.getTblStudents().setModel(new StudentsListTModel(students));
+        tableModel = (StudentsListTModel) studentsView.getTblStudents().getModel();
     }
 
     private void initCourses() {
@@ -123,6 +123,11 @@ public class AdminStudentsListController {
     }
 
     private void updateStudent() {
+        if (studentsView.getTblStudents().getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(studentsView, "Please, first select student", "Message", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
         if (JOptionPane.showConfirmDialog(studentsView, "Are you sure you want to update this student?", "Confirmation", JOptionPane.YES_NO_OPTION)
                 == JOptionPane.YES_OPTION) {
             Student temp = populateSelectedStudent();
@@ -211,9 +216,7 @@ public class AdminStudentsListController {
             if (response.getResponseType() == ResponseType.SUCCESS) {
                 tempLanguages = (List<Language>) response.getObject();
             } else {
-                JOptionPane.showMessageDialog(studentsView, "Error getting languages' data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
-                studentsView.dispose();
-                System.exit(0);
+                throw new IOException("Error getting languages' data");
             }
 
         } catch (ClassNotFoundException | IOException ex) {
@@ -327,7 +330,7 @@ public class AdminStudentsListController {
             studentsView.dispose();
             System.exit(0);
         }
-        
+
         return true;
     }
 

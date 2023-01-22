@@ -12,12 +12,12 @@ import schoolmanagement.commonlib.model.CourseEnrollment;
  *
  * @author ivano
  */
-public class StudentProfileMyCoursesModel extends AbstractTableModel{
+public class StudentProfileMyCoursesTModel extends AbstractTableModel{
     
     private final List<CourseEnrollment> courseEnrollments;
     private final String[] header = {"Name","Start date","End date","Capacity","Language","Level"};
 
-    public StudentProfileMyCoursesModel(List<CourseEnrollment> courseEnrollments) {
+    public StudentProfileMyCoursesTModel(List<CourseEnrollment> courseEnrollments) {
         this.courseEnrollments = courseEnrollments;
     }
 

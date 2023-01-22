@@ -4,9 +4,15 @@
  */
 package schoolmanagement.view.admin;
 
+import com.toedter.calendar.JDateChooser;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
 
 /**
  *
@@ -33,34 +39,36 @@ public class AdminCoursesView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panelMain = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lblUserText3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCourses = new javax.swing.JTable();
         panelSort = new javax.swing.JPanel();
-        jcbLanguage = new javax.swing.JCheckBox();
-        jcbLevel = new javax.swing.JCheckBox();
-        jcbEndDate = new javax.swing.JCheckBox();
-        jcbBeginDate = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
         btnSort = new javax.swing.JButton();
+        jrbLevel = new javax.swing.JRadioButton();
+        jrbLanguage = new javax.swing.JRadioButton();
+        jrbBeginDate = new javax.swing.JRadioButton();
+        jrbEndDate = new javax.swing.JRadioButton();
         panelSearch = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBoxLanguage = new javax.swing.JComboBox<>();
+        jcbLevel = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBoxLanguage1 = new javax.swing.JComboBox<>();
+        jcbLanguage = new javax.swing.JComboBox<>();
         dateBegin = new com.toedter.calendar.JDateChooser();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         dateEnd = new com.toedter.calendar.JDateChooser();
-        btnSearch = new javax.swing.JButton();
+        btnFilter = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
+        btnReset = new javax.swing.JButton();
         btnManageGroups = new javax.swing.JButton();
         btnAddCourse = new javax.swing.JButton();
-        btnUpdateCourses = new javax.swing.JButton();
+        btnUpdateCourse = new javax.swing.JButton();
         btnDeleteCourse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -82,7 +90,7 @@ public class AdminCoursesView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/coursesList.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
@@ -94,7 +102,7 @@ public class AdminCoursesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(lblHome)
                 .addGap(17, 17, 17))
         );
         panelHeaderLayout.setVerticalGroup(
@@ -108,7 +116,7 @@ public class AdminCoursesView extends javax.swing.JFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel2)))
+                        .addComponent(lblHome)))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
 
@@ -134,7 +142,7 @@ public class AdminCoursesView extends javax.swing.JFrame {
         tblCourses.setFocusable(false);
         tblCourses.setRowHeight(25);
         tblCourses.setSelectionBackground(new java.awt.Color(232, 57, 99));
-        tblCourses.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        tblCourses.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblCourses.setShowGrid(true);
         tblCourses.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblCourses);
@@ -142,15 +150,19 @@ public class AdminCoursesView extends javax.swing.JFrame {
         panelSort.setBackground(new java.awt.Color(255, 255, 255));
         panelSort.setBorder(javax.swing.BorderFactory.createTitledBorder("Sort"));
 
-        jcbLanguage.setText("Language");
-
-        jcbLevel.setText("Level");
-
-        jcbEndDate.setText("End date");
-
-        jcbBeginDate.setText("Begin date");
-
         btnSort.setText("Sort");
+
+        buttonGroup1.add(jrbLevel);
+        jrbLevel.setText("Level");
+
+        buttonGroup1.add(jrbLanguage);
+        jrbLanguage.setText("Language");
+
+        buttonGroup1.add(jrbBeginDate);
+        jrbBeginDate.setText("Begin date");
+
+        buttonGroup1.add(jrbEndDate);
+        jrbEndDate.setText("End date");
 
         javax.swing.GroupLayout panelSortLayout = new javax.swing.GroupLayout(panelSort);
         panelSort.setLayout(panelSortLayout);
@@ -159,30 +171,30 @@ public class AdminCoursesView extends javax.swing.JFrame {
             .addGroup(panelSortLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelSortLayout.createSequentialGroup()
-                        .addComponent(jcbLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jcbBeginDate))
-                    .addGroup(panelSortLayout.createSequentialGroup()
-                        .addComponent(jcbLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jcbEndDate))
                     .addComponent(btnSort)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelSortLayout.createSequentialGroup()
+                        .addComponent(jrbLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jrbBeginDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelSortLayout.createSequentialGroup()
+                        .addComponent(jrbLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jrbEndDate, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
         panelSortLayout.setVerticalGroup(
             panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSortLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbLevel)
-                    .addComponent(jcbBeginDate))
-                .addGap(18, 18, 18)
-                .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jcbEndDate)
-                    .addComponent(jcbLanguage))
-                .addGap(24, 24, 24)
+                    .addComponent(jrbLevel)
+                    .addComponent(jrbBeginDate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelSortLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jrbLanguage)
+                    .addComponent(jrbEndDate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSort)
@@ -194,18 +206,16 @@ public class AdminCoursesView extends javax.swing.JFrame {
 
         jLabel3.setText("Level:");
 
-        jComboBoxLanguage.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select level" }));
-
         jLabel4.setText("Language:");
-
-        jComboBoxLanguage1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select language" }));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Begin date:");
 
         jLabel6.setText("End date:");
 
-        btnSearch.setText("Search");
+        btnFilter.setText("Filter");
+
+        btnReset.setText("Reset");
 
         javax.swing.GroupLayout panelSearchLayout = new javax.swing.GroupLayout(panelSearch);
         panelSearch.setLayout(panelSearchLayout);
@@ -215,29 +225,28 @@ public class AdminCoursesView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSearchLayout.createSequentialGroup()
-                        .addComponent(btnSearch)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnFilter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnReset))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelSearchLayout.createSequentialGroup()
-                        .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator2)
-                            .addGroup(panelSearchLayout.createSequentialGroup()
-                                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxLanguage1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(26, 26, 26)
-                                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(dateBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(9, 9, 9)))
-                        .addGap(31, 31, 31))))
+                        .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jcbLanguage, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jcbLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dateBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(9, 9, 9)))
+                .addGap(31, 31, 31))
         );
         panelSearchLayout.setVerticalGroup(
             panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,19 +256,21 @@ public class AdminCoursesView extends javax.swing.JFrame {
                     .addComponent(dateBegin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(jComboBoxLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jcbLevel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
                     .addComponent(dateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jComboBoxLanguage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jcbLanguage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSearch)
+                .addGroup(panelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFilter)
+                    .addComponent(btnReset))
                 .addContainerGap())
         );
 
@@ -267,7 +278,7 @@ public class AdminCoursesView extends javax.swing.JFrame {
 
         btnAddCourse.setText("Add course");
 
-        btnUpdateCourses.setText("Update courses");
+        btnUpdateCourse.setText("Update course");
 
         btnDeleteCourse.setText("Delete Course");
 
@@ -291,7 +302,7 @@ public class AdminCoursesView extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDeleteCourse)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnUpdateCourses)
+                                .addComponent(btnUpdateCourse)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnManageGroups)))
                         .addGap(0, 3, Short.MAX_VALUE)))
@@ -308,7 +319,7 @@ public class AdminCoursesView extends javax.swing.JFrame {
                     .addComponent(btnManageGroups, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnAddCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUpdateCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdateCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnDeleteCourse, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -343,16 +354,15 @@ public class AdminCoursesView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddCourse;
     private javax.swing.JButton btnDeleteCourse;
+    private javax.swing.JButton btnFilter;
     private javax.swing.JButton btnManageGroups;
-    private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSort;
-    private javax.swing.JButton btnUpdateCourses;
+    private javax.swing.JButton btnUpdateCourse;
+    private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser dateBegin;
     private com.toedter.calendar.JDateChooser dateEnd;
-    private javax.swing.JComboBox<String> jComboBoxLanguage;
-    private javax.swing.JComboBox<String> jComboBoxLanguage1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -360,10 +370,13 @@ public class AdminCoursesView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JCheckBox jcbBeginDate;
-    private javax.swing.JCheckBox jcbEndDate;
-    private javax.swing.JCheckBox jcbLanguage;
-    private javax.swing.JCheckBox jcbLevel;
+    private javax.swing.JComboBox<String> jcbLanguage;
+    private javax.swing.JComboBox<String> jcbLevel;
+    private javax.swing.JRadioButton jrbBeginDate;
+    private javax.swing.JRadioButton jrbEndDate;
+    private javax.swing.JRadioButton jrbLanguage;
+    private javax.swing.JRadioButton jrbLevel;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblUserText3;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelMain;
@@ -378,6 +391,75 @@ public class AdminCoursesView extends javax.swing.JFrame {
         tblCourses.getTableHeader().setBackground(new Color(32, 136, 203));
         tblCourses.getTableHeader().setForeground(new Color(255, 255, 255));
         tblCourses.setRowHeight(25);
-
     }
+
+    public JButton getBtnAddCourse() {
+        return btnAddCourse;
+    }
+
+    public JButton getBtnDeleteCourse() {
+        return btnDeleteCourse;
+    }
+
+    public JButton getBtnFilter() {
+        return btnFilter;
+    }
+
+    public JButton getBtnManageGroups() {
+        return btnManageGroups;
+    }
+
+    public JButton getBtnSort() {
+        return btnSort;
+    }
+
+    public JButton getBtnReset() {
+        return btnReset;
+    }
+
+    public JTable getTblCourses() {
+        return tblCourses;
+    }
+
+    public JButton getBtnUpdateCourse() {
+        return btnUpdateCourse;
+    }
+
+    public JRadioButton getJrbBeginDate() {
+        return jrbBeginDate;
+    }
+
+    public JRadioButton getJrbEndDate() {
+        return jrbEndDate;
+    }
+
+    public JRadioButton getJrbLanguage() {
+        return jrbLanguage;
+    }
+
+    public JRadioButton getJrbLevel() {
+        return jrbLevel;
+    }
+
+    public JComboBox<String> getJcbLevel() {
+        return jcbLevel;
+    }
+
+    public JComboBox<String> getJcbLanguage() {
+        return jcbLanguage;
+    }
+    
+    public JDateChooser getDateBegin() {
+        return dateBegin;
+    }
+
+    public JDateChooser getDateEnd() {
+        return dateEnd;
+    }
+
+    public JLabel getLblHome() {
+        return lblHome;
+    }
+
+    
 }

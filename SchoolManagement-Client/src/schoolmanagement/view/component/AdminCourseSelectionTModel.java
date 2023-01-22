@@ -6,24 +6,24 @@ package schoolmanagement.view.component;
 
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import schoolmanagement.commonlib.model.Student;
+import schoolmanagement.commonlib.model.Course;
 
 /**
  *
  * @author ivano
  */
-public class StudentsListModel extends AbstractTableModel {
+public class AdminCourseSelectionTModel extends AbstractTableModel{
 
-    private List<Student> students;
-    private String[] header = {"First name", "Last name", "Birthdate"};
+    private List<Course> courses;
+    private final String[] header = {"Name", "Start date", "End date", "Capacity", "Language", "Level"};
 
-    public StudentsListModel(List<Student> students) {
-        this.students = students;
+    public AdminCourseSelectionTModel(List<Course> courses) {
+        this.courses = courses;
     }
 
     @Override
     public int getRowCount() {
-        return students.size();
+        return courses.size();
     }
 
     @Override
@@ -33,14 +33,20 @@ public class StudentsListModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Student temp = students.get(rowIndex);
+        Course temp = courses.get(rowIndex);
         return switch (columnIndex) {
             case 0 ->
-                temp.getFirstName();
+                temp.getName();
             case 1 ->
-                temp.getLastName();
+                temp.getStartDate();
             case 2 ->
-                temp.getBirthdate();
+                temp.getEndDate();
+            case 3 ->
+                temp.getGroupCapacity();
+            case 4 ->
+                temp.getLanguage().getName();
+            case 5 ->
+                temp.getLanguage().getLevel();
             default ->
                 "N/A";
         };
@@ -48,7 +54,7 @@ public class StudentsListModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return false;
+        return true;
     }
 
     @Override
@@ -56,13 +62,9 @@ public class StudentsListModel extends AbstractTableModel {
         return header[column];
     }
 
-    public void setStudents(List<Student> temp) {
-        students = temp;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
         fireTableDataChanged();
     }
-
-    public Student getStudent(int index){
-        return students.get(index);
-    }
-
+    
 }

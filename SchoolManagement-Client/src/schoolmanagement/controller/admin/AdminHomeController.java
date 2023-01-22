@@ -62,6 +62,7 @@ public class AdminHomeController {
     }
 
     private void openCoursesView() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        new AdminCoursesController();
+        homeView.dispose();
     }
 }

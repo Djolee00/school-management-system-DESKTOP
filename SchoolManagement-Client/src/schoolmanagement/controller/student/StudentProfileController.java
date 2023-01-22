@@ -21,7 +21,7 @@ import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.session.Session;
-import schoolmanagement.view.component.StudentProfileMyCoursesModel;
+import schoolmanagement.view.component.StudentProfileMyCoursesTModel;
 import schoolmanagement.view.student.StudentProfileView;
 
 /**
@@ -31,7 +31,7 @@ import schoolmanagement.view.student.StudentProfileView;
 public class StudentProfileController {
 
     private final StudentProfileView profileView;
-    private final StudentProfileMyCoursesModel model;
+    private final StudentProfileMyCoursesTModel model;
     private final Student student;
 
     public StudentProfileController() {
@@ -39,7 +39,7 @@ public class StudentProfileController {
         profileView = new StudentProfileView();
         profileView.setVisible(true);
         initView();
-        model = (StudentProfileMyCoursesModel) profileView.getTblCourses().getModel();
+        model = (StudentProfileMyCoursesTModel) profileView.getTblCourses().getModel();
     }
 
     private void initView() {
@@ -78,7 +78,7 @@ public class StudentProfileController {
 
     private void populateTable() {
         List<CourseEnrollment> courses = getStudentCourses();
-        profileView.getTblCourses().setModel(new StudentProfileMyCoursesModel(courses));
+        profileView.getTblCourses().setModel(new StudentProfileMyCoursesTModel(courses));
     }
 
     private List<CourseEnrollment> getStudentCourses() {
