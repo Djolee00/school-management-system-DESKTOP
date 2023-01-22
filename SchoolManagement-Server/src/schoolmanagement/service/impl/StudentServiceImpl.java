@@ -152,7 +152,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public boolean updateStudentPersonalData(Student student, StudentValidator validator) throws ValidationException, IOException, SQLException {
+    public synchronized boolean updateStudentPersonalData(Student student, StudentValidator validator) throws ValidationException, IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {
             userDao.setConnection(connection);

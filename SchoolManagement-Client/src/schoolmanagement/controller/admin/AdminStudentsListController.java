@@ -37,7 +37,7 @@ import validaton.rule.result.ResultInfo;
 public class AdminStudentsListController {
 
     private final AdminStudentsListView studentsView;
-    private final StudentsListModel tableModel;
+    private StudentsListModel tableModel;
     private List<Student> students;
     private List<Student> backupStudents;
     private Student selectedStudent;
@@ -46,7 +46,6 @@ public class AdminStudentsListController {
         studentsView = new AdminStudentsListView();
         initView();
         studentsView.setVisible(true);
-        tableModel = (StudentsListModel) studentsView.getTblStudents().getModel();
     }
 
     private void initView() {
@@ -74,12 +73,14 @@ public class AdminStudentsListController {
                 studentSelection();
             }
         });
+        studentsView.getBtnAddEmptyStudent().addActionListener(e -> insertEmptyStudent());
     }
 
     private void populateTable() {
         students = getAllStudents();
         backupStudents = students;
         studentsView.getTblStudents().setModel(new StudentsListModel(students));
+        tableModel = (StudentsListModel) studentsView.getTblStudents().getModel();
     }
 
     private void initCourses() {
@@ -129,14 +130,18 @@ public class AdminStudentsListController {
             try {
                 validateStudentData(temp);
 
-                sendUpdateRequest(temp);
-                selectedStudent.setFirstName(temp.getFirstName());
-                selectedStudent.setLastName(temp.getLastName());
-                selectedStudent.setBirthdate(temp.getBirthdate());
-                selectedStudent.setPassword(temp.getPassword());
+                boolean status = sendSaveOrUpdateRequest(temp);
+                if (status == true) {
+                    selectedStudent.setFirstName(temp.getFirstName());
+                    selectedStudent.setLastName(temp.getLastName());
+                    selectedStudent.setBirthdate(temp.getBirthdate());
+                    selectedStudent.setPassword(temp.getPassword());
+                    selectedStudent.setUsername(temp.getUsername());
 
-                tableModel.fireTableDataChanged();
-                JOptionPane.showMessageDialog(studentsView, "Student information has been successfully updated", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    tableModel.fireTableDataChanged();
+                    resetUpdateSection();
+                    JOptionPane.showMessageDialog(studentsView, "Student information has been successfully updated", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
 
             } catch (ValidationException ex) {
                 JOptionPane.showMessageDialog(studentsView, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -248,17 +253,6 @@ public class AdminStudentsListController {
         return languageStudents;
     }
 
-    private void resetSearch() {
-        studentsView.getJcbLanguages().setSelectedIndex(-1);
-        studentsView.getJcbCourses().setSelectedIndex(-1);
-        studentsView.getBirthdateFrom().setDate(null);
-        studentsView.getBirthdateTo().setDate(null);
-        studentsView.getTxtFirstnameSearch().setText("");
-        studentsView.getTxtLastnameSearch().setText("");
-        students = backupStudents;
-        tableModel.setStudents(backupStudents);
-    }
-
     private void studentSelection() {
         int rowIndex = studentsView.getTblStudents().getSelectedRow();
         selectedStudent = tableModel.getStudent(rowIndex);
@@ -270,6 +264,11 @@ public class AdminStudentsListController {
         studentsView.getBirthDate().setDate(Date.from(selectedStudent.getBirthdate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         studentsView.getCreationDate().setDate(Date.from(selectedStudent.getCreationDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
 
+        if (selectedStudent.getId() == null) {
+            studentsView.getTxtUsername().setEditable(true);
+        } else {
+            studentsView.getTxtUsername().setEditable(false);
+        }
     }
 
     private void validateStudentData(Student student) throws ValidationException {
@@ -292,20 +291,35 @@ public class AdminStudentsListController {
         temp.setLastName(studentsView.getTxtLastname().getText().trim());
         temp.setBirthdate(studentsView.getBirthDate().getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
         temp.setPassword(studentsView.getTxtPassword().getText().trim());
+        temp.setUsername(studentsView.getTxtUsername().getText().trim());
 
         return temp;
     }
 
-    private void sendUpdateRequest(Student temp) {
+    private boolean sendSaveOrUpdateRequest(Student temp) {
         try {
-            Communication.getInstance().send(new Request(Operation.UPDATE_STUDENT_PERSONAL_INFO, temp));
+            if (selectedStudent.getId() != null) {
+                Communication.getInstance().send(new Request(Operation.UPDATE_STUDENT_PERSONAL_INFO, temp));
+            } else {
+                Communication.getInstance().send(new Request(Operation.ADD_NEW_STUDENT, temp));
+            }
 
             Response response = Communication.getInstance().receive();
 
-            if (response.getResponseType() == ResponseType.FAILURE) {
+            if (selectedStudent.getId() != null && response.getResponseType() == ResponseType.FAILURE) {
                 JOptionPane.showMessageDialog(studentsView, "Error updating student's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
                 studentsView.dispose();
                 System.exit(0);
+            }
+
+            if (selectedStudent.getId() == null && response.getResponseType() == ResponseType.FAILURE) {
+                JOptionPane.showMessageDialog(studentsView, (String) response.getObject(), "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            if (selectedStudent.getId() == null && response.getResponseType() == ResponseType.SUCCESS) {
+                selectedStudent.setId(((Student) response.getObject()).getId());
+                return true;
             }
 
         } catch (ClassNotFoundException | IOException ex) {
@@ -313,5 +327,42 @@ public class AdminStudentsListController {
             studentsView.dispose();
             System.exit(0);
         }
+        
+        return true;
+    }
+
+    private void insertEmptyStudent() {
+        // creating dummy student
+        Student temp = new Student("", "");
+        temp.setFirstName("");
+        temp.setLastName("");
+        temp.setCreationDate(LocalDate.now());
+        temp.setBirthdate(LocalDate.now());
+        temp.setCourseEnrollments(new ArrayList<>());
+        temp.setCourseGroups(new ArrayList<>());
+        temp.setId(null);
+
+        backupStudents.add(temp);
+        tableModel.setStudents(students);
+    }
+
+    private void resetUpdateSection() {
+        studentsView.getTxtFirstname().setText("");
+        studentsView.getTxtLastname().setText("");
+        studentsView.getTxtUsername().setText("");
+        studentsView.getTxtPassword().setText("");
+        studentsView.getBirthDate().setDate(null);
+        studentsView.getCreationDate().setDate(null);
+    }
+
+    private void resetSearch() {
+        studentsView.getJcbLanguages().setSelectedIndex(-1);
+        studentsView.getJcbCourses().setSelectedIndex(-1);
+        studentsView.getBirthdateFrom().setDate(null);
+        studentsView.getBirthdateTo().setDate(null);
+        studentsView.getTxtFirstnameSearch().setText("");
+        studentsView.getTxtLastnameSearch().setText("");
+        students = backupStudents;
+        tableModel.setStudents(backupStudents);
     }
 }

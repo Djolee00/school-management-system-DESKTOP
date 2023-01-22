@@ -75,6 +75,9 @@ public class ClientHandler extends Thread {
                 case UPDATE_STUDENT_PERSONAL_INFO -> {
                     response = controller.updateStudentPersonalInfo(request);
                 }
+                case ADD_NEW_STUDENT -> {
+                    response = controller.addStudent(request);
+                }
             }
             sender.send(response);
         } catch (SQLException ex) {

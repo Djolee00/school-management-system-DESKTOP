@@ -20,6 +20,7 @@ import schoolmanagement.service.LanguageService;
 import schoolmanagement.service.StudentService;
 import schoolmanagement.service.UserService;
 import schoolmanagement.service.provider.ServiceProvider;
+import schoolmanagement.validator.student.SaveStudentValidator;
 import schoolmanagement.validator.student.UpdateStudentValidator;
 import validation.exception.ValidationException;
 
@@ -138,6 +139,21 @@ public class ClientHandlerController {
             response.setResponseType(ResponseType.FAILURE);
         } else {
             response.setResponseType(ResponseType.SUCCESS);
+        }
+
+        return response;
+    }
+
+    public Response addStudent(Request request) throws ValidationException, IOException, SQLException {
+        Response response = new Response();
+        Student student = (Student) request.getObject();
+
+        Student newStudent = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).save(student, new SaveStudentValidator());
+        if (newStudent == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(student);
         }
 
         return response;

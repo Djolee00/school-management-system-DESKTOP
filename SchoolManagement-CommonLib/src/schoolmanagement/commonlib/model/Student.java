@@ -29,6 +29,10 @@ public class Student extends User implements Serializable {
         this.creationDate = creationDate;
     }
 
+    public Student(String username, String password) {
+        super(username, password);
+    }
+
     public String getFirstName() {
         return firstName;
     }
