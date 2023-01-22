@@ -12,8 +12,12 @@ import java.time.ZoneId;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableColumn;
 import schoolmanagement.commonlib.communication.Operation;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
@@ -23,8 +27,8 @@ import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.enums.Level;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.view.admin.AdminCoursesView;
-import schoolmanagement.view.component.AdminCourseSelectionTModel;
-import schoolmanagement.view.component.StudentCourseSelectionTModel;
+import schoolmanagement.view.component.table.celleditor.JDateChooserCellEditor;
+import schoolmanagement.view.component.table.tmodel.AdminCourseSelectionTModel;
 
 /**
  *
@@ -36,6 +40,7 @@ public class AdminCoursesController {
     private final AdminCourseSelectionTModel tableModel;
     private List<Course> courses;
     private List<Course> backupCourses;
+    private List<Language> languages;
 
     public AdminCoursesController() {
         coursesView = new AdminCoursesView();
@@ -46,9 +51,9 @@ public class AdminCoursesController {
 
     private void initView() {
         initListeners();
-        populateTable();
         initLanguages();
         initLevels();
+        populateTable();
     }
 
     private void initListeners() {
@@ -135,10 +140,12 @@ public class AdminCoursesController {
         courses = getAllCourses();
         backupCourses = courses;
         coursesView.getTblCourses().setModel(new AdminCourseSelectionTModel(courses));
+        prepareLanguageColumn();
+        prepareDateColumns();
     }
 
     private void initLanguages() {
-        List<Language> languages = getAllLanguages();
+        getAllLanguages();
         coursesView.getJcbLanguage().setModel(new DefaultComboBoxModel(languages.toArray()));
         coursesView.getJcbLanguage().setSelectedIndex(-1);
     }
@@ -148,8 +155,7 @@ public class AdminCoursesController {
         coursesView.getJcbLevel().setSelectedIndex(-1);
     }
 
-    private List<Language> getAllLanguages() {
-        List<Language> tempLanguages = null;
+    private void getAllLanguages() {
 
         try {
             Communication.getInstance().send(new Request(Operation.GET_ALL_LANGUAGES, null));
@@ -157,7 +163,7 @@ public class AdminCoursesController {
             Response response = Communication.getInstance().receive();
 
             if (response.getResponseType() == ResponseType.SUCCESS) {
-                tempLanguages = (List<Language>) response.getObject();
+                languages = (List<Language>) response.getObject();
             } else {
                 throw new IOException("Error getting languages' data");
             }
@@ -168,7 +174,6 @@ public class AdminCoursesController {
             System.exit(0);
         }
 
-        return tempLanguages;
     }
 
     private List<Course> getAllCourses() {
@@ -192,6 +197,18 @@ public class AdminCoursesController {
         }
 
         return temp;
+    }
+
+    private void prepareLanguageColumn() {
+        JComboBox comboBox = new JComboBox();
+        TableColumn languageColumn = coursesView.getTblCourses().getColumn("Language");
+        comboBox.setModel(new DefaultComboBoxModel(languages.toArray()));
+        languageColumn.setCellEditor(new DefaultCellEditor(comboBox));
+    }
+
+    private void prepareDateColumns() {
+        coursesView.getTblCourses().getColumnModel().getColumn(1).setCellEditor(new JDateChooserCellEditor(new JCheckBox()));
+        coursesView.getTblCourses().getColumnModel().getColumn(2).setCellEditor(new JDateChooserCellEditor(new JCheckBox()));
     }
 
 }

@@ -26,7 +26,7 @@ import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.validator.StudentValidatorBuilder;
 import schoolmanagement.view.admin.AdminStudentsListView;
-import schoolmanagement.view.component.StudentsListTModel;
+import schoolmanagement.view.component.table.tmodel.StudentsListTModel;
 import validation.exception.ValidationException;
 import validaton.rule.result.ResultInfo;
 

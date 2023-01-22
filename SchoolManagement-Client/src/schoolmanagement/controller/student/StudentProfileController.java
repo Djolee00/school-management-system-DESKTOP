@@ -21,7 +21,7 @@ import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.session.Session;
-import schoolmanagement.view.component.StudentProfileMyCoursesTModel;
+import schoolmanagement.view.component.table.tmodel.StudentProfileMyCoursesTModel;
 import schoolmanagement.view.student.StudentProfileView;
 
 /**

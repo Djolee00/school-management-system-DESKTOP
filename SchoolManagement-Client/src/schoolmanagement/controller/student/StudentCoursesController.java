@@ -26,7 +26,7 @@ import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.enums.Level;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.session.Session;
-import schoolmanagement.view.component.StudentCourseSelectionTModel;
+import schoolmanagement.view.component.table.tmodel.StudentCourseSelectionTModel;
 import schoolmanagement.view.student.StudentCoursesView;
 
 /**
