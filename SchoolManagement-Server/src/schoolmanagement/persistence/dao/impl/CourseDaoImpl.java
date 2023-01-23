@@ -98,7 +98,7 @@ public class CourseDaoImpl implements CourseDao {
             statement.setDate(2, Date.valueOf(course.getStartDate()));
             statement.setDate(3, Date.valueOf(course.getEndDate()));
             statement.setInt(4, course.getGroupCapacity());
-            statement.setLong(5, course.getGroupCapacity());
+            statement.setLong(5, course.getLanguage().getId());
 
             statement.executeUpdate();
 

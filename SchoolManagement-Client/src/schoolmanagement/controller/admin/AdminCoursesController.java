@@ -104,12 +104,15 @@ public class AdminCoursesController {
                     courses.remove(temp);
                     backupCourses.remove(temp);
                     tableModel.setCourses(courses);
-                    JOptionPane.showMessageDialog(coursesView, "Course's data successfully deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
                 }
             } else {
-                JOptionPane.showMessageDialog(coursesView, "This is newly created course, please first press update button to save it.", "Message", JOptionPane.WARNING_MESSAGE);
+                courses.remove(temp);
+                backupCourses.remove(temp);
+                tableModel.setCourses(courses);
             }
+            JOptionPane.showMessageDialog(coursesView, "Course's data successfully deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
         }
+
     }
 
     private void updateSelectedCourse() {
@@ -126,7 +129,7 @@ public class AdminCoursesController {
                 JOptionPane.showMessageDialog(coursesView, "Course's data successfully updated", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 Long generatedId = sendSaveRequest(temp);
-                temp.setId(generatedId);  
+                temp.setId(generatedId);
                 JOptionPane.showMessageDialog(coursesView, "Course's data successfully saved", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         }
@@ -290,7 +293,7 @@ public class AdminCoursesController {
         temp.setId(null);
         temp.setCourseEnrollments(new ArrayList<>());
         temp.setCourseGroups(new ArrayList<>());
-        temp.setStartDate(LocalDate.now());
+        temp.setStartDate(LocalDate.now().minusDays(1l));
         temp.setEndDate(LocalDate.now());
         temp.setGroupCapacity(0);
         temp.setLanguage(languages.get(0));
@@ -346,7 +349,7 @@ public class AdminCoursesController {
             if (response.getResponseType() == ResponseType.FAILURE) {
                 throw new IOException("Course couldn't be saved");
             }
-            
+
             return (Long) response.getObject();
         } catch (ClassNotFoundException | IOException ex) {
             JOptionPane.showMessageDialog(coursesView, "Error adding course's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
