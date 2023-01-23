@@ -17,5 +17,11 @@ public interface CourseDao extends DaoInterface{
     public List<Course> getAllCourses() throws SQLException;
 
     public boolean updateCourse(Course course) throws SQLException;
+
+    public boolean checkIfCourseGroupsExist(Course course) throws SQLException;
+
+    public void deleteCourseEnrollments(Course course) throws SQLException;
+
+    public void deleteCourse(Course course)throws SQLException;
     
 }

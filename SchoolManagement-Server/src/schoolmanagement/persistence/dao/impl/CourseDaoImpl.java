@@ -57,4 +57,35 @@ public class CourseDaoImpl implements CourseDao {
         }
     }
 
+    @Override
+    public boolean checkIfCourseGroupsExist(Course course) throws SQLException {
+        final String sqlQuery = "SELECT * FROM course_group WHERE course_id = ?;";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, course.getId()); 
+            ResultSet rs = statement.executeQuery();
+            return rs.next();
+        }
+    }
+
+    @Override
+    public void deleteCourseEnrollments(Course course) throws SQLException {
+        final String sqlQuery = "DELETE FROM course_enrollment WHERE course_id = ?";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, course.getId());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void deleteCourse(Course course) throws SQLException {
+        final String sqlQuery = "DELETE FROM course WHERE id = ?";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, course.getId());
+            statement.executeUpdate();
+        }
+    }
+
 }

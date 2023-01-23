@@ -81,11 +81,12 @@ public class ClientHandler extends Thread {
                 case UPDATE_COURSE -> {
                     response = controller.updateCourseData(request);
                 }
+                case DELETE_COURSE -> {
+                    response = controller.deleteCourse(request);
+                }
             }
             sender.send(response);
-        } catch (SQLException ex) {
-            sender.send(new Response(null, ResponseType.FAILURE));
-        } catch (ValidationException ex) {
+        } catch (SQLException | ValidationException ex) {
             sender.send(new Response(ex.getMessage(), ResponseType.FAILURE));
         }
     }

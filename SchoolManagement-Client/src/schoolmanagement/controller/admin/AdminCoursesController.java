@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Comparator;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.DefaultCellEditor;
 import javax.swing.DefaultComboBoxModel;
@@ -84,6 +83,28 @@ public class AdminCoursesController {
     }
 
     private void deleteSelectedCourse() {
+        if (coursesView.getTblCourses().getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(coursesView, "Please select course you want to delete", "Message", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (JOptionPane.showConfirmDialog(coursesView, "Are you sure you want to delete this course?", "Confirmation", JOptionPane.YES_NO_OPTION)
+                == JOptionPane.YES_OPTION) {
+            Course temp = (Course) tableModel.getCourse(coursesView.getTblCourses().getSelectedRow());
+            if (temp.getId() != null) {
+                boolean status = sendDeleteRequest(temp);
+                if (status == false) {
+                    JOptionPane.showMessageDialog(coursesView, "There are active groups, this course can't be deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    courses.remove(temp);
+                    backupCourses.remove(temp);
+                    tableModel.setCourses(courses);
+                    JOptionPane.showMessageDialog(coursesView, "Course's data successfully deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(coursesView, "This is newly created course, please first press update button to save it.", "Message", JOptionPane.WARNING_MESSAGE);
+            }
+        }
     }
 
     private void updateSelectedCourse() {
@@ -97,7 +118,7 @@ public class AdminCoursesController {
             Course temp = (Course) tableModel.getCourse(coursesView.getTblCourses().getSelectedRow());
             if (temp.getId() != null) {
                 sendUpdateRequest(temp);
-                JOptionPane.showMessageDialog(coursesView, "Course's data successfully updated","Success",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(coursesView, "Course's data successfully updated", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
@@ -259,14 +280,36 @@ public class AdminCoursesController {
 
             Response response = Communication.getInstance().receive();
 
-            if(response.getResponseType() == ResponseType.FAILURE){
+            if (response.getResponseType() == ResponseType.FAILURE) {
                 throw new IOException("Course update failed");
             }
-            
+
         } catch (ClassNotFoundException | IOException ex) {
             JOptionPane.showMessageDialog(coursesView, "Error updating course's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
             coursesView.dispose();
             System.exit(0);
+        }
+    }
+
+    private boolean sendDeleteRequest(Course temp) {
+        try {
+            Communication.getInstance().send(new Request(Operation.DELETE_COURSE, temp));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.FAILURE) {
+                if (response.getObject() != null) {
+                    throw new IOException("Error deleting course's data");
+                } else {
+                    return false;
+                }
+            }
+            return true;
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(coursesView, "Error deleting course's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            coursesView.dispose();
+            System.exit(0);
+            return false;
         }
     }
 

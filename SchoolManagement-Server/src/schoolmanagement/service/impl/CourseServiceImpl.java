@@ -75,4 +75,34 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
+    @Override
+    public boolean deleteCourse(Course course) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+
+        try {
+            courseDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            boolean hasCourseGroups = courseDao.checkIfCourseGroupsExist(course);
+            if (hasCourseGroups == true) {
+                connection.rollback();
+                ConnectionPool.getInstance().releaseConnection(connection);
+                return false;
+            }
+            
+            courseDao.deleteCourseEnrollments(course);
+            courseDao.deleteCourse(course);
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return true;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
+
 }

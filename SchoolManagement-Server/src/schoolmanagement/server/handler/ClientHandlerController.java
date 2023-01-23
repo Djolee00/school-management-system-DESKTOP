@@ -173,4 +173,18 @@ public class ClientHandlerController {
         return response;
     }
 
+    public Response deleteCourse(Request request) throws IOException, SQLException {
+        Response response = new Response();
+        Course course = (Course) request.getObject();
+
+        boolean status = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).deleteCourse(course);
+        if (status == false) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+        }
+
+        return response;
+    }
+
 }
