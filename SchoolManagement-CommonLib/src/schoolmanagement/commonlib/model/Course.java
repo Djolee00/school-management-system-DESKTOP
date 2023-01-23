@@ -124,8 +124,5 @@ public class Course implements Serializable {
         final Course other = (Course) obj;
         return Objects.equals(this.id, other.id);
     }
-
-
-    
     
 }

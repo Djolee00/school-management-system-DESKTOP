@@ -22,6 +22,8 @@ public interface CourseDao extends DaoInterface{
 
     public void deleteCourseEnrollments(Course course) throws SQLException;
 
-    public void deleteCourse(Course course)throws SQLException;
+    public void deleteCourse(Course course) throws SQLException;
+
+    public Long saveCourse(Course course) throws SQLException;
     
 }

@@ -33,7 +33,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public synchronized Student save(Student student, StudentValidator validator) throws ValidationException, IOException, SQLException {
+    public synchronized Student saveStudent(Student student, StudentValidator validator) throws ValidationException, IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {
             userDao.setConnection(connection);

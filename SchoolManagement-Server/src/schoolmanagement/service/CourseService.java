@@ -20,5 +20,7 @@ public interface CourseService {
     public boolean updateCourseData(Course course) throws IOException,SQLException;
 
     public boolean deleteCourse(Course course) throws IOException,SQLException;
+
+    public Long saveCourse(Course course) throws IOException,SQLException;
     
 }

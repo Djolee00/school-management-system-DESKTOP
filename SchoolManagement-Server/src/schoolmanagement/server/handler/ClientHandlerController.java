@@ -148,7 +148,7 @@ public class ClientHandlerController {
         Response response = new Response();
         Student student = (Student) request.getObject();
 
-        Student newStudent = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).save(student, new SaveStudentValidator());
+        Student newStudent = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).saveStudent(student, new SaveStudentValidator());
         if (newStudent == null) {
             response.setResponseType(ResponseType.FAILURE);
         } else {
@@ -182,6 +182,21 @@ public class ClientHandlerController {
             response.setResponseType(ResponseType.FAILURE);
         } else {
             response.setResponseType(ResponseType.SUCCESS);
+        }
+
+        return response;
+    }
+
+    public Response addCourse(Request request) throws IOException, SQLException {
+        Response response = new Response();
+        Course course = (Course) request.getObject();
+
+        Long generatedId = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).saveCourse(course);
+        if (generatedId == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(generatedId);
         }
 
         return response;

@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -80,6 +81,10 @@ public class AdminCoursesController {
     }
 
     private void addEmptyCourse() {
+        Course temp = makeDummyCourse();
+        backupCourses.add(temp);
+        resetCourses();
+        JOptionPane.showMessageDialog(coursesView, "Please fill in information and click update button", "Info", JOptionPane.INFORMATION_MESSAGE);
     }
 
     private void deleteSelectedCourse() {
@@ -94,7 +99,7 @@ public class AdminCoursesController {
             if (temp.getId() != null) {
                 boolean status = sendDeleteRequest(temp);
                 if (status == false) {
-                    JOptionPane.showMessageDialog(coursesView, "There are active groups, this course can't be deleted", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(coursesView, "There are active groups, this course can't be deleted", "Success", JOptionPane.WARNING_MESSAGE);
                 } else {
                     courses.remove(temp);
                     backupCourses.remove(temp);
@@ -119,6 +124,10 @@ public class AdminCoursesController {
             if (temp.getId() != null) {
                 sendUpdateRequest(temp);
                 JOptionPane.showMessageDialog(coursesView, "Course's data successfully updated", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                Long generatedId = sendSaveRequest(temp);
+                temp.setId(generatedId);  
+                JOptionPane.showMessageDialog(coursesView, "Course's data successfully saved", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }
@@ -253,10 +262,11 @@ public class AdminCoursesController {
     }
 
     private void prepareCapacityColumn() {
-        coursesView.getTblCourses().getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(createTextField()));
+        coursesView.getTblCourses().getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(createTextFieldForCapacityCell()));
     }
 
-    private JTextField createTextField() {
+    private JTextField createTextFieldForCapacityCell() {
+        // text field for capacity sell, to allow numbers from 0
         JTextField field = new JTextField();
         ((AbstractDocument) field.getDocument()).setDocumentFilter(new DocumentFilter() {
             @Override
@@ -272,6 +282,20 @@ public class AdminCoursesController {
             }
         });
         return field;
+    }
+
+    private Course makeDummyCourse() {
+        // creating dummy course
+        Course temp = new Course();
+        temp.setId(null);
+        temp.setCourseEnrollments(new ArrayList<>());
+        temp.setCourseGroups(new ArrayList<>());
+        temp.setStartDate(LocalDate.now());
+        temp.setEndDate(LocalDate.now());
+        temp.setGroupCapacity(0);
+        temp.setLanguage(languages.get(0));
+        temp.setName("");
+        return temp;
     }
 
     private void sendUpdateRequest(Course temp) {
@@ -310,6 +334,25 @@ public class AdminCoursesController {
             coursesView.dispose();
             System.exit(0);
             return false;
+        }
+    }
+
+    private Long sendSaveRequest(Course temp) {
+        try {
+            Communication.getInstance().send(new Request(Operation.ADD_COURSE, temp));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.FAILURE) {
+                throw new IOException("Course couldn't be saved");
+            }
+            
+            return (Long) response.getObject();
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(coursesView, "Error adding course's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            coursesView.dispose();
+            System.exit(0);
+            return null;
         }
     }
 

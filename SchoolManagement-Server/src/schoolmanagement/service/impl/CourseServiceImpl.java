@@ -76,7 +76,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public boolean deleteCourse(Course course) throws IOException, SQLException {
+    public synchronized boolean deleteCourse(Course course) throws IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
 
         try {
@@ -98,6 +98,29 @@ public class CourseServiceImpl implements CourseService {
             ConnectionPool.getInstance().releaseConnection(connection);
 
             return true;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
+
+    @Override
+    public synchronized Long saveCourse(Course course) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        Long generatedId;
+        
+        try {
+            courseDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            generatedId = courseDao.saveCourse(course);
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return generatedId;
         } catch (IOException | SQLException ex) {
             connection.rollback();
             ConnectionPool.getInstance().releaseConnection(connection);

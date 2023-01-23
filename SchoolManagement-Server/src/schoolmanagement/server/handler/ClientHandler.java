@@ -7,8 +7,6 @@ package schoolmanagement.server.handler;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import schoolmanagement.commonlib.communication.Sender;
 import schoolmanagement.commonlib.communication.Receiver;
 import schoolmanagement.commonlib.communication.Request;
@@ -83,6 +81,9 @@ public class ClientHandler extends Thread {
                 }
                 case DELETE_COURSE -> {
                     response = controller.deleteCourse(request);
+                }
+                case ADD_COURSE -> {
+                    response = controller.addCourse(request);
                 }
             }
             sender.send(response);

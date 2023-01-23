@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.persistence.dao.CourseDao;
@@ -51,7 +52,7 @@ public class CourseDaoImpl implements CourseDao {
             statement.setInt(4, course.getGroupCapacity());
             statement.setLong(5, course.getLanguage().getId());
             statement.setLong(6, course.getId());
-            
+
             int affectedRows = statement.executeUpdate();
             return affectedRows > 0;
         }
@@ -62,7 +63,7 @@ public class CourseDaoImpl implements CourseDao {
         final String sqlQuery = "SELECT * FROM course_group WHERE course_id = ?;";
 
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
-            statement.setLong(1, course.getId()); 
+            statement.setLong(1, course.getId());
             ResultSet rs = statement.executeQuery();
             return rs.next();
         }
@@ -85,6 +86,25 @@ public class CourseDaoImpl implements CourseDao {
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
             statement.setLong(1, course.getId());
             statement.executeUpdate();
+        }
+    }
+
+    @Override
+    public Long saveCourse(Course course) throws SQLException {
+        final String sqlQuery = "INSERT INTO Course(name,start_date,end_date,group_capacity,language_id) VALUES(?,?,?,?,?)";
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
+
+            statement.setString(1, course.getName());
+            statement.setDate(2, Date.valueOf(course.getStartDate()));
+            statement.setDate(3, Date.valueOf(course.getEndDate()));
+            statement.setInt(4, course.getGroupCapacity());
+            statement.setLong(5, course.getGroupCapacity());
+
+            statement.executeUpdate();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            long key = rs.next() ? rs.getLong(1) : 0;
+            return key;
         }
     }
 
