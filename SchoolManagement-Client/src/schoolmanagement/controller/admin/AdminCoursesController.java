@@ -32,6 +32,7 @@ import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.enums.Level;
 import schoolmanagement.communication.Communication;
+import schoolmanagement.session.Session;
 import schoolmanagement.view.admin.AdminCoursesView;
 import schoolmanagement.view.component.table.celleditor.JDateChooserCellEditor;
 import schoolmanagement.view.component.table.tmodel.AdminCourseSelectionTModel;
@@ -186,6 +187,14 @@ public class AdminCoursesController {
     }
 
     private void manageGroupsForSelectedCourse() {
+        if (coursesView.getTblCourses().getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(coursesView, "Please select course, whose groups you want to manage", "Message", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Course temp = (Course) tableModel.getCourse(coursesView.getTblCourses().getSelectedRow());
+        Session.getInstance().add("course", temp);
+        new AdminGroupsController();
+        coursesView.dispose();
     }
 
     private void populateTable() {

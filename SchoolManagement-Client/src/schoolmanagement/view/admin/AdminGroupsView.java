@@ -6,7 +6,10 @@ package schoolmanagement.view.admin;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  *
@@ -18,10 +21,10 @@ public class AdminGroupsView extends javax.swing.JFrame {
      * Creates new form StudentHomeView
      */
     public AdminGroupsView() {
+
         initComponents();
         setLocationRelativeTo(null);
-                designTable();
-
+        designTable();
     }
 
     /**
@@ -37,7 +40,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
         panelHeader = new javax.swing.JPanel();
         lblUserText3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblHome = new javax.swing.JLabel();
         lblUserText2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGroups = new javax.swing.JTable();
@@ -45,22 +48,22 @@ public class AdminGroupsView extends javax.swing.JFrame {
         btnUpdateStudents = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        listAvailableStudents = new javax.swing.JList<>();
         btnAddStudentToGroup = new javax.swing.JButton();
         btnRemoveStudentFromGroup = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        listAttendingStudents = new javax.swing.JList<>();
         btnUpdateGroupInfo = new javax.swing.JButton();
         btnAddGroup = new javax.swing.JButton();
         panelSearch2 = new javax.swing.JPanel();
         btnUpdateTutors = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jList3 = new javax.swing.JList<>();
+        listAvailableTutors = new javax.swing.JList<>();
         btnAddTutorToGroup = new javax.swing.JButton();
         btnRemoveTutorFromGroup = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList4 = new javax.swing.JList<>();
+        listDeleagatedTutors = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 640));
@@ -81,7 +84,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/groups.png"))); // NOI18N
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
+        lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
 
         lblUserText2.setBackground(new java.awt.Color(45, 118, 232));
         lblUserText2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -104,7 +107,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 425, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
+                        .addComponent(lblHome)
                         .addGap(17, 17, 17))))
         );
         panelHeaderLayout.setVerticalGroup(
@@ -118,7 +121,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                                 .addComponent(lblUserText3))
                             .addGroup(panelHeaderLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel2)))
+                                .addComponent(lblHome)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblUserText2))
                     .addGroup(panelHeaderLayout.createSequentialGroup()
@@ -150,17 +153,17 @@ public class AdminGroupsView extends javax.swing.JFrame {
 
         btnUpdateStudents.setText("Update");
 
-        jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Available", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jList1.setFocusable(false);
-        jScrollPane2.setViewportView(jList1);
+        listAvailableStudents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Available", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        listAvailableStudents.setFocusable(false);
+        jScrollPane2.setViewportView(listAvailableStudents);
 
         btnAddStudentToGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/rightArrow.png"))); // NOI18N
 
         btnRemoveStudentFromGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/leftArrow.png"))); // NOI18N
 
-        jList2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Attending", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jList2.setFocusable(false);
-        jScrollPane3.setViewportView(jList2);
+        listAttendingStudents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Attending", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        listAttendingStudents.setFocusable(false);
+        jScrollPane3.setViewportView(listAttendingStudents);
 
         javax.swing.GroupLayout panelSearch1Layout = new javax.swing.GroupLayout(panelSearch1);
         panelSearch1.setLayout(panelSearch1Layout);
@@ -208,7 +211,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnUpdateGroupInfo.setText("Update groups");
+        btnUpdateGroupInfo.setText("Update group");
 
         btnAddGroup.setText("Add group");
 
@@ -216,17 +219,17 @@ public class AdminGroupsView extends javax.swing.JFrame {
 
         btnUpdateTutors.setText("Update");
 
-        jList3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Available", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jList3.setFocusable(false);
-        jScrollPane4.setViewportView(jList3);
+        listAvailableTutors.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Available", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        listAvailableTutors.setFocusable(false);
+        jScrollPane4.setViewportView(listAvailableTutors);
 
         btnAddTutorToGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/rightArrow.png"))); // NOI18N
 
         btnRemoveTutorFromGroup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/leftArrow.png"))); // NOI18N
 
-        jList4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Delegated", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
-        jList4.setFocusable(false);
-        jScrollPane5.setViewportView(jList4);
+        listDeleagatedTutors.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Delegated", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
+        listDeleagatedTutors.setFocusable(false);
+        jScrollPane5.setViewportView(listDeleagatedTutors);
 
         javax.swing.GroupLayout panelSearch2Layout = new javax.swing.GroupLayout(panelSearch2);
         panelSearch2.setLayout(panelSearch2Layout);
@@ -346,11 +349,6 @@ public class AdminGroupsView extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdateStudents;
     private javax.swing.JButton btnUpdateTutors;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
-    private javax.swing.JList<String> jList3;
-    private javax.swing.JList<String> jList4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -358,8 +356,13 @@ public class AdminGroupsView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblUserText2;
     private javax.swing.JLabel lblUserText3;
+    private javax.swing.JList<String> listAttendingStudents;
+    private javax.swing.JList<String> listAvailableStudents;
+    private javax.swing.JList<String> listAvailableTutors;
+    private javax.swing.JList<String> listDeleagatedTutors;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelMain;
     private javax.swing.JPanel panelSearch1;
@@ -373,6 +376,46 @@ public class AdminGroupsView extends javax.swing.JFrame {
         tblGroups.getTableHeader().setBackground(new Color(32, 136, 203));
         tblGroups.getTableHeader().setForeground(new Color(255, 255, 255));
         tblGroups.setRowHeight(25);
-
     }
+
+    public JTable getTblGroups() {
+        return tblGroups;
+    }
+
+    public JButton getBtnUpdateGroupInfo() {
+        return btnUpdateGroupInfo;
+    }
+
+    public JButton getBtnAddGroup() {
+        return btnAddGroup;
+    }
+
+    public JButton getBtnAddStudentToGroup() {
+        return btnAddStudentToGroup;
+    }
+
+    public JButton getBtnRemoveStudentFromGroup() {
+        return btnRemoveStudentFromGroup;
+    }
+
+    public JButton getBtnUpdateStudents() {
+        return btnUpdateStudents;
+    }
+
+    public JButton getBtnAddTutorToGroup() {
+        return btnAddTutorToGroup;
+    }
+
+    public JButton getBtnRemoveTutorFromGroup() {
+        return btnRemoveTutorFromGroup;
+    }
+
+    public JButton getBtnUpdateTutors() {
+        return btnUpdateTutors;
+    }
+
+    public JLabel getLblHome() {
+        return lblHome;
+    }
+
 }
