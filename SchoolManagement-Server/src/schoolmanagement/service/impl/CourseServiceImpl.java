@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
+import schoolmanagement.commonlib.model.CourseGroup;
 import schoolmanagement.persistence.dao.CourseDao;
 import schoolmanagement.persistence.pool.ConnectionPool;
 import schoolmanagement.service.CourseService;
@@ -90,7 +91,7 @@ public class CourseServiceImpl implements CourseService {
                 ConnectionPool.getInstance().releaseConnection(connection);
                 return false;
             }
-            
+
             courseDao.deleteCourseEnrollments(course);
             courseDao.deleteCourse(course);
 
@@ -109,7 +110,7 @@ public class CourseServiceImpl implements CourseService {
     public synchronized Long saveCourse(Course course) throws IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         Long generatedId;
-        
+
         try {
             courseDao.setConnection(connection);
 
@@ -121,6 +122,29 @@ public class CourseServiceImpl implements CourseService {
             ConnectionPool.getInstance().releaseConnection(connection);
 
             return generatedId;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
+
+    @Override
+    public List<CourseGroup> getGroupOfCourse(Course temp) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        List<CourseGroup> courseGroups;
+
+        try {
+            courseDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            courseGroups = courseDao.getGroupsOfCourse(temp);
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return courseGroups;
         } catch (IOException | SQLException ex) {
             connection.rollback();
             ConnectionPool.getInstance().releaseConnection(connection);

@@ -85,9 +85,13 @@ public class ClientHandler extends Thread {
                 case ADD_COURSE -> {
                     response = controller.addCourse(request);
                 }
+                case GET_COURSE_GROUPS -> {
+                    response = controller.getGroupsOfCourse(request);
+                }
             }
             sender.send(response);
         } catch (SQLException | ValidationException ex) {
+            ex.printStackTrace();
             sender.send(new Response(ex.getMessage(), ResponseType.FAILURE));
         }
     }

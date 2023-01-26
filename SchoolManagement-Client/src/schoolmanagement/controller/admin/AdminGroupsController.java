@@ -4,12 +4,18 @@
  */
 package schoolmanagement.controller.admin;
 
-import java.awt.PopupMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.List;
+import javax.swing.JOptionPane;
+import schoolmanagement.commonlib.communication.Operation;
+import schoolmanagement.commonlib.communication.Request;
+import schoolmanagement.commonlib.communication.Response;
+import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseGroup;
+import schoolmanagement.communication.Communication;
 import schoolmanagement.session.Session;
 import schoolmanagement.view.admin.AdminGroupsView;
 import schoolmanagement.view.component.table.tmodel.AdminGroupsSelectionTModel;
@@ -21,7 +27,7 @@ import schoolmanagement.view.component.table.tmodel.AdminGroupsSelectionTModel;
 public class AdminGroupsController {
     
     private final AdminGroupsView groupsView;
-    private Course selectedCourse;
+    private final Course selectedCourse;
     private List<CourseGroup> courseGroups;
     
     public AdminGroupsController() {
@@ -85,6 +91,25 @@ public class AdminGroupsController {
     }
 
     private List<CourseGroup> getGroupsOfCourse() {
-        return null;
+         List<CourseGroup> temp = null;
+
+        try {
+            Communication.getInstance().send(new Request(Operation.GET_COURSE_GROUPS, selectedCourse));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.FAILURE) {
+                throw new IOException("Error getting groups' data");
+            } else {
+                temp = (List<CourseGroup>) response.getObject();
+            }
+
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(groupsView, "Error getting groups' data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            groupsView.dispose();
+            System.exit(0);
+        }
+
+        return temp;
     }
 }

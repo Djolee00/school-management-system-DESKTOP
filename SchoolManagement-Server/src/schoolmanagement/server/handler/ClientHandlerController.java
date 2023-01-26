@@ -12,6 +12,7 @@ import schoolmanagement.commonlib.communication.Response;
 import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseEnrollment;
+import schoolmanagement.commonlib.model.CourseGroup;
 import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.User;
@@ -197,6 +198,21 @@ public class ClientHandlerController {
         } else {
             response.setResponseType(ResponseType.SUCCESS);
             response.setObject(generatedId);
+        }
+
+        return response;
+    }
+
+    public Response getGroupsOfCourse(Request request) throws IOException, SQLException {
+        Response response = new Response();
+        Course temp = (Course) request.getObject();
+        
+        List<CourseGroup> courseGroups = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).getGroupOfCourse(temp);
+        if (courseGroups == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(courseGroups);
         }
 
         return response;

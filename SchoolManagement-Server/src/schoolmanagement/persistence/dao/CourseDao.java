@@ -7,6 +7,7 @@ package schoolmanagement.persistence.dao;
 import java.sql.SQLException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
+import schoolmanagement.commonlib.model.CourseGroup;
 
 /**
  *
@@ -25,5 +26,7 @@ public interface CourseDao extends DaoInterface{
     public void deleteCourse(Course course) throws SQLException;
 
     public Long saveCourse(Course course) throws SQLException;
+
+    public List<CourseGroup> getGroupsOfCourse(Course temp)  throws SQLException;
     
 }

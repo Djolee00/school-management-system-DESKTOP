@@ -12,7 +12,10 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
+import schoolmanagement.commonlib.model.CourseGroup;
+import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.dao.CourseDao;
+import schoolmanagement.persistence.mapper.MapperCourseGroupRS;
 import schoolmanagement.persistence.mapper.MapperCourseRS;
 
 /**
@@ -105,6 +108,61 @@ public class CourseDaoImpl implements CourseDao {
             ResultSet rs = statement.getGeneratedKeys();
             long key = rs.next() ? rs.getLong(1) : 0;
             return key;
+        }
+    }
+
+    @Override
+    public List<CourseGroup> getGroupsOfCourse(Course temp) throws SQLException {
+        final String sqlQuery = "SELECT cg.id AS course_group_id,cg.course_id AS course_id,cg.name AS group_name, cg.number_of_students AS num_of_students FROM course_group cg\n"
+                + "WHERE cg.course_id = ?;";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, temp.getId());
+            ResultSet rs = statement.executeQuery();
+            List<CourseGroup> groups = MapperCourseGroupRS.mapPlainCourseGroups(temp, rs);
+
+            for (CourseGroup group : groups) {
+                
+            }
+            return groups;
+        }
+
+    }
+
+    private void populateGroupWithCurrentStudents(CourseGroup group) throws SQLException {
+        final String sqlQuery = "SELECT cg.id AS course_group_id,cg.course_id AS course_id,cg.name AS group_name, cg.number_of_students AS num_of_students,ge.student_id AS student_id,\n"
+                + "s.first_name,s.last_name,s.birthdate,s.creation_date,u.username,u.password  FROM course_group cg\n"
+                + "LEFT JOIN group_enrollment ge\n"
+                + "ON (cg.id = ge.course_group_id AND cg.course_id = ge.course_id)\n"
+                + "LEFT JOIN student s\n"
+                + "ON ge.student_id = s.user_id\n"
+                + "LEFT JOIN USER u\n"
+                + "ON s.user_id = u.id\n"
+                + "WHERE cg.course_id = ? AND course_group_id = ?;";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, group.getCourse().getId());
+            statement.setLong(2, group.getId());
+
+            ResultSet rs = statement.executeQuery();
+            MapperCourseGroupRS.mapStudentsInCourseGroup(group, rs);
+        }
+    }
+
+    private void populateGroupWithCurrentTutors(CourseGroup group) throws SQLException {
+        final String sqlQuery = "SELECT cg.id AS course_group_id,cg.course_id AS course_id,cg.name AS group_name, cg.number_of_students AS num_of_students,t.id AS tutor_id,t.first_name,t.last_name FROM course_group cg\n"
+                + "	LEFT JOIN tutor_assignment ta\n"
+                + "	ON (cg.id = ta.course_group_id AND cg.course_id = ta.course_id)\n"
+                + "	LEFT JOIN tutor t\n"
+                + "	ON ta.tutor_id = t.id\n"
+                + "	WHERE cg.course_id = ? AND course_group_id = ?;";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, group.getCourse().getId());
+            statement.setLong(2, group.getId());
+
+            ResultSet rs = statement.executeQuery();
+            MapperCourseGroupRS.mapTutorsInCourseGrou(group, rs);
         }
     }
 

@@ -45,6 +45,7 @@ public class StudentValidatorBuilder extends AbstractValidator {
                 .withMessage("You have to insert last name")
                 .matchesRegex("^[A-Za-z]+(((\\'|\\-|\\.)?([A-Za-z])+))?$")
                 .withMessage("Last name can have only characters and these special characters (',-,.)");
+       
     }
     
 }

@@ -22,5 +22,6 @@ public enum Operation implements Serializable {
     ADD_NEW_STUDENT,
     UPDATE_COURSE, 
     DELETE_COURSE, 
-    ADD_COURSE
+    ADD_COURSE,
+    GET_COURSE_GROUPS
 }

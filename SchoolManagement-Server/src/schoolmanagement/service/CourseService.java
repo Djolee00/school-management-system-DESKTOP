@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
+import schoolmanagement.commonlib.model.CourseGroup;
 
 /**
  *
@@ -22,5 +23,7 @@ public interface CourseService {
     public boolean deleteCourse(Course course) throws IOException,SQLException;
 
     public Long saveCourse(Course course) throws IOException,SQLException;
+
+    public List<CourseGroup> getGroupOfCourse(Course temp) throws IOException,SQLException;
     
 }
