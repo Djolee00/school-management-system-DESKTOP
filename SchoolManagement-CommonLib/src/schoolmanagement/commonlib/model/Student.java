@@ -83,7 +83,7 @@ public class Student extends User implements Serializable {
 
     @Override
     public String toString() {
-        return "Student{id= " + super.getId() + ", username= " + super.getUsername() + ", password= " + super.getPassword() + ", firstName=" + firstName + ", lastName=" + lastName + ", birthdate=" + birthdate + ", creationDate=" + creationDate + '}';
+        return firstName + " " + lastName;
     }
 
 }

@@ -58,4 +58,8 @@ public class AdminGroupsSelectionTModel extends AbstractTableModel {
     public String getColumnName(int column) {
         return header[column];
     }
+    
+    public CourseGroup getCourseGroup(int index){
+        return groups.get(index);
+    }
 }

@@ -54,6 +54,8 @@ public class MapperCourseGroupRS {
             temp.setId(rsTutors.getLong("tutor_id"));
             temp.setFirstName(rsTutors.getString("first_name"));
             temp.setLastName(rsTutors.getString("last_name"));
+            
+            tutors.add(temp);
         }
         group.setTutors(tutors);
     }

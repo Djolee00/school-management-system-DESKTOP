@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseGroup;
-import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.dao.CourseDao;
 import schoolmanagement.persistence.mapper.MapperCourseGroupRS;
 import schoolmanagement.persistence.mapper.MapperCourseRS;
@@ -122,7 +121,8 @@ public class CourseDaoImpl implements CourseDao {
             List<CourseGroup> groups = MapperCourseGroupRS.mapPlainCourseGroups(temp, rs);
 
             for (CourseGroup group : groups) {
-                
+                populateGroupWithCurrentStudents(group);
+                populateGroupWithCurrentTutors(group);
             }
             return groups;
         }

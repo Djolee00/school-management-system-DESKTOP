@@ -11,8 +11,8 @@ import java.util.List;
  *
  * @author ivano
  */
-public class Tutor implements Serializable{
-    
+public class Tutor implements Serializable {
+
     private Long id;
     private String firstName;
     private String lastName;
@@ -26,8 +26,6 @@ public class Tutor implements Serializable{
 
     public Tutor() {
     }
-    
-    
 
     public Long getId() {
         return id;
@@ -63,10 +61,7 @@ public class Tutor implements Serializable{
 
     @Override
     public String toString() {
-        return "Tutor{" + "id=" + id + ", firstName=" + firstName + ", lastName=" + lastName+"}";
+        return firstName + " " + lastName;
     }
-    
-    
-    
-    
+
 }
