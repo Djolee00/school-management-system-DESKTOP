@@ -145,7 +145,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
         tblGroups.setFocusable(false);
         tblGroups.setRowHeight(25);
         tblGroups.setSelectionBackground(new java.awt.Color(232, 57, 99));
-        tblGroups.setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+        tblGroups.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblGroups.setShowGrid(true);
         tblGroups.setShowVerticalLines(false);
         jScrollPane1.setViewportView(tblGroups);

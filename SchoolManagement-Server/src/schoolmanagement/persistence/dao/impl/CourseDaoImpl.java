@@ -199,4 +199,16 @@ public class CourseDaoImpl implements CourseDao {
         }
     }
 
+    @Override
+    public boolean updateCourseGroupData(CourseGroup courseGroup) throws SQLException {
+        final String sqlQuery = "UPDATE course_group SET name=? WHERE id = ?";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setString(1, courseGroup.getName());
+            statement.setLong(2, courseGroup.getId());
+            int affectedRows = statement.executeUpdate();
+            return affectedRows > 0;
+        }
+    }
+
 }

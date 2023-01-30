@@ -101,6 +101,7 @@ public class AdminCoursesController {
                 boolean status = sendDeleteRequest(temp);
                 if (status == false) {
                     JOptionPane.showMessageDialog(coursesView, "There are active groups, this course can't be deleted", "Success", JOptionPane.WARNING_MESSAGE);
+                    return;
                 } else {
                     courses.remove(temp);
                     backupCourses.remove(temp);
@@ -192,6 +193,10 @@ public class AdminCoursesController {
             return;
         }
         Course temp = (Course) tableModel.getCourse(coursesView.getTblCourses().getSelectedRow());
+        if (temp.getId() == null) {
+            JOptionPane.showMessageDialog(coursesView, "Please select course, click Update course firt", "Message", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         Session.getInstance().add("course", temp);
         new AdminGroupsController();
         coursesView.dispose();

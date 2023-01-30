@@ -59,6 +59,7 @@ public class AdminGroupsController {
         groupsView.getLblHome().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                Session.getInstance().remove("course");
                 new AdminCoursesController();
                 groupsView.dispose();
             }
@@ -114,7 +115,8 @@ public class AdminGroupsController {
             }
 
             if (temp.getId() != null) {
-
+                sendUpdateRequest(temp);
+                JOptionPane.showMessageDialog(groupsView, "Group's data successfully updated", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 Long generatedId = sendSaveRequest(temp);
                 temp.setId(generatedId);
@@ -257,7 +259,7 @@ public class AdminGroupsController {
     }
 
     private Long sendSaveRequest(CourseGroup temp) {
-         try {
+        try {
             Communication.getInstance().send(new Request(Operation.ADD_COURSE_GROUP, temp));
 
             Response response = Communication.getInstance().receive();
@@ -272,6 +274,23 @@ public class AdminGroupsController {
             groupsView.dispose();
             System.exit(0);
             return null;
+        }
+    }
+
+    private void sendUpdateRequest(CourseGroup temp) {
+        try {
+            Communication.getInstance().send(new Request(Operation.UPDATE_COURSE_GROUP, temp));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.FAILURE) {
+                throw new IOException("Group update failed");
+            }
+
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(groupsView, "Error updating course's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            groupsView.dispose();
+            System.exit(0);
         }
     }
 

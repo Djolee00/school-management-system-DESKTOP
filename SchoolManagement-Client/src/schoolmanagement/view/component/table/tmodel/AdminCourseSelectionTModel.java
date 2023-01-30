@@ -93,8 +93,12 @@ public class AdminCourseSelectionTModel extends AbstractTableModel {
                         temp.setEndDate(endDate);
                     }
                 }
-                case 3 -> temp.setGroupCapacity(Integer.valueOf((String) aValue));
-                case 4 -> temp.setLanguage((Language) aValue);
+                case 3 ->
+                    temp.setGroupCapacity(Integer.valueOf((String) aValue));
+                case 4 -> {
+                    temp.setLanguage((Language) aValue);
+                    fireTableDataChanged();
+                }
             }
         } catch (NumberFormatException | DateTimeParseException ex) {
             // when user leaves empty capacity field
@@ -115,7 +119,7 @@ public class AdminCourseSelectionTModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
-    public Course getCourse(int index){
+    public Course getCourse(int index) {
         return courses.get(index);
     }
 }

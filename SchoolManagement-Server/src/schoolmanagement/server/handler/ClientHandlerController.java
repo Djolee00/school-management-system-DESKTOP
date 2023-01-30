@@ -249,7 +249,7 @@ public class ClientHandlerController {
         return response;
     }
 
-    public Response addCourseGroup(Request request) throws IOException, SQLException{
+    public Response addCourseGroup(Request request) throws IOException, SQLException {
         Response response = new Response();
         CourseGroup courseGroup = (CourseGroup) request.getObject();
 
@@ -259,6 +259,20 @@ public class ClientHandlerController {
         } else {
             response.setResponseType(ResponseType.SUCCESS);
             response.setObject(generatedId);
+        }
+
+        return response;
+    }
+
+    public Response updateCourseGroupInfo(Request request) throws IOException, SQLException {
+        Response response = new Response();
+        CourseGroup courseGroup = (CourseGroup) request.getObject();
+
+        boolean status = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).updateCourseGroupData(courseGroup);
+        if (status == false) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
         }
 
         return response;
