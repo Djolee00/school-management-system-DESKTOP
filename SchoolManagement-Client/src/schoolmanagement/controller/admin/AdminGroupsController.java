@@ -7,6 +7,7 @@ package schoolmanagement.controller.admin;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
@@ -181,20 +182,41 @@ public class AdminGroupsController {
         int rowIndex = groupsView.getTblGroups().getSelectedRow();
         CourseGroup tempCourseGroup = tableModel.getCourseGroup(rowIndex);
         List<Tutor> availableTutors = languageTutors.stream().filter(lt -> !tempCourseGroup.getTutors().contains(lt)).collect(Collectors.toList());
+        List<Student> availableStudents = getAvailableStudentsForCourseGroup();
 
         groupsView.getListAttendingStudents().setListData(tempCourseGroup.getStudents().toArray(new Student[0]));
         groupsView.getListDelegatedTutors().setListData(tempCourseGroup.getTutors().toArray(new Tutor[0]));
         groupsView.getListAvailableTutors().setListData(availableTutors.toArray(new Tutor[0]));
+        groupsView.getListAvailableStudents().setListData(availableStudents.toArray(new Student[0]));
 
+        groupsView.getListAvailableStudents().updateUI();
         groupsView.getListAvailableTutors().updateUI();
         groupsView.getListAttendingStudents().updateUI();
         groupsView.getListDelegatedTutors().updateUI();
     }
 
     private void initLists() {
+        groupsView.getListAvailableStudents().setModel(new DefaultComboBoxModel<>());
         groupsView.getListAvailableTutors().setModel(new DefaultComboBoxModel<>());
         groupsView.getListAttendingStudents().setModel(new DefaultComboBoxModel<>());
         groupsView.getListDelegatedTutors().setModel(new DefaultComboBoxModel<>());
+    }
+
+    private List<Student> getAvailableStudentsForCourseGroup() {
+        List<Student> students = new ArrayList<>();
+        for (Student student : courseStudents) {
+            boolean status = true;
+            for (CourseGroup courseGroup : courseGroups) {
+                if (courseGroup.getStudents().contains(student)) {
+                    status = false;
+                    break;
+                }
+            }
+            if (status == true) {
+                students.add(student);
+            }
+        }
+        return students;
     }
 
 }

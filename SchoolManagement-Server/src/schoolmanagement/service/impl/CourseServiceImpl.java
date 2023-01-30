@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseGroup;
+import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.dao.CourseDao;
 import schoolmanagement.persistence.pool.ConnectionPool;
 import schoolmanagement.service.CourseService;
@@ -145,6 +146,29 @@ public class CourseServiceImpl implements CourseService {
             ConnectionPool.getInstance().releaseConnection(connection);
 
             return courseGroups;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
+
+    @Override
+    public List<Student> getCourseStudents(Course temp) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        List<Student> students;
+
+        try {
+            courseDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            students = courseDao.getStudentsOfCourse(temp);
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return students;
         } catch (IOException | SQLException ex) {
             connection.rollback();
             ConnectionPool.getInstance().releaseConnection(connection);

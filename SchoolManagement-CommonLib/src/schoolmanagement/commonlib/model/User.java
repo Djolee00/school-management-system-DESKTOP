@@ -12,9 +12,9 @@ import java.io.Serializable;
  */
 public class User implements Serializable{
        
-    private Long id;
-    private String username;
-    private String password;
+    protected Long id;
+    protected  String username;
+    protected  String password;
 
     public User(Long id, String username, String password) {
         this.id = id;

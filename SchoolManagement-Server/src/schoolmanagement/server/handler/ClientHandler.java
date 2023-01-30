@@ -97,6 +97,7 @@ public class ClientHandler extends Thread {
             }
             sender.send(response);
         } catch (SQLException | ValidationException ex) {
+            ex.printStackTrace();
             sender.send(new Response(ex.getMessage(), ResponseType.FAILURE));
         }
     }

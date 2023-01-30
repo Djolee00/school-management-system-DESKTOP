@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseGroup;
+import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.persistence.dao.CourseDao;
 import schoolmanagement.persistence.mapper.MapperCourseGroupRS;
 import schoolmanagement.persistence.mapper.MapperCourseRS;
@@ -127,6 +128,22 @@ public class CourseDaoImpl implements CourseDao {
             return groups;
         }
 
+    }
+
+    @Override
+    public List<Student> getStudentsOfCourse(Course temp) throws SQLException {
+        final String sqlQuery = "SELECT * FROM course_enrollment ce\n"
+                + "	INNER JOIN student s\n"
+                + "	ON ce.student_id = s.user_id\n"
+                + "	INNER JOIN `user` u\n"
+                + "	ON s.user_id = u.id\n"
+                + "	WHERE ce.course_id = ?;";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, temp.getId());
+            ResultSet rs = statement.executeQuery();
+            return MapperCourseRS.mapStudentsOfCourse(rs);
+        }
     }
 
     private void populateGroupWithCurrentStudents(CourseGroup group) throws SQLException {

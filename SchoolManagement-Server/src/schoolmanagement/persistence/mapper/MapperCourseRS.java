@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import schoolmanagement.commonlib.model.Language;
+import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.enums.Level;
 
 /**
@@ -35,5 +36,19 @@ public class MapperCourseRS {
             courses.add(tempCourse);
         }
         return courses;
+    }
+
+    public static List<Student> mapStudentsOfCourse(ResultSet rs) throws SQLException {
+        List<Student> students = new ArrayList<>();
+        while(rs.next()){
+            Student temp = new Student(rs.getString("username"), rs.getString("password"));
+            temp.setId(rs.getLong("id"));
+            temp.setFirstName(rs.getString("first_name"));
+            temp.setLastName(rs.getString("last_name"));
+            temp.setBirthdate(rs.getDate("birthdate").toLocalDate());
+            temp.setCreationDate(rs.getDate("creation_date").toLocalDate());
+            students.add(temp);
+        }
+        return students;
     }
 }

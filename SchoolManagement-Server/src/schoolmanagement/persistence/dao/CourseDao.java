@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseGroup;
+import schoolmanagement.commonlib.model.Student;
 
 /**
  *
@@ -27,6 +28,8 @@ public interface CourseDao extends DaoInterface{
 
     public Long saveCourse(Course course) throws SQLException;
 
-    public List<CourseGroup> getGroupsOfCourse(Course temp)  throws SQLException;
+    public List<CourseGroup> getGroupsOfCourse(Course temp) throws SQLException;
+
+    public List<Student> getStudentsOfCourse(Course temp) throws SQLException;
     
 }

@@ -362,7 +362,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
     private javax.swing.JLabel lblUserText2;
     private javax.swing.JLabel lblUserText3;
     private javax.swing.JList<Student> listAttendingStudents;
-    private javax.swing.JList<Tutor> listAvailableStudents;
+    private javax.swing.JList<Student> listAvailableStudents;
     private javax.swing.JList<Tutor> listAvailableTutors;
     private javax.swing.JList<Tutor> listDeleagatedTutors;
     private javax.swing.JPanel panelHeader;
@@ -428,7 +428,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
         return listDeleagatedTutors;
     }
 
-    public JList<Tutor> getListAvailableStudents() {
+    public JList<Student> getListAvailableStudents() {
         return listAvailableStudents;
     }
 

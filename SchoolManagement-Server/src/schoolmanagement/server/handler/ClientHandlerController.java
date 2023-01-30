@@ -207,7 +207,7 @@ public class ClientHandlerController {
     public Response getGroupsOfCourse(Request request) throws IOException, SQLException {
         Response response = new Response();
         Course temp = (Course) request.getObject();
-        
+
         List<CourseGroup> courseGroups = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).getGroupOfCourse(temp);
         if (courseGroups == null) {
             response.setResponseType(ResponseType.FAILURE);
@@ -222,7 +222,7 @@ public class ClientHandlerController {
     public Response getLanguageTutors(Request request) throws IOException, SQLException {
         Response response = new Response();
         Language tempLanguage = (Language) request.getObject();
-        
+
         List<Tutor> tutors = ((LanguageService) ServiceProvider.getInstance().getRequiredService(LanguageService.class)).getAllTutors(tempLanguage);
         if (tutors == null) {
             response.setResponseType(ResponseType.FAILURE);
@@ -234,16 +234,16 @@ public class ClientHandlerController {
         return response;
     }
 
-    public Response getCourseStudents(Request request) {
+    public Response getCourseStudents(Request request) throws IOException, SQLException {
         Response response = new Response();
         Course temp = (Course) request.getObject();
-        
-        List<CourseGroup> courseGroups = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).getGroupOfCourse(temp);
-        if (courseGroups == null) {
+
+        List<Student> students = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).getCourseStudents(temp);
+        if (students == null) {
             response.setResponseType(ResponseType.FAILURE);
         } else {
             response.setResponseType(ResponseType.SUCCESS);
-            response.setObject(courseGroups);
+            response.setObject(students);
         }
 
         return response;
