@@ -15,7 +15,7 @@ import schoolmanagement.commonlib.model.Student;
 public class StudentsListTModel extends AbstractTableModel {
 
     private List<Student> students;
-    private String[] header = {"First name", "Last name", "Birthdate"};
+    private final String[] header = {"First name", "Last name", "Birthdate"};
 
     public StudentsListTModel(List<Student> students) {
         this.students = students;

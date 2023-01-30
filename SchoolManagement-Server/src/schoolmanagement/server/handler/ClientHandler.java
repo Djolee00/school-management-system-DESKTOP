@@ -94,6 +94,9 @@ public class ClientHandler extends Thread {
                 case GET_COURSE_STUDENTS -> {
                     response = controller.getCourseStudents(request);
                 }
+                case ADD_COURSE_GROUP -> {
+                    response = controller.addCourseGroup(request);
+                }
             }
             sender.send(response);
         } catch (SQLException | ValidationException ex) {

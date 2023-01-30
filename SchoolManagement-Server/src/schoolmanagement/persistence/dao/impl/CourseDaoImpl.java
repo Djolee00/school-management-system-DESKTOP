@@ -146,6 +146,22 @@ public class CourseDaoImpl implements CourseDao {
         }
     }
 
+    @Override
+    public Long saveCourseGroup(CourseGroup courseGroup) throws SQLException {
+        final String sqlQuery = "INSERT INTO course_group(course_id,name,number_of_students) VALUES(?,?,?)";
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery, Statement.RETURN_GENERATED_KEYS)) {
+
+            statement.setLong(1, courseGroup.getCourse().getId());
+            statement.setString(2, courseGroup.getName());
+            statement.setInt(3, courseGroup.getNumOfStudents());
+            statement.executeUpdate();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            long key = rs.next() ? rs.getLong(1) : 0;
+            return key;
+        }
+    }
+
     private void populateGroupWithCurrentStudents(CourseGroup group) throws SQLException {
         final String sqlQuery = "SELECT cg.id AS course_group_id,cg.course_id AS course_id,cg.name AS group_name, cg.number_of_students AS num_of_students,ge.student_id AS student_id,\n"
                 + "s.first_name,s.last_name,s.birthdate,s.creation_date,u.username,u.password  FROM course_group cg\n"

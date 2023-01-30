@@ -14,8 +14,8 @@ import schoolmanagement.commonlib.model.CourseGroup;
  */
 public class AdminGroupsSelectionTModel extends AbstractTableModel {
 
-    private List<CourseGroup> groups;
-    private String[] header = {"Name", "Number of students"};
+    private final List<CourseGroup> groups;
+    private final String[] header = {"Name", "Number of students"};
 
     public AdminGroupsSelectionTModel(List<CourseGroup> groups) {
         this.groups = groups;
@@ -46,20 +46,24 @@ public class AdminGroupsSelectionTModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return true;
+        return columnIndex != 1;
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        super.setValueAt(aValue, rowIndex, columnIndex); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        CourseGroup temp = groups.get(rowIndex);
+        switch (columnIndex) {
+            case 0 -> temp.setName((String) aValue);
+        }
     }
 
     @Override
     public String getColumnName(int column) {
         return header[column];
     }
-    
-    public CourseGroup getCourseGroup(int index){
+
+    public CourseGroup getCourseGroup(int index) {
         return groups.get(index);
     }
+
 }

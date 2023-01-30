@@ -31,5 +31,7 @@ public interface CourseDao extends DaoInterface{
     public List<CourseGroup> getGroupsOfCourse(Course temp) throws SQLException;
 
     public List<Student> getStudentsOfCourse(Course temp) throws SQLException;
+
+    public Long saveCourseGroup(CourseGroup courseGroup) throws SQLException;
     
 }

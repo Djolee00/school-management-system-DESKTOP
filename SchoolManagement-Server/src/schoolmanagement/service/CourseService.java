@@ -28,5 +28,7 @@ public interface CourseService {
     public List<CourseGroup> getGroupOfCourse(Course temp) throws IOException,SQLException;
 
     public List<Student> getCourseStudents(Course temp)  throws IOException, SQLException;
+
+    public Long saveCourseGroup(CourseGroup courseGroup)  throws IOException, SQLException;
     
 }

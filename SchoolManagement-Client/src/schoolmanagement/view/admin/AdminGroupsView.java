@@ -44,7 +44,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
         lblUserText3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblHome = new javax.swing.JLabel();
-        lblUserText2 = new javax.swing.JLabel();
+        lblCourseName = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGroups = new javax.swing.JTable();
         panelSearch1 = new javax.swing.JPanel();
@@ -89,11 +89,11 @@ public class AdminGroupsView extends javax.swing.JFrame {
 
         lblHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/schoolmanagement/images/home.png"))); // NOI18N
 
-        lblUserText2.setBackground(new java.awt.Color(45, 118, 232));
-        lblUserText2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lblUserText2.setForeground(new java.awt.Color(255, 255, 255));
-        lblUserText2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblUserText2.setText("Course name");
+        lblCourseName.setBackground(new java.awt.Color(45, 118, 232));
+        lblCourseName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCourseName.setForeground(new java.awt.Color(255, 255, 255));
+        lblCourseName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblCourseName.setText("Course name");
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
@@ -105,7 +105,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addComponent(lblUserText2)
+                        .addComponent(lblCourseName)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addComponent(lblUserText3, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,7 +116,8 @@ public class AdminGroupsView extends javax.swing.JFrame {
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelHeaderLayout.createSequentialGroup()
@@ -126,10 +127,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(lblHome)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblUserText2))
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblCourseName)))
                 .addContainerGap(79, Short.MAX_VALUE))
         );
 
@@ -214,7 +212,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnUpdateGroupInfo.setText("Update group");
+        btnUpdateGroupInfo.setText("Save/Update group");
 
         btnAddGroup.setText("Add group");
 
@@ -358,8 +356,8 @@ public class AdminGroupsView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JLabel lblCourseName;
     private javax.swing.JLabel lblHome;
-    private javax.swing.JLabel lblUserText2;
     private javax.swing.JLabel lblUserText3;
     private javax.swing.JList<Student> listAttendingStudents;
     private javax.swing.JList<Student> listAvailableStudents;
@@ -434,6 +432,10 @@ public class AdminGroupsView extends javax.swing.JFrame {
 
     public JList<Tutor> getListAvailableTutors() {
         return listAvailableTutors;
+    }
+
+    public JLabel getLblCourseName() {
+        return lblCourseName;
     }
 
 }

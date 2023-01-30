@@ -249,4 +249,19 @@ public class ClientHandlerController {
         return response;
     }
 
+    public Response addCourseGroup(Request request) throws IOException, SQLException{
+        Response response = new Response();
+        CourseGroup courseGroup = (CourseGroup) request.getObject();
+
+        Long generatedId = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).saveCourseGroup(courseGroup);
+        if (generatedId == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(generatedId);
+        }
+
+        return response;
+    }
+
 }

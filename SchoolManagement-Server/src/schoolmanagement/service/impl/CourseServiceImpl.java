@@ -176,4 +176,27 @@ public class CourseServiceImpl implements CourseService {
         }
     }
 
+    @Override
+    public Long saveCourseGroup(CourseGroup courseGroup) throws IOException, SQLException {
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        Long generatedId;
+
+        try {
+            courseDao.setConnection(connection);
+
+            connection.setAutoCommit(false);
+
+            generatedId = courseDao.saveCourseGroup(courseGroup);
+
+            connection.commit();
+            ConnectionPool.getInstance().releaseConnection(connection);
+
+            return generatedId;
+        } catch (IOException | SQLException ex) {
+            connection.rollback();
+            ConnectionPool.getInstance().releaseConnection(connection);
+            throw ex;
+        }
+    }
+
 }

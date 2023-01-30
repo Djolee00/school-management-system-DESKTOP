@@ -52,6 +52,7 @@ public class AdminGroupsController {
         populateTableOfGroups();
         languageTutors = getCourseLanguageTutors();
         courseStudents = getCourseStudents();
+        groupsView.getLblCourseName().setText(selectedCourse.getName());
     }
 
     private void initListeners() {
@@ -81,6 +82,9 @@ public class AdminGroupsController {
     }
 
     private void addEmptyGroup() {
+        CourseGroup temp = makeDummyCourseGroup();
+        courseGroups.add(temp);
+        tableModel.fireTableDataChanged();
     }
 
     private void addStudentInGroup() {
@@ -96,6 +100,28 @@ public class AdminGroupsController {
     }
 
     private void updateGroupInfo() {
+        if (groupsView.getTblGroups().getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(groupsView, "Please select group you want to save/update", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        if (JOptionPane.showConfirmDialog(groupsView, "Are you sure you want to update this group?", "Confirmation", JOptionPane.YES_NO_OPTION)
+                == JOptionPane.YES_OPTION) {
+            CourseGroup temp = (CourseGroup) tableModel.getCourseGroup(groupsView.getTblGroups().getSelectedRow());
+            if (temp.getName().equals("")) {
+                JOptionPane.showMessageDialog(groupsView, "Please fill in the name of course group", "Warning", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            if (temp.getId() != null) {
+
+            } else {
+                Long generatedId = sendSaveRequest(temp);
+                temp.setId(generatedId);
+                JOptionPane.showMessageDialog(groupsView, "Group's data successfully saved", "Success", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
     }
 
     private void updateGroupStudents() {
@@ -217,6 +243,36 @@ public class AdminGroupsController {
             }
         }
         return students;
+    }
+
+    private CourseGroup makeDummyCourseGroup() {
+        CourseGroup temp = new CourseGroup();
+        temp.setId(null);
+        temp.setCourse(selectedCourse);
+        temp.setName("");
+        temp.setNumOfStudents(0);
+        temp.setStudents(new ArrayList<>());
+        temp.setTutors(new ArrayList<>());
+        return temp;
+    }
+
+    private Long sendSaveRequest(CourseGroup temp) {
+         try {
+            Communication.getInstance().send(new Request(Operation.ADD_COURSE_GROUP, temp));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.FAILURE) {
+                throw new IOException("Course group couldn't be saved");
+            }
+
+            return (Long) response.getObject();
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(groupsView, "Error adding group's data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            groupsView.dispose();
+            System.exit(0);
+            return null;
+        }
     }
 
 }
