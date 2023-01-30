@@ -10,8 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import schoolmanagement.commonlib.model.Language;
+import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.persistence.dao.LanguageDao;
-import schoolmanagement.persistence.mapper.MapperCourseRS;
 import schoolmanagement.persistence.mapper.MapperLanguageRS;
 
 /**
@@ -34,6 +34,22 @@ public class LanguageDaoImpl implements LanguageDao {
         try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
             ResultSet rs = statement.executeQuery();
             return MapperLanguageRS.mapLanguages(rs);
+        }
+    }
+
+    @Override
+    public List<Tutor> getAllTutors(Language language) throws SQLException {
+        final String sqlQuery = "SELECT t.id AS tutor_id, t.first_name,t.last_name FROM `language` l\n"
+                + "	INNER JOIN language_tutor lt\n"
+                + "	ON lt.language_id = l.id\n"
+                + "	INNER JOIN tutor t\n"
+                + "	ON lt.tutor_id = t.id\n"
+                + "	WHERE l.id = ?;";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, language.getId());
+            ResultSet rs = statement.executeQuery();
+            return MapperLanguageRS.mapTutorsOfLanguage(rs);
         }
     }
 

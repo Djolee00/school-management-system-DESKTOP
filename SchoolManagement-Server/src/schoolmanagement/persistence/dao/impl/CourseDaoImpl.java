@@ -162,7 +162,7 @@ public class CourseDaoImpl implements CourseDao {
             statement.setLong(2, group.getId());
 
             ResultSet rs = statement.executeQuery();
-            MapperCourseGroupRS.mapTutorsInCourseGrou(group, rs);
+            MapperCourseGroupRS.mapTutorsInCourseGroup(group, rs);
         }
     }
 

@@ -15,6 +15,7 @@ import schoolmanagement.commonlib.model.CourseEnrollment;
 import schoolmanagement.commonlib.model.CourseGroup;
 import schoolmanagement.commonlib.model.Language;
 import schoolmanagement.commonlib.model.Student;
+import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.commonlib.model.User;
 import schoolmanagement.service.CourseService;
 import schoolmanagement.service.LanguageService;
@@ -204,6 +205,36 @@ public class ClientHandlerController {
     }
 
     public Response getGroupsOfCourse(Request request) throws IOException, SQLException {
+        Response response = new Response();
+        Course temp = (Course) request.getObject();
+        
+        List<CourseGroup> courseGroups = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).getGroupOfCourse(temp);
+        if (courseGroups == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(courseGroups);
+        }
+
+        return response;
+    }
+
+    public Response getLanguageTutors(Request request) throws IOException, SQLException {
+        Response response = new Response();
+        Language tempLanguage = (Language) request.getObject();
+        
+        List<Tutor> tutors = ((LanguageService) ServiceProvider.getInstance().getRequiredService(LanguageService.class)).getAllTutors(tempLanguage);
+        if (tutors == null) {
+            response.setResponseType(ResponseType.FAILURE);
+        } else {
+            response.setResponseType(ResponseType.SUCCESS);
+            response.setObject(tutors);
+        }
+
+        return response;
+    }
+
+    public Response getCourseStudents(Request request) {
         Response response = new Response();
         Course temp = (Course) request.getObject();
         

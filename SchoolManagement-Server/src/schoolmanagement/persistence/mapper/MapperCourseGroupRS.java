@@ -47,7 +47,7 @@ public class MapperCourseGroupRS {
         group.setStudents(students);
     }
 
-    public static void mapTutorsInCourseGrou(CourseGroup group, ResultSet rsTutors) throws SQLException {
+    public static void mapTutorsInCourseGroup(CourseGroup group, ResultSet rsTutors) throws SQLException {
         List<Tutor> tutors = new ArrayList<>();
         while (rsTutors.next()) {
             Tutor temp = new Tutor();

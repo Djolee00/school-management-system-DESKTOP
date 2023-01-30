@@ -14,7 +14,6 @@ import javax.swing.JTable;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.Tutor;
 
-
 /**
  *
  * @author ivano
@@ -291,9 +290,8 @@ public class AdminGroupsView extends javax.swing.JFrame {
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelMainLayout.createSequentialGroup()
                         .addComponent(btnAddGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88)
-                        .addComponent(btnUpdateGroupInfo)
-                        .addGap(0, 33, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUpdateGroupInfo))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -364,8 +362,8 @@ public class AdminGroupsView extends javax.swing.JFrame {
     private javax.swing.JLabel lblUserText2;
     private javax.swing.JLabel lblUserText3;
     private javax.swing.JList<Student> listAttendingStudents;
-    private javax.swing.JList<String> listAvailableStudents;
-    private javax.swing.JList<String> listAvailableTutors;
+    private javax.swing.JList<Tutor> listAvailableStudents;
+    private javax.swing.JList<Tutor> listAvailableTutors;
     private javax.swing.JList<Tutor> listDeleagatedTutors;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelMain;
@@ -426,8 +424,16 @@ public class AdminGroupsView extends javax.swing.JFrame {
         return listAttendingStudents;
     }
 
-    public JList<Tutor> getListDeleagatedTutors() {
+    public JList<Tutor> getListDelegatedTutors() {
         return listDeleagatedTutors;
+    }
+
+    public JList<Tutor> getListAvailableStudents() {
+        return listAvailableStudents;
+    }
+
+    public JList<Tutor> getListAvailableTutors() {
+        return listAvailableTutors;
     }
 
 }

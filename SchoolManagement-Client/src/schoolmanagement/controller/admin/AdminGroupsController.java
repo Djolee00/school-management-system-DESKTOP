@@ -8,10 +8,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
 import schoolmanagement.commonlib.communication.Operation;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
@@ -35,8 +34,8 @@ public class AdminGroupsController {
     private final Course selectedCourse;
     private final AdminGroupsSelectionTModel tableModel;
     private List<CourseGroup> courseGroups;
-    private List<Student> groupStudents;
-    private List<Tutor> groupTutors;
+    private List<Tutor> languageTutors;
+    private List<Student> courseStudents;
 
     public AdminGroupsController() {
         selectedCourse = (Course) Session.getInstance().get("course");
@@ -48,8 +47,10 @@ public class AdminGroupsController {
 
     private void initView() {
         initListeners();
-        populateTableOfGroups();
         initLists();
+        populateTableOfGroups();
+        languageTutors = getCourseLanguageTutors();
+        courseStudents = getCourseStudents();
     }
 
     private void initListeners() {
@@ -130,19 +131,70 @@ public class AdminGroupsController {
         return temp;
     }
 
+    private List<Tutor> getCourseLanguageTutors() {
+        List<Tutor> tempTutors = null;
+
+        try {
+            Communication.getInstance().send(new Request(Operation.GET_LANGUAGE_TUTORS, selectedCourse.getLanguage()));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.FAILURE) {
+                throw new IOException("Error getting languages' data");
+            } else {
+                tempTutors = (List<Tutor>) response.getObject();
+            }
+
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(groupsView, "Error getting language' data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            groupsView.dispose();
+            System.exit(0);
+        }
+
+        return tempTutors;
+    }
+
+    private List<Student> getCourseStudents() {
+        List<Student> tempStudents = null;
+
+        try {
+            Communication.getInstance().send(new Request(Operation.GET_COURSE_STUDENTS, selectedCourse));
+
+            Response response = Communication.getInstance().receive();
+
+            if (response.getResponseType() == ResponseType.FAILURE) {
+                throw new IOException("Error getting students data");
+            } else {
+                tempStudents = (List<Student>) response.getObject();
+            }
+
+        } catch (ClassNotFoundException | IOException ex) {
+            JOptionPane.showMessageDialog(groupsView, "Error getting students data. Try again later!", "Error", JOptionPane.ERROR_MESSAGE);
+            groupsView.dispose();
+            System.exit(0);
+        }
+
+        return tempStudents;
+    }
+
     private void groupSelection() {
         int rowIndex = groupsView.getTblGroups().getSelectedRow();
         CourseGroup tempCourseGroup = tableModel.getCourseGroup(rowIndex);
+        List<Tutor> availableTutors = languageTutors.stream().filter(lt -> !tempCourseGroup.getTutors().contains(lt)).collect(Collectors.toList());
 
         groupsView.getListAttendingStudents().setListData(tempCourseGroup.getStudents().toArray(new Student[0]));
-        groupsView.getListDeleagatedTutors().setListData(tempCourseGroup.getTutors().toArray(new Tutor[0]));
+        groupsView.getListDelegatedTutors().setListData(tempCourseGroup.getTutors().toArray(new Tutor[0]));
+        groupsView.getListAvailableTutors().setListData(availableTutors.toArray(new Tutor[0]));
 
+        groupsView.getListAvailableTutors().updateUI();
         groupsView.getListAttendingStudents().updateUI();
-        groupsView.getListDeleagatedTutors().updateUI();
+        groupsView.getListDelegatedTutors().updateUI();
     }
 
     private void initLists() {
+        groupsView.getListAvailableTutors().setModel(new DefaultComboBoxModel<>());
         groupsView.getListAttendingStudents().setModel(new DefaultComboBoxModel<>());
-        groupsView.getListDeleagatedTutors().setModel(new DefaultComboBoxModel<>());
+        groupsView.getListDelegatedTutors().setModel(new DefaultComboBoxModel<>());
     }
+
 }
