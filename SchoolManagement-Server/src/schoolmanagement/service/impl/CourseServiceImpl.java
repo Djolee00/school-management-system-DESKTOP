@@ -177,7 +177,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public Long saveCourseGroup(CourseGroup courseGroup) throws IOException, SQLException {
+    public synchronized Long saveCourseGroup(CourseGroup courseGroup) throws IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         Long generatedId;
 
@@ -187,6 +187,12 @@ public class CourseServiceImpl implements CourseService {
             connection.setAutoCommit(false);
 
             generatedId = courseDao.saveCourseGroup(courseGroup);
+
+            courseGroup.setId(generatedId);
+            courseDao.deleteTutorsFromGroup(courseGroup);
+            courseDao.deleteStudentsFromGroup(courseGroup);
+            courseDao.addStudentsInGroup(courseGroup);
+            courseDao.addTutorsInGroup(courseGroup);
 
             connection.commit();
             ConnectionPool.getInstance().releaseConnection(connection);
@@ -200,7 +206,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public boolean updateCourseGroupData(CourseGroup courseGroup) throws IOException, SQLException {
+    public synchronized boolean updateCourseGroup(CourseGroup courseGroup) throws IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
 
         try {
@@ -214,10 +220,13 @@ public class CourseServiceImpl implements CourseService {
                 ConnectionPool.getInstance().releaseConnection(connection);
                 return false;
             }
+            courseDao.deleteTutorsFromGroup(courseGroup);
+            courseDao.deleteStudentsFromGroup(courseGroup);
+            courseDao.addStudentsInGroup(courseGroup);
+            courseDao.addTutorsInGroup(courseGroup);
 
             connection.commit();
             ConnectionPool.getInstance().releaseConnection(connection);
-
             return true;
         } catch (IOException | SQLException ex) {
             connection.rollback();

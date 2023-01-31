@@ -14,6 +14,7 @@ import java.util.List;
 import schoolmanagement.commonlib.model.Course;
 import schoolmanagement.commonlib.model.CourseGroup;
 import schoolmanagement.commonlib.model.Student;
+import schoolmanagement.commonlib.model.Tutor;
 import schoolmanagement.persistence.dao.CourseDao;
 import schoolmanagement.persistence.mapper.MapperCourseGroupRS;
 import schoolmanagement.persistence.mapper.MapperCourseRS;
@@ -162,6 +163,70 @@ public class CourseDaoImpl implements CourseDao {
         }
     }
 
+    @Override
+    public boolean updateCourseGroupData(CourseGroup courseGroup) throws SQLException {
+        final String sqlQuery = "UPDATE course_group SET name = ?, number_of_students = ? WHERE id = ?";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setString(1, courseGroup.getName());
+            statement.setInt(2, courseGroup.getNumOfStudents());
+            statement.setLong(3, courseGroup.getId());
+            int affectedRows = statement.executeUpdate();
+            return affectedRows > 0;
+        }
+    }
+
+    @Override
+    public void deleteTutorsFromGroup(CourseGroup courseGroup) throws SQLException {
+        final String sqlQuery = "DELETE FROM tutor_assignment WHERE course_id = ? AND course_group_id = ?";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, courseGroup.getCourse().getId());
+            statement.setLong(2, courseGroup.getId());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void deleteStudentsFromGroup(CourseGroup courseGroup) throws SQLException {
+        final String sqlQuery = "DELETE FROM group_enrollment WHERE course_id = ? AND course_group_id = ?";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(1, courseGroup.getCourse().getId());
+            statement.setLong(2, courseGroup.getId());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override
+    public void addStudentsInGroup(CourseGroup courseGroup) throws SQLException {
+        final String sqlQuery = "INSERT INTO group_enrollment (student_id,course_id,course_group_id) VALUES (?,?,?)";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(2, courseGroup.getCourse().getId());
+            statement.setLong(3, courseGroup.getId());
+            for (Student temp : courseGroup.getStudents()) {
+                System.out.println(temp);
+                statement.setLong(1, temp.getId());
+                statement.executeUpdate();
+            }
+        }
+    }
+
+    @Override
+    public void addTutorsInGroup(CourseGroup courseGroup) throws SQLException {
+        final String sqlQuery = "INSERT INTO tutor_assignment (tutor_id,course_id,course_group_id) VALUES (?,?,?)";
+
+        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
+            statement.setLong(2, courseGroup.getCourse().getId());
+            statement.setLong(3, courseGroup.getId());
+            for (Tutor temp : courseGroup.getTutors()) {
+                statement.setLong(1, temp.getId());
+                statement.executeUpdate();
+            }
+        }
+    }
+
     private void populateGroupWithCurrentStudents(CourseGroup group) throws SQLException {
         final String sqlQuery = "SELECT cg.id AS course_group_id,cg.course_id AS course_id,cg.name AS group_name, cg.number_of_students AS num_of_students,ge.student_id AS student_id,\n"
                 + "s.first_name,s.last_name,s.birthdate,s.creation_date,u.username,u.password  FROM course_group cg\n"
@@ -196,18 +261,6 @@ public class CourseDaoImpl implements CourseDao {
 
             ResultSet rs = statement.executeQuery();
             MapperCourseGroupRS.mapTutorsInCourseGroup(group, rs);
-        }
-    }
-
-    @Override
-    public boolean updateCourseGroupData(CourseGroup courseGroup) throws SQLException {
-        final String sqlQuery = "UPDATE course_group SET name=? WHERE id = ?";
-
-        try ( PreparedStatement statement = connection.prepareStatement(sqlQuery)) {
-            statement.setString(1, courseGroup.getName());
-            statement.setLong(2, courseGroup.getId());
-            int affectedRows = statement.executeUpdate();
-            return affectedRows > 0;
         }
     }
 

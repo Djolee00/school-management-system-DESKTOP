@@ -98,7 +98,7 @@ public class ClientHandler extends Thread {
                     response = controller.addCourseGroup(request);
                 }
                 case UPDATE_COURSE_GROUP -> {
-                    response = controller.updateCourseGroupInfo(request);
+                    response = controller.updateCourseGroup(request);
                 }
             }
             sender.send(response);

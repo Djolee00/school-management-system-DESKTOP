@@ -71,7 +71,7 @@ public class AdminGroupsController {
         groupsView.getBtnRemoveStudentFromGroup().addActionListener(e -> removeStudentFromGroup());
         groupsView.getBtnAddTutorToGroup().addActionListener(e -> addTutorToGroup());
         groupsView.getBtnRemoveTutorFromGroup().addActionListener(e -> removeTutorFromGroup());
-        groupsView.getBtnUpdateGroupInfo().addActionListener(e -> updateGroupInfo());
+        groupsView.getBtnUpdateGroupInfo().addActionListener(e -> saveOrUpdateGroup());
 
         groupsView.getTblGroups().addMouseListener(new MouseAdapter() {
             @Override
@@ -142,7 +142,7 @@ public class AdminGroupsController {
         groupSelection();
     }
 
-    private void updateGroupInfo() {
+    private void saveOrUpdateGroup() {
         if (groupsView.getTblGroups().getSelectedRow() == -1) {
             JOptionPane.showMessageDialog(groupsView, "Please select group you want to save/update", "Warning", JOptionPane.WARNING_MESSAGE);
             return;

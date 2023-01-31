@@ -31,6 +31,6 @@ public interface CourseService {
 
     public Long saveCourseGroup(CourseGroup courseGroup) throws IOException, SQLException;
 
-    public boolean updateCourseGroupData(CourseGroup courseGroup) throws IOException, SQLException;
+    public boolean updateCourseGroup(CourseGroup courseGroup) throws IOException, SQLException;
     
 }
