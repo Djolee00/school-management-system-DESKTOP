@@ -53,8 +53,9 @@ public class ConnectionPool {
     }
 
     public void releaseConnection(Connection connection) throws SQLException {
-        if(!connection.isClosed())
+        if (!connection.isClosed()) {
             availableConnections.add(connection);
+        }
         usedConnections.remove(connection);
     }
 

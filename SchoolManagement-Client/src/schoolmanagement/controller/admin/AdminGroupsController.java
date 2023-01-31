@@ -37,6 +37,7 @@ public class AdminGroupsController {
     private List<CourseGroup> courseGroups;
     private List<Tutor> languageTutors;
     private List<Student> courseStudents;
+    private CourseGroup selectedGroup;
 
     public AdminGroupsController() {
         selectedCourse = (Course) Session.getInstance().get("course");
@@ -71,8 +72,6 @@ public class AdminGroupsController {
         groupsView.getBtnAddTutorToGroup().addActionListener(e -> addTutorToGroup());
         groupsView.getBtnRemoveTutorFromGroup().addActionListener(e -> removeTutorFromGroup());
         groupsView.getBtnUpdateGroupInfo().addActionListener(e -> updateGroupInfo());
-        groupsView.getBtnUpdateStudents().addActionListener(e -> updateGroupStudents());
-        groupsView.getBtnUpdateTutors().addActionListener(e -> updateGroupTutors());
 
         groupsView.getTblGroups().addMouseListener(new MouseAdapter() {
             @Override
@@ -89,15 +88,58 @@ public class AdminGroupsController {
     }
 
     private void addStudentInGroup() {
+        int groupRow = groupsView.getTblGroups().getSelectedRow();
+        if (groupRow == -1) {
+            return;
+        }
+
+        List<Student> selectedStudents = groupsView.getListAvailableStudents().getSelectedValuesList();
+        if (selectedStudents.size() + selectedGroup.getNumOfStudents() > selectedCourse.getGroupCapacity()) {
+            JOptionPane.showMessageDialog(groupsView, "Maximum number of students in group is " + selectedCourse.getGroupCapacity(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        selectedGroup.getStudents().addAll(selectedStudents);
+        selectedGroup.setNumOfStudents(selectedGroup.getNumOfStudents() + selectedStudents.size());
+        groupSelection();
+        tableModel.fireTableDataChanged();
+        groupsView.getTblGroups().setRowSelectionInterval(groupRow, groupRow);
     }
 
     private void removeStudentFromGroup() {
+        int groupRow = groupsView.getTblGroups().getSelectedRow();
+        if (groupRow == -1) {
+            return;
+        }
+
+        List<Student> selectedStudents = groupsView.getListAttendingStudents().getSelectedValuesList();
+        selectedGroup.getStudents().removeAll(selectedStudents);
+        selectedGroup.setNumOfStudents(selectedGroup.getStudents().size());
+        groupSelection();
+        tableModel.fireTableDataChanged();
+        groupsView.getTblGroups().setRowSelectionInterval(groupRow, groupRow);
     }
 
     private void removeTutorFromGroup() {
+        int groupRow = groupsView.getTblGroups().getSelectedRow();
+        if (groupRow == -1) {
+            return;
+        }
+
+        List<Tutor> selectedTutors = groupsView.getListDelegatedTutors().getSelectedValuesList();
+        selectedGroup.getTutors().removeAll(selectedTutors);
+        groupSelection();
     }
 
     private void addTutorToGroup() {
+        int groupRow = groupsView.getTblGroups().getSelectedRow();
+        if (groupRow == -1) {
+            return;
+        }
+
+        List<Tutor> selectedTutors = groupsView.getListAvailableTutors().getSelectedValuesList();
+        selectedGroup.getTutors().addAll(selectedTutors);
+        groupSelection();
     }
 
     private void updateGroupInfo() {
@@ -124,12 +166,6 @@ public class AdminGroupsController {
             }
 
         }
-    }
-
-    private void updateGroupStudents() {
-    }
-
-    private void updateGroupTutors() {
     }
 
     private void populateTableOfGroups() {
@@ -208,12 +244,12 @@ public class AdminGroupsController {
 
     private void groupSelection() {
         int rowIndex = groupsView.getTblGroups().getSelectedRow();
-        CourseGroup tempCourseGroup = tableModel.getCourseGroup(rowIndex);
-        List<Tutor> availableTutors = languageTutors.stream().filter(lt -> !tempCourseGroup.getTutors().contains(lt)).collect(Collectors.toList());
+        selectedGroup = tableModel.getCourseGroup(rowIndex);
+        List<Tutor> availableTutors = languageTutors.stream().filter(lt -> !selectedGroup.getTutors().contains(lt)).collect(Collectors.toList());
         List<Student> availableStudents = getAvailableStudentsForCourseGroup();
 
-        groupsView.getListAttendingStudents().setListData(tempCourseGroup.getStudents().toArray(new Student[0]));
-        groupsView.getListDelegatedTutors().setListData(tempCourseGroup.getTutors().toArray(new Tutor[0]));
+        groupsView.getListAttendingStudents().setListData(selectedGroup.getStudents().toArray(new Student[0]));
+        groupsView.getListDelegatedTutors().setListData(selectedGroup.getTutors().toArray(new Tutor[0]));
         groupsView.getListAvailableTutors().setListData(availableTutors.toArray(new Tutor[0]));
         groupsView.getListAvailableStudents().setListData(availableStudents.toArray(new Student[0]));
 

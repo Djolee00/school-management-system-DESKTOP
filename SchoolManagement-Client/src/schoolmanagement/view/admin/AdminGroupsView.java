@@ -48,7 +48,6 @@ public class AdminGroupsView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblGroups = new javax.swing.JTable();
         panelSearch1 = new javax.swing.JPanel();
-        btnUpdateStudents = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         listAvailableStudents = new javax.swing.JList<>();
@@ -59,7 +58,6 @@ public class AdminGroupsView extends javax.swing.JFrame {
         btnUpdateGroupInfo = new javax.swing.JButton();
         btnAddGroup = new javax.swing.JButton();
         panelSearch2 = new javax.swing.JPanel();
-        btnUpdateTutors = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         jScrollPane4 = new javax.swing.JScrollPane();
         listAvailableTutors = new javax.swing.JList<>();
@@ -152,8 +150,6 @@ public class AdminGroupsView extends javax.swing.JFrame {
 
         panelSearch1.setBorder(javax.swing.BorderFactory.createTitledBorder("Students"));
 
-        btnUpdateStudents.setText("Update");
-
         listAvailableStudents.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Available", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         listAvailableStudents.setFocusable(false);
         jScrollPane2.setViewportView(listAvailableStudents);
@@ -170,10 +166,6 @@ public class AdminGroupsView extends javax.swing.JFrame {
         panelSearch1.setLayout(panelSearch1Layout);
         panelSearch1Layout.setHorizontalGroup(
             panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelSearch1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(btnUpdateStudents)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelSearch1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelSearch1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,9 +199,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                         .addGap(8, 8, 8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUpdateStudents)
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
 
         btnUpdateGroupInfo.setText("Save/Update group");
@@ -217,8 +207,6 @@ public class AdminGroupsView extends javax.swing.JFrame {
         btnAddGroup.setText("Add group");
 
         panelSearch2.setBorder(javax.swing.BorderFactory.createTitledBorder("Tutors"));
-
-        btnUpdateTutors.setText("Update");
 
         listAvailableTutors.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Available", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
         listAvailableTutors.setFocusable(false);
@@ -237,10 +225,6 @@ public class AdminGroupsView extends javax.swing.JFrame {
         panelSearch2Layout.setHorizontalGroup(
             panelSearch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSearch2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(btnUpdateTutors)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panelSearch2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(panelSearch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelSearch2Layout.createSequentialGroup()
@@ -254,7 +238,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                             .addComponent(btnRemoveTutorFromGroup, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(79, Short.MAX_VALUE))))
         );
         panelSearch2Layout.setVerticalGroup(
             panelSearch2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,9 +257,7 @@ public class AdminGroupsView extends javax.swing.JFrame {
                         .addGap(8, 8, 8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUpdateTutors)
-                .addContainerGap())
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
@@ -346,8 +328,6 @@ public class AdminGroupsView extends javax.swing.JFrame {
     private javax.swing.JButton btnRemoveStudentFromGroup;
     private javax.swing.JButton btnRemoveTutorFromGroup;
     private javax.swing.JButton btnUpdateGroupInfo;
-    private javax.swing.JButton btnUpdateStudents;
-    private javax.swing.JButton btnUpdateTutors;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -398,20 +378,12 @@ public class AdminGroupsView extends javax.swing.JFrame {
         return btnRemoveStudentFromGroup;
     }
 
-    public JButton getBtnUpdateStudents() {
-        return btnUpdateStudents;
-    }
-
     public JButton getBtnAddTutorToGroup() {
         return btnAddTutorToGroup;
     }
 
     public JButton getBtnRemoveTutorFromGroup() {
         return btnRemoveTutorFromGroup;
-    }
-
-    public JButton getBtnUpdateTutors() {
-        return btnUpdateTutors;
     }
 
     public JLabel getLblHome() {
