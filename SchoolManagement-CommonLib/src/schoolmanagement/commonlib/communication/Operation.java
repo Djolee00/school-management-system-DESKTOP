@@ -27,5 +27,6 @@ public enum Operation implements Serializable {
     GET_LANGUAGE_TUTORS,
     GET_COURSE_STUDENTS, 
     ADD_COURSE_GROUP,
-    UPDATE_COURSE_GROUP
+    UPDATE_COURSE_GROUP,
+    LOG_OUT
 }

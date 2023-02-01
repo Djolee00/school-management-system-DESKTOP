@@ -9,7 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketImpl;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import schoolmanagement.config.Configuration;
 import schoolmanagement.server.handler.ClientHandler;
@@ -21,8 +22,10 @@ import schoolmanagement.server.handler.ClientHandler;
 public class Server extends Thread {
 
     private final ServerSocket serverSocket;
+    public static List<ClientHandler> loggedClients;
 
     public Server() throws IOException {
+        loggedClients = new ArrayList<>();
         serverSocket = new ServerSocket(readPortNumber());
     }
 

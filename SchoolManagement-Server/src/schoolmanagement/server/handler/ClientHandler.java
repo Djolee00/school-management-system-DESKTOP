@@ -7,11 +7,15 @@ package schoolmanagement.server.handler;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.util.Date;
 import schoolmanagement.commonlib.communication.Sender;
 import schoolmanagement.commonlib.communication.Receiver;
 import schoolmanagement.commonlib.communication.Request;
 import schoolmanagement.commonlib.communication.Response;
 import schoolmanagement.commonlib.communication.ResponseType;
+import schoolmanagement.commonlib.model.User;
+import schoolmanagement.server.Server;
 import validation.exception.ValidationException;
 
 /**
@@ -23,6 +27,8 @@ public class ClientHandler extends Thread {
     private final Sender sender;
     private final Receiver receiver;
     private final ClientHandlerController controller;
+    private User user;
+    private Date loginTime;
 
     public ClientHandler(Socket socket) throws IOException {
         sender = new Sender(socket);
@@ -41,6 +47,7 @@ public class ClientHandler extends Thread {
             }
         } catch (IOException | ClassNotFoundException ex) {
             System.out.println("One client disconnected");
+            Server.loggedClients.remove(this);
         }
     }
 
@@ -51,6 +58,7 @@ public class ClientHandler extends Thread {
             switch (request.getOperation()) {
                 case LOGIN -> {
                     response = controller.loginUser(request);
+                    addActiveClient(response);
                 }
                 case GET_STUDENT_COURSES -> {
                     response = controller.getStudentCourses(request);
@@ -100,12 +108,31 @@ public class ClientHandler extends Thread {
                 case UPDATE_COURSE_GROUP -> {
                     response = controller.updateCourseGroup(request);
                 }
+                case LOG_OUT -> {
+                    Server.loggedClients.remove(this);
+                }
             }
             sender.send(response);
         } catch (SQLException | ValidationException ex) {
-            ex.printStackTrace();
             sender.send(new Response(ex.getMessage(), ResponseType.FAILURE));
         }
+    }
+
+    private void addActiveClient(Response response) {
+        if (response.getResponseType() == ResponseType.FAILURE) {
+            return;
+        }
+        user = (User) response.getObject();
+        loginTime = new Date();
+        Server.loggedClients.add(this);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public Date getLoginTime() {
+        return loginTime;
     }
 
 }

@@ -6,7 +6,11 @@ package schoolmanagement.controller.admin;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import javax.swing.JOptionPane;
+import schoolmanagement.commonlib.communication.Operation;
+import schoolmanagement.commonlib.communication.Request;
+import schoolmanagement.communication.Communication;
 import schoolmanagement.controller.login.LoginController;
 import schoolmanagement.session.Session;
 import schoolmanagement.view.admin.AdminHomeView;
@@ -50,6 +54,7 @@ public class AdminHomeController {
     }
 
     private void logout() {
+        sendLogoutRequest();
         JOptionPane.showMessageDialog(homeView, "Bye Admin!");
         Session.getInstance().remove("user");
         new LoginController();
@@ -64,5 +69,14 @@ public class AdminHomeController {
     private void openCoursesView() {
         new AdminCoursesController();
         homeView.dispose();
+    }
+
+    private void sendLogoutRequest() {
+        try {
+            Communication.getInstance().send(new Request(Operation.LOG_OUT, null));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(homeView, "Error while logging out student!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
     }
 }

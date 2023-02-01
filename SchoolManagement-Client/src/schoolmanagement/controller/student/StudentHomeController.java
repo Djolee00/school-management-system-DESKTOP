@@ -6,8 +6,14 @@ package schoolmanagement.controller.student;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import javax.swing.JOptionPane;
+import schoolmanagement.commonlib.communication.Operation;
+import schoolmanagement.commonlib.communication.Request;
+import schoolmanagement.commonlib.communication.Response;
+import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.Student;
+import schoolmanagement.communication.Communication;
 import schoolmanagement.controller.login.LoginController;
 import schoolmanagement.session.Session;
 import schoolmanagement.view.student.StudentHomeView;
@@ -63,6 +69,7 @@ public class StudentHomeController {
     }
 
     private void logout() {
+        sendLogoutRequest();
         Student student = (Student) Session.getInstance().get("user");
         JOptionPane.showMessageDialog(homeView, "Bye " + student.getFirstName() + " " + student.getLastName() + "!");
         Session.getInstance().remove("user");
@@ -73,6 +80,15 @@ public class StudentHomeController {
     private void openProfileView() {
         new StudentProfileController();
         homeView.dispose();
+    }
+
+    private void sendLogoutRequest() {
+        try {
+            Communication.getInstance().send(new Request(Operation.LOG_OUT, null));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(homeView, "Error while logging out student!", "Error", JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+        }
     }
 
 }

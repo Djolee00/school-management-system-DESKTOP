@@ -59,6 +59,8 @@ public class ConfigurationForm extends javax.swing.JDialog {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Server port:");
 
+        txtServerPort.setEditable(false);
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Database host:");
@@ -182,7 +184,6 @@ public class ConfigurationForm extends javax.swing.JDialog {
         String dbUsername = txtDbUsername.getText();
         String dbPassword = txtDbPassword.getText();
 
-        // TODO : port number validation
         // testing if server can connect to database with given data
         try {
             Test.testConnection(dbHost, dbPort, dbName, dbUsername, dbPassword);
@@ -228,7 +229,7 @@ public class ConfigurationForm extends javax.swing.JDialog {
             txtDbPassword.setText(properties.getProperty(Configuration.DB_PASSWORD));
             txtServerPort.setText(properties.getProperty(Configuration.SERVER_PORT));
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(this, "Neuspešno učitavanje konfiguracionih podataka", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Failed to read configuration properties", "Error", JOptionPane.ERROR_MESSAGE);
             dispose();
         }
     }

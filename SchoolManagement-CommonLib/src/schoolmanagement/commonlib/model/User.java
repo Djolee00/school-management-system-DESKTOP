@@ -10,19 +10,17 @@ import java.io.Serializable;
  *
  * @author ivano
  */
-public class User implements Serializable{
-       
+public class User implements Serializable {
+
     protected Long id;
-    protected  String username;
-    protected  String password;
+    protected String username;
+    protected String password;
 
     public User(Long id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
     }
-    
-    
 
     public User(String username, String password) {
         this.username = username;
@@ -57,6 +55,5 @@ public class User implements Serializable{
     public String toString() {
         return "User{" + "id=" + id + ", username=" + username + ", password=" + password + '}';
     }
-    
-    
+
 }
