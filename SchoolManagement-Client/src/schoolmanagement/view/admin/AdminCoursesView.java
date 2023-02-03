@@ -280,7 +280,7 @@ public class AdminCoursesView extends javax.swing.JFrame {
 
         btnUpdateCourse.setText("Update course");
 
-        btnDeleteCourse.setText("Delete Course");
+        btnDeleteCourse.setText("Delete course");
 
         javax.swing.GroupLayout panelMainLayout = new javax.swing.GroupLayout(panelMain);
         panelMain.setLayout(panelMainLayout);

@@ -176,6 +176,9 @@ public class AdminCoursesController {
 
         courses = temp;
         tableModel.setCourses(temp);
+        if(courses.isEmpty()){
+            JOptionPane.showMessageDialog(coursesView, "No courses match criteria values","Info",JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void resetCourses() {

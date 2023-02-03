@@ -480,7 +480,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnDeleteCourse">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Delete Course"/>
+            <Property name="text" type="java.lang.String" value="Delete course"/>
           </Properties>
         </Component>
       </SubComponents>
