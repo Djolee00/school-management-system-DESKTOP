@@ -157,6 +157,7 @@ public class MainForm extends javax.swing.JFrame {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "Error starting server. Please try again!", "Erorr", JOptionPane.ERROR_MESSAGE);
             this.dispose();
+            System.exit(0);
         }
     }//GEN-LAST:event_btnStartServerActionPerformed
 
