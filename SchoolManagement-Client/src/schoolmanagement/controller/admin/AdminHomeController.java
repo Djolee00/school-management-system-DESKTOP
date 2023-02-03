@@ -74,7 +74,8 @@ public class AdminHomeController {
     private void sendLogoutRequest() {
         try {
             Communication.getInstance().send(new Request(Operation.LOG_OUT, null));
-        } catch (IOException ex) {
+            Communication.getInstance().receive(); // we need it because server will send empty response
+        } catch (ClassNotFoundException | IOException ex) {
             JOptionPane.showMessageDialog(homeView, "Error while logging out student!", "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }

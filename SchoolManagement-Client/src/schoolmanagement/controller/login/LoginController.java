@@ -62,15 +62,17 @@ public class LoginController {
                 Session.getInstance().add("user", loggedUser);
 
                 if (loggedUser instanceof Administrator) {
+                    JOptionPane.showMessageDialog(loginView, "Successfully logged in!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     new AdminHomeController();
                 } else {
+                    JOptionPane.showMessageDialog(loginView, "Successfully logged in!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     new StudentHomeController();
                 }
 
                 loginView.dispose();
 
             } else {
-                JOptionPane.showMessageDialog(loginView, "User with those credentials doesn't exist.\n Please try again.", "Try again", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(loginView, "User with those credentials doesn't exist.\nPlease try again.", "Try again", JOptionPane.WARNING_MESSAGE);
             }
 
         } catch (IOException | ClassNotFoundException ex) {

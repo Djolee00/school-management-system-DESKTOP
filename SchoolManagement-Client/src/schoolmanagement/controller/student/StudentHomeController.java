@@ -10,8 +10,6 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import schoolmanagement.commonlib.communication.Operation;
 import schoolmanagement.commonlib.communication.Request;
-import schoolmanagement.commonlib.communication.Response;
-import schoolmanagement.commonlib.communication.ResponseType;
 import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.communication.Communication;
 import schoolmanagement.controller.login.LoginController;
@@ -85,7 +83,8 @@ public class StudentHomeController {
     private void sendLogoutRequest() {
         try {
             Communication.getInstance().send(new Request(Operation.LOG_OUT, null));
-        } catch (IOException ex) {
+            Communication.getInstance().receive(); // we need it because server will send empty response
+        } catch (ClassNotFoundException | IOException ex) {
             JOptionPane.showMessageDialog(homeView, "Error while logging out student!", "Error", JOptionPane.ERROR_MESSAGE);
             System.exit(0);
         }
