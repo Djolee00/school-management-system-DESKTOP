@@ -120,6 +120,10 @@ public class AdminStudentsListController {
 
         students = temp;
         tableModel.setStudents(temp);
+        
+        if(students.isEmpty()){
+            JOptionPane.showMessageDialog(studentsView, "There are no students with these values","Info",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private void updateStudent() {

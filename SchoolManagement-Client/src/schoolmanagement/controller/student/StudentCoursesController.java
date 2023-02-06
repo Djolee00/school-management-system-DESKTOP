@@ -134,6 +134,9 @@ public class StudentCoursesController {
 
         courses = temp;
         tableModel.setCourses(temp);
+        if(courses.isEmpty()){
+            JOptionPane.showMessageDialog( coursesView,"There are no courses with given input values","Info",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private void chooseCourses() {

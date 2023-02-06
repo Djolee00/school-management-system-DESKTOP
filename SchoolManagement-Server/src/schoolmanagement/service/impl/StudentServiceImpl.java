@@ -106,7 +106,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public synchronized boolean enrollStudentInCourses(List<CourseEnrollment> selectedCourses) throws IOException, SQLException {
+    public synchronized boolean enrollCourses(List<CourseEnrollment> selectedCourses) throws IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
 
         try {
@@ -152,7 +152,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public synchronized boolean updateStudentPersonalData(Student student, StudentValidator validator) throws ValidationException, IOException, SQLException {
+    public synchronized boolean updateStudent(Student student, StudentValidator validator) throws ValidationException, IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         try {
             userDao.setConnection(connection);

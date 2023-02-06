@@ -51,7 +51,7 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public synchronized boolean updateCourseData(Course course) throws IOException, SQLException {
+    public synchronized boolean updateCourse(Course course) throws IOException, SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
 
         try {
@@ -189,8 +189,8 @@ public class CourseServiceImpl implements CourseService {
             generatedId = courseDao.saveCourseGroup(courseGroup);
 
             courseGroup.setId(generatedId);
-            courseDao.deleteTutorsFromGroup(courseGroup);
-            courseDao.deleteStudentsFromGroup(courseGroup);
+//            courseDao.deleteTutorsFromGroup(courseGroup);
+//            courseDao.deleteStudentsFromGroup(courseGroup);
             courseDao.addStudentsInGroup(courseGroup);
             courseDao.addTutorsInGroup(courseGroup);
 

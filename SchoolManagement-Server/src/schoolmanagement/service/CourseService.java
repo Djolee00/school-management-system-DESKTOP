@@ -19,7 +19,7 @@ public interface CourseService {
 
     public List<Course> getAllCourses() throws IOException,SQLException;
 
-    public boolean updateCourseData(Course course) throws IOException,SQLException;
+    public boolean updateCourse(Course course) throws IOException,SQLException;
 
     public boolean deleteCourse(Course course) throws IOException,SQLException;
 

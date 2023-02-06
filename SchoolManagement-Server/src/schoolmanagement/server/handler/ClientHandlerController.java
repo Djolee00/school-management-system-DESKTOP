@@ -80,7 +80,7 @@ public class ClientHandlerController {
         Response response = new Response();
         List<CourseEnrollment> selectedCourses = (List<CourseEnrollment>) request.getObject();
 
-        boolean status = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).enrollStudentInCourses(selectedCourses);
+        boolean status = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).enrollCourses(selectedCourses);
         if (status == false) {
             response.setResponseType(ResponseType.FAILURE);
         } else {
@@ -136,7 +136,7 @@ public class ClientHandlerController {
         Response response = new Response();
         Student student = (Student) request.getObject();
 
-        boolean status = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).updateStudentPersonalData(student, new UpdateStudentValidator());
+        boolean status = ((StudentService) ServiceProvider.getInstance().getRequiredService(StudentService.class)).updateStudent(student, new UpdateStudentValidator());
         if (status == false) {
             response.setResponseType(ResponseType.FAILURE);
         } else {
@@ -165,7 +165,7 @@ public class ClientHandlerController {
         Response response = new Response();
         Course course = (Course) request.getObject();
 
-        boolean status = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).updateCourseData(course);
+        boolean status = ((CourseService) ServiceProvider.getInstance().getRequiredService(CourseService.class)).updateCourse(course);
         if (status == false) {
             response.setResponseType(ResponseType.FAILURE);
         } else {
