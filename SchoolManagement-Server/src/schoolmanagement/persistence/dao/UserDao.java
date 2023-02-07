@@ -6,7 +6,6 @@ package schoolmanagement.persistence.dao;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import schoolmanagement.commonlib.model.Student;
 import schoolmanagement.commonlib.model.User;
 
 /**

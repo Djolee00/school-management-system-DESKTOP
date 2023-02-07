@@ -18,7 +18,7 @@ import schoolmanagement.commonlib.model.User;
  */
 public interface StudentDao extends DaoInterface {
 
-    Student saveStudent(Student student) throws SQLException, IOException;
+    public Student saveStudent(Student student) throws SQLException, IOException;
 
     public Student getStudentByUser(User user) throws SQLException;
 
