@@ -371,7 +371,6 @@ public class StudentCoursesView extends javax.swing.JFrame {
         tblCourses.getTableHeader().setBackground(new Color(32, 136, 203));
         tblCourses.getTableHeader().setForeground(new Color(255, 255, 255));
         tblCourses.setRowHeight(25);
-
     }
 
     public JTable getTblCourses() {

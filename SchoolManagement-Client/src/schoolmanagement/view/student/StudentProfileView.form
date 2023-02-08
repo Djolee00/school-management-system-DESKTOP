@@ -480,7 +480,7 @@
                         <Property name="focusable" type="boolean" value="false"/>
                         <Property name="rowHeight" type="int" value="25"/>
                         <Property name="selectionBackground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="63" green="39" red="e8" type="rgb"/>
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
                         <Property name="selectionMode" type="int" value="0"/>
                         <Property name="showHorizontalLines" type="boolean" value="true"/>

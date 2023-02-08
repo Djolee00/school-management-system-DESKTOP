@@ -262,7 +262,7 @@ public class StudentProfileView extends javax.swing.JFrame {
         });
         tblCourses.setFocusable(false);
         tblCourses.setRowHeight(25);
-        tblCourses.setSelectionBackground(new java.awt.Color(232, 57, 99));
+        tblCourses.setSelectionBackground(new java.awt.Color(255, 255, 255));
         tblCourses.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblCourses.setShowHorizontalLines(true);
         jScrollPane1.setViewportView(tblCourses);
@@ -449,9 +449,18 @@ public class StudentProfileView extends javax.swing.JFrame {
         tblCourses.getTableHeader().setBackground(new Color(32, 136, 203));
         tblCourses.getTableHeader().setForeground(new Color(255, 255, 255));
         tblCourses.setRowHeight(25);
-
     }
 
+    public void setRowGreen() {
+        tblCourses.setSelectionBackground(new Color(0,250,154));
+    }
+    
+    public void setRowRed() {
+        tblCourses.setSelectionBackground(new Color(232,57,99));
+    }
+    
+    
+    
     public JFormattedTextField getTxtBirthDate() {
         return txtBirthDate;
     }
@@ -507,6 +516,5 @@ public class StudentProfileView extends javax.swing.JFrame {
     public JLabel getLblNumOfStudents() {
         return lblNumOfStudents;
     }
-
 
 }

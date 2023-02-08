@@ -107,6 +107,7 @@ public class StudentProfileController {
         CourseGroup tempGroup = tempCourseEnrollment.getCourse().getCourseGroups().get(0); //we only have group in which student exist (if he is added in any group)
 
         if (tempGroup != null) {
+            profileView.setRowGreen();
             profileView.getLblMessage().setVisible(false);
             profileView.getTxtName().setText(tempGroup.getName());
             for (Tutor temp : tempGroup.getTutors()) {
@@ -114,6 +115,7 @@ public class StudentProfileController {
             }
             profileView.getTxtNumOfStudents().setText("" + tempGroup.getNumOfStudents());
         } else {
+            profileView.setRowRed();
             profileView.getLblMessage().setVisible(true);
             profileView.getTxtName().setText("");
             profileView.getTxtTutors().setText("");
