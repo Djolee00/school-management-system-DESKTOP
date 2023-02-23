@@ -70,7 +70,7 @@ TutorsAssignment (tutor_id, id,course_group_id)
 GroupEnrollment (student_id, id,course_group_id)
 
 ```
-## Deisgn stage
+## Design stage
 
 At the beginning of this phase, I designed *user forms* for each use case. Here are some examples of forms:
 
