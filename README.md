@@ -1,19 +1,3 @@
-
-# About the project
-
-During one month work on project, I had the opportunity to learn a simplified software development process, from the identification of user requirements to the concrete implementation of the application.
-
-I went through simplified **Larman's method of software development**, which consists of 5 stages:
-
- - Requirements definition stage
- - Analysis stage
- - Design stage
- - Implementation stage
- - Test stage
-
-
-This project includes four of them.
-
 # About the project
 
 During one month work on project, I had the opportunity to learn a simplified software development process, from the identification of user requirements to the concrete implementation of the application.
@@ -128,7 +112,7 @@ The entire application was made using Core Java, both client and server side. Th
 - The whole communication with database is implemented using JDBC (no frameworks like Hibernate)
 
 
-##Validation Library
+## Validation Library
 
 The validation library is made using **Builder pattern**. Here we can see the structure of library and example of library usage:
 
