@@ -23,6 +23,7 @@ import schoolmanagement.view.student.StudentHomeView;
 public class StudentHomeController {
 
     private final StudentHomeView homeView;
+    
 
     public StudentHomeController() {
         homeView = new StudentHomeView();

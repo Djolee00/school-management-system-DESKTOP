@@ -88,7 +88,7 @@ public class ConnectionPool {
     }
 
     private Connection createConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName, dbUsername, dbPassword);
+        return DriverManager.getConnection("jdbc:mysql://" + dbHost + ":" + dbPort + "/" + dbName + "?serverTimezone=UTC", dbUsername, dbPassword);
     }
 
 }
